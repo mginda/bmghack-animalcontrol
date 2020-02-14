@@ -1,4 +1,5 @@
 name: "bmghack-animalcontrol"
+output_dir: "."
 navbar:
    title: "Bloomington Animal Care & Control Data - R Notebooks"
    left: 
@@ -6,3 +7,6 @@ navbar:
         href: index.html
        -text: "Visualization Notebook"
         href: visual.nb.html
+output:
+  html_document:
+    theme: cosmo
