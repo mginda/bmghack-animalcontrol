@@ -1,7 +1,8 @@
 ---
-title: "Bloomington Animal Care & Control Data - R Notebook"
+title: "Data Documentation and Processing"
 ---
 ```{r setup, include=FALSE}
+library(knitr)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
