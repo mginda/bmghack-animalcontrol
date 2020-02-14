@@ -3,10 +3,10 @@ output_dir: "."
 navbar:
    title: "Bloomington Animal Care & Control Data - R Notebooks"
    left: 
-       -text: "Documentation & Processing"
-        href: index.html
-       -text: "Visualization Notebook"
-        href: visual.nb.html
+     - text: "Documentation & Processing"
+       href: index.html
+     - text: "Visualization Notebook"
+       href: visual.html
 output:
   html_document:
     theme: cosmo
