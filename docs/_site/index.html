@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Bloomington Animal Care and Control Data</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Bloomington Animal Care & Control Data - R Notebooks</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Documentation &amp; Processing</a>
+</li>
+<li>
+  <a href="visual.html">Visualization Notebook</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Bloomington Animal Care and Control Data</h1>
+
+</div>
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Bloomington Animal Care and Control data is available through <a href="https://data.bloomington.in.gov/">BClear</a>, data portal for Bloomington, Indiana’s city government. The Animal Care and Control Division has prepared two data sets that the public may use to understand how the city handles animal welfare.</p>
+<p>This notebook was created for the <strong>BMG Hack’s - Let’s Get Visual - Civic Data Challenge</strong>. The notebook provides a description of each data set, and provides code for the data processing performed on these data that (hopefully) will facilitate analysis and visualization that can be updated, re-used, and shared with others!</p>
+<p>This is an <a href="http://rmarkdown.rstudio.com">R Markdown</a> Notebook. When you execute code within the notebook, the results appear beneath the code.</p>
+<div id="about-the-data-sets" class="section level2">
+<h2>About the Data Sets</h2>
+<ul>
+<li><p><strong><a href="https://data.bloomington.in.gov/dataset/animal-care-and-control/resource/7a847ec2-31c6-48e3-b0bc-02af2fa94587">Annual Statistics (2004-2019)</a></strong> - These data represent high level annual statistics for the division, which includes revenue, budgets, staffing, counts of animal intakes and movements. These data is great for those interested in practicing implementing basic data visualizations using a tidy data set.</p></li>
+<li><p><strong><a href="https://data.bloomington.in.gov/dataset/adopted-animals/resource/8854ce02-e8f5-44b9-b85f-17f002a7d023">Adoptions (2017-Present)</a></strong> - These data represent animal case records maintained by the division. This is a much larger and complex data set compared to the annual statistics. The Bloomington Animal Shelter, which uses the <a href="https://www.sheltermanager.com/site/en_tour.html">Shelter Manager</a> database to manage its case load. The data provided by the city is a roll-up of multiple tables from the shelter database. Currently, there are over 12,000 intake records available to download.</p></li>
+</ul>
+</div>
+</div>
+<div id="setting-up-r" class="section level1">
+<h1>Setting up R</h1>
+<p>Here we set up the R environment, and load in the R Packages that will be used in the notebook.</p>
+<pre class="r"><code>#Clean up environment
+rm(list=ls())
+
+#Packages used in notebook
+library(curl)        # Data downloads via URL
+library(tidyr)       # Tidyverse data processing piping, string manipulation
+library(readr)       # Data parsing
+library(plyr)        # Combining and Splitting Data
+library(dplyr)       # Data analysis and aggregations
+library(magrittr)    # Piping</code></pre>
+</div>
+<div id="loading-data-from-animal-care-and-control" class="section level1">
+<h1>Loading Data from Animal Care and Control</h1>
+<p>Data is loaded directly into R using a CURL function that uses URLS the <strong>BClear</strong> data for the Animal Care and Control data. Data is provided a CSVs with headers.</p>
+<pre class="r"><code>#Annual Statistics
+annual &lt;- read.csv(curl(url=&quot;https://data.bloomington.in.gov/dataset/9a0fc126-0775-4952-96ff-76ece67ffbc7/resource/7a847ec2-31c6-48e3-b0bc-02af2fa94587/download/animal-care-and-control-data-set-2004-2019.csv&quot;), header=TRUE, stringsAsFactors = F)
+
+#Intake and adoption records
+intake &lt;- read.csv(curl(url=&quot;https://data.bloomington.in.gov/dataset/94d3f457-57b5-45be-bee0-a0106f59b7ed/resource/8854ce02-e8f5-44b9-b85f-17f002a7d023/download/animals.csv&quot;), header=TRUE, stringsAsFactors = F)</code></pre>
+</div>
+<div id="data-documentation-and-processing-notes" class="section level1">
+<h1>Data Documentation and Processing Notes</h1>
+<p>Before we will analyze and visualize these data, lets look at the variables in the data set to ensure that they are using the correct data type in R, and determine how variables relate to each other. We then can develop data processing routines that clean up the data for ease of use, and to develop new data structures for a given visual analysis workflow.</p>
+<div id="annual-statistics" class="section level2">
+<h2>Annual Statistics</h2>
+<div id="data-structure" class="section level3">
+<h3>Data Structure</h3>
+<p>There are two issues with the Animial Care and Control Divisions’ Annual Statistics data set:</p>
+<ol style="list-style-type: decimal">
+<li>Variables use verbose names with have had punctuation added for spaces and text is captialized;</li>
+<li>Monetary values are captured as character strings with symbols and empty spaces rather than providing providing a numeric values. We need to fix these two issues with our data.</li>
+</ol>
+<pre><code>## &#39;data.frame&#39;:    16 obs. of  3 variables:
+##  $ Annual.Budget          : chr  &quot;$782,931.00 &quot; &quot;$760,206.00 &quot; &quot;$1,030,661.00 &quot; &quot;$1,062,946.00 &quot; ...
+##  $ Grants.Received        : chr  &quot;$0.00 &quot; &quot;$18,925.00 &quot; &quot;$5,555.00 &quot; &quot;$0.00 &quot; ...
+##  $ Annual.Adoption.Revenue: chr  &quot;$13,146.00 &quot; &quot;$112,649.00 &quot; &quot;$105,401.00 &quot; &quot;$100,170.00 &quot; ...</code></pre>
+</div>
+<div id="preparing-data" class="section level3">
+<h3>Preparing Data</h3>
+<pre class="r"><code>#Save original column name values
+annual_cols &lt;- colnames(annual)
+#Substitutes periods from original column names with spaces
+annual_cols &lt;- gsub(&quot;\\.&quot;,&quot;\\ &quot;,annual_cols)
+#Renames fields to shorter values
+names(annual) &lt;- c(&quot;year&quot;,&quot;employees&quot;,&quot;vehicles&quot;,&quot;budget&quot;,&quot;surrender&quot;,&quot;stray&quot;,&quot;impound&quot;,
+                   &quot;intake&quot;,&quot;adopt&quot;,&quot;return&quot;,&quot;euthanize&quot;,&quot;tranfer&quot;,&quot;foster&quot;,&quot;serviceCalls&quot;,
+                   &quot;emergencyCalls&quot;,&quot;grants&quot;,&quot;revenue&quot;)
+
+#Parse the budget, grants and revenue fields to create numeric values instead of character strings
+annual$budget &lt;- parse_number(annual$budget, na=&quot;NA&quot;)
+annual$grants &lt;- parse_number(annual$grants, na=&quot;NA&quot;)
+annual$revenue &lt;- parse_number(annual$revenue, na=&quot;NA&quot;)</code></pre>
+<p>Now we can get accurate descriptive data summaries for the 17 variables in the Annual Statistics observations for the Animal Control Division. Variables measured, include:</p>
+<ul>
+<li>Number of employees - <em>employees</em></li>
+<li>Number of vehicles - <em>vehicles</em></li>
+<li>Annual Budget - <em>budget</em> - $</li>
+<li>Grants Recieved - <em>grants</em> - $</li>
+<li>Revenue from Adoptions - <em>revenue</em> - $</li>
+<li>Service Calls - <em>serviceCalls</em></li>
+<li>Emergency Calls - <em>emergencyCalls</em></li>
+<li>Number of Owner Surrended - <em>surrender</em></li>
+<li>Number of Strays - <em>stray</em></li>
+<li>Number of Impounded - <em>impound</em></li>
+<li>Total Number of Intakes - <em>intake</em></li>
+<li>Number of Transfer to other Shelters - <em>transfer</em></li>
+<li>Number of Fosters - <em>foster</em></li>
+<li>Number of Adoptions - <em>adopt</em></li>
+<li>Number of Returnes - <em>return</em></li>
+<li>Number of Euthinizations - <em>euthenize</em></li>
+</ul>
+</div>
+<div id="summary-descriptive-statistics" class="section level3">
+<h3>Summary Descriptive Statistics</h3>
+<pre><code>##       year        employees        vehicles         budget       
+##  Min.   :2004   Min.   :15.15   Min.   :3.000   Min.   : 760206  
+##  1st Qu.:2008   1st Qu.:16.99   1st Qu.:3.000   1st Qu.:1115117  
+##  Median :2012   Median :17.40   Median :3.000   Median :1173702  
+##  Mean   :2012   Mean   :17.40   Mean   :3.062   Mean   :1194901  
+##  3rd Qu.:2015   3rd Qu.:17.80   3rd Qu.:3.000   3rd Qu.:1318979  
+##  Max.   :2019   Max.   :20.00   Max.   :4.000   Max.   :1567670  
+##                                                                  
+##    surrender        stray         impound        intake         adopt     
+##  Min.   :1637   Min.   :1335   Min.   :446   Min.   :3598   Min.   :1737  
+##  1st Qu.:1812   1st Qu.:1412   1st Qu.:480   1st Qu.:3835   1st Qu.:1886  
+##  Median :1970   Median :2143   Median :491   Median :4065   Median :2104  
+##  Mean   :1990   Mean   :2126   Mean   :513   Mean   :4321   Mean   :2106  
+##  3rd Qu.:2149   3rd Qu.:2562   3rd Qu.:532   3rd Qu.:4815   3rd Qu.:2285  
+##  Max.   :2361   Max.   :3257   Max.   :616   Max.   :5608   Max.   :2684  
+##                                NA&#39;s   :11                                 
+##      return        euthanize       tranfer          foster      
+##  Min.   :452.0   Min.   : 224   Min.   : 62.0   Min.   : 380.0  
+##  1st Qu.:522.0   1st Qu.: 541   1st Qu.:149.0   1st Qu.: 599.5  
+##  Median :546.0   Median : 998   Median :209.0   Median : 712.0  
+##  Mean   :538.9   Mean   :1095   Mean   :292.8   Mean   : 720.4  
+##  3rd Qu.:558.8   3rd Qu.:1722   3rd Qu.:458.0   3rd Qu.: 780.0  
+##  Max.   :615.0   Max.   :2277   Max.   :670.0   Max.   :1159.0  
+##                                                 NA&#39;s   :1       
+##   serviceCalls  emergencyCalls      grants         revenue      
+##  Min.   :1440   Min.   : 97.0   Min.   :    0   Min.   : 13146  
+##  1st Qu.:2206   1st Qu.:150.0   1st Qu.:    0   1st Qu.:100788  
+##  Median :2510   Median :151.0   Median :    0   Median :106046  
+##  Mean   :2353   Mean   :179.2   Mean   : 5676   Mean   : 99827  
+##  3rd Qu.:2665   3rd Qu.:233.5   3rd Qu.: 8213   3rd Qu.:109428  
+##  Max.   :2950   Max.   :290.0   Max.   :37498   Max.   :113070  
+##  NA&#39;s   :1</code></pre>
+</div>
+<div id="example-annual-statistics-observations" class="section level3">
+<h3>Example Annual Statistics Observations</h3>
+<pre><code>##   year employees vehicles  budget surrender stray impound intake adopt
+## 1 2004    15.150        3  782931      2351  3257      NA   5608  1896
+## 2 2005    16.600        3  760206      2104  3038      NA   5142  1866
+## 3 2006    16.600        3 1030661      2361  2800      NA   5161  1737
+## 4 2007    17.230        3 1062946      2294  2519      NA   4813  1825
+## 5 2008    17.725        3 1132507      2131  2690      NA   4821  1849
+## 6 2009    17.975        3 1164248      2203  2316      NA   4591  1893
+##   return euthanize tranfer foster serviceCalls emergencyCalls grants
+## 1    558      2277     592     NA           NA            150      0
+## 2    542      1724     670    380         1525            150  18925
+## 3    554      1856     657    700         2900            150   5555
+## 4    523      1753     539    800         2950            150      0
+## 5    544      1721     431    600         2700            150  11215
+## 6    452      1612     275    712         2515             97  37498
+##    revenue
+## 1  13146.0
+## 2 112649.0
+## 3 105401.0
+## 4 100170.0
+## 5 106627.0
+## 6 112187.8</code></pre>
+</div>
+</div>
+<div id="animal-case-data" class="section level2">
+<h2>Animal Case Data</h2>
+<p>A review of the Animal Case data set is more complex due to the nature of the data set, requiring an indepth look at the both data structure and type and values of variable recorded across the observations (e.g. counts of values for catoregorical aka factor aka qualitative fields). There are 12316 observations across 23 variables in this data set. The data structure is provided below.</p>
+<div id="data-structure-1" class="section level3">
+<h3>Data Structure</h3>
+<pre><code>## &#39;data.frame&#39;:    12316 obs. of  23 variables:
+##  $ id              : int  15801 15932 28859 30812 30812 31469 31469 40705 40706 46238 ...
+##  $ intakedate      : chr  &quot;2009-11-28 00:00:00&quot; &quot;2009-12-08 00:00:00&quot; &quot;2012-08-10 00:00:00&quot; &quot;2013-01-11 00:00:00&quot; ...
+##  $ intakereason    : chr  &quot;Moving&quot; &quot;Moving&quot; &quot;Abandoned&quot; &quot;Abandoned&quot; ...
+##  $ istransfer      : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ sheltercode     : chr  &quot;C09115463&quot; &quot;D09125594&quot; &quot;D12082309&quot; &quot;C1301091&quot; ...
+##  $ identichipnumber: chr  &quot;0A115D7358&quot; &quot;0A11675477&quot; &quot;0A13253C7B&quot; &quot;0A13403D4D&quot; ...
+##  $ animalname      : chr  &quot;Jadzia&quot; &quot;Gonzo&quot; &quot;Maggie&quot; &quot;Pretty Girl&quot; ...
+##  $ breedname       : chr  &quot;Domestic Short Hair&quot; &quot;German Shepherd Dog/Mix&quot; &quot;Shep Mix/Siberian Husky&quot; &quot;Domestic Short Hair&quot; ...
+##  $ basecolour      : chr  &quot;Tortie&quot; &quot;Tan&quot; &quot;Various&quot; &quot;Dilute tortoiseshell&quot; ...
+##  $ speciesname     : chr  &quot;Cat&quot; &quot;Dog&quot; &quot;Dog&quot; &quot;Cat&quot; ...
+##  $ animalage       : chr  &quot;9 years 2 months.&quot; &quot;10 years 0 months.&quot; &quot;6 years 8 months.&quot; &quot;8 years 11 months.&quot; ...
+##  $ sexname         : chr  &quot;Female&quot; &quot;Male&quot; &quot;Female&quot; &quot;Female&quot; ...
+##  $ location        : chr  &quot;Adoptable Cat Glass Colony&quot; &quot;Adoptable Dogs&quot; &quot;Adoptable Dogs&quot; &quot;Stray Cats&quot; ...
+##  $ movementdate    : chr  &quot;2017-05-13 00:00:00&quot; &quot;2017-04-24 00:00:00&quot; &quot;2017-04-15 00:00:00&quot; &quot;2017-04-18 00:00:00&quot; ...
+##  $ movementtype    : chr  &quot;Adoption&quot; &quot;Adoption&quot; &quot;Adoption&quot; &quot;Foster&quot; ...
+##  $ istrial         : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ returndate      : chr  &quot;&quot; &quot;&quot; &quot;&quot; &quot;2018-05-29 00:00:00&quot; ...
+##  $ returnedreason  : chr  &quot;Stray&quot; &quot;Stray&quot; &quot;Stray&quot; &quot;Stray&quot; ...
+##  $ deceaseddate    : chr  &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
+##  $ deceasedreason  : chr  &quot;Died in care&quot; &quot;Died in care&quot; &quot;Died in care&quot; &quot;Died in care&quot; ...
+##  $ diedoffshelter  : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ puttosleep      : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ isdoa           : int  0 0 0 0 0 0 0 0 0 0 ...</code></pre>
+<p>A review of the data structure shows that variables often share common names, which indicates a relations across variables. Examples of this are fields beginning with <em>intake</em>, <em>movement</em>, <em>return</em>, and <em>deceased</em>. The common names, and review of the other variable names suggests that this data set is a composite report from an intake database maintained by Animal Care and Control, of a minimum 5 data tables. An example of how a these variable names might be grouped follows:</p>
+<div id="animal-identification-and-description" class="section level4">
+<h4>1. Animal Identification and Description</h4>
+<p>These fields describe animals taken in by Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements.</p>
+<ul>
+<li>Shelter Code - <em>sheltercode</em> - a numeric unique identifier with 8579values.
+<ul>
+<li>The difference between unique identifers and total number of observations in the data set (3737) indicates that there may be multiple intake records for a given animal in the data set.</li>
+<li>The letter code starting each id indicates species class (e.g. C09115463 for cat).</li>
+</ul></li>
+<li>Animal identity chip - <em>identichipnumber</em> - factor variable with 6594 unique values
+<ul>
+<li>Not all animals have chip identifiers.</li>
+</ul></li>
+<li>Animal name - <em>animalname</em> - factor variable with 4911 unique values
+<ul>
+<li>We’ve got some common names!</li>
+</ul></li>
+<li>Breed - <em>breedname</em> - factor variable with 870 unique values</li>
+<li>Animal coloration - <em>basecolour</em> - factor variable with 79 unique values</li>
+<li>Species - <em>speciesname</em> - factor variable with 27 unique values.
+<ul>
+<li>There are some surprises here</li>
+</ul></li>
+<li>Animal age (estimated) - <em>animalage</em> - string with values such as 9 years 2 months.
+<ul>
+<li>This field is valuable, but requires processing to extract a usable estimate of age (years or months)</li>
+</ul></li>
+<li>Animal sex - <em>sex</em> - factor variable with 3 unique values.</li>
+</ul>
+</div>
+<div id="intake-data" class="section level4">
+<h4>2. Intake Data</h4>
+<p>These fields describe intake data for animals managed by Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements.</p>
+<ul>
+<li>Intake identifier - <em>id</em> - a numeric unique identifier with 8579 unique values.
+<ul>
+<li>The number of unqiue ids and unique shelter codes are identical. And, as with <em>sheltercodes</em> variable above, the count of unique <em>id</em> values is less than total intake records provided by the division. This suggests unique identifier is linked to the animal’s intial intake.</li>
+</ul></li>
+<li>Intake date - <em>intakedate</em> - a date field (YYYY-MM-DD) ranging from 2009-11-28 to 2020-02-13.
+<ul>
+<li>Intake data sets may require more examination and potentiall filtering to removing intakes prior 2017, the first year when records begin were first collected in full.</li>
+<li>Needs processing to as.Date() type.</li>
+</ul></li>
+<li>Intake reason - <em>intakereason</em> - a factor variable with 27 unique values.</li>
+<li>Location within shelter - <em>location</em> - a factor variable with 39 unique values.</li>
+</ul>
+</div>
+<div id="animals-on-the-move" class="section level4">
+<h4>3. Animals on the Move</h4>
+<p>These fields describe adoptions of animals managed by Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements.</p>
+<ul>
+<li>Movement date - <em>movementdate</em> - a date field (YYYY-MM-DD) ranging from 2013-03-30 to 2020-02-13.
+<ul>
+<li>Needs processing to as.Date() data types.</li>
+</ul></li>
+<li>Movement type - <em>movementtype</em> - a factor variable with 7 unique values.
+<ul>
+<li>This field indicates what happens to an animal after the intake is logged. Values include:</li>
+</ul></li>
+<li>Trial status - <em>istrial</em> - a binary (1/0) variable indicating if the animal is a trial adoption.
+<ul>
+<li>All values are currently <em>0</em>, meaning the field has no value and should be removed.</li>
+</ul></li>
+<li>Transfer status - <em>istransfer</em> - a binary (1/0) variable indicating if the animal is transferred from the system.</li>
+</ul>
+</div>
+<div id="returned-animals" class="section level4">
+<h4>4. Returned Animals</h4>
+<p>These fields describe data related to animal that return to Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements.</p>
+<ul>
+<li>Return date - <em>returndate</em> - a date field (YYYY-MM-DD) ranging from 2017-04-01 to 2020-02-13.
+<ul>
+<li>Not all intake records include a return date, indicating the animal has not been returned to the system.</li>
+<li>Needs processing to as.Date() data types.</li>
+</ul></li>
+<li>Return reason - <em>returnedreason</em> - a factor variable with 24 unique values.
+<ul>
+<li>Some interesting unique values include: Stray, Incompatible with owner lifestyle, Rabies Monitoring.</li>
+<li>This variable may be an interesting feature to explore reasons based on animal type and demographics. This may be useful for a predictive model at intake.</li>
+</ul></li>
+</ul>
+</div>
+<div id="deceased-animals" class="section level4">
+<h4>5. Deceased Animals</h4>
+<p>These fields describe data related to animal that have died while managed by Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements.</p>
+<ul>
+<li>Deceased date - <em>deceaseddate</em> - a date field (YYYY-MM-DD) ranging from 2017-04-02 to 2020-02-02.
+<ul>
+<li>Not all intake records include a deceased date, indicating the animal is alive!</li>
+<li>Needs processing to as.Date() data types.</li>
+</ul></li>
+<li>Deceased reason - <em>deceasedreason</em> - a factor variable with 14 unique values.
+<ul>
+<li>Some interesting unique values include: Died in care, UU - untreatable, unmanageable health, Healthy.</li>
+<li>This variable may be an interesting feature to explore reasons based on animal type and demographics. This may be useful for a predictive model at intake.</li>
+<li>All animals have a deceased reason even if they are not dead.</li>
+</ul></li>
+<li>Animal died off selter - <em>diedoffshelter</em> - a binary (1/0) variable indicating if the animal is died outside of the shelter.</li>
+<li>Euthanize flag - <em>puttosleep</em> - a binary (1/0) variable indicating if the animal is euthanized from the system.</li>
+<li>Dead on arrival flag - <em>isdoa</em> - a binary (1/0) variable indicating if the animal is died when they arrived at the shelter.</li>
+</ul>
+<p>Taken together, the full data set is a composite of at lease 5 data tables in a larger database on animals managed by Animal Care and Control. This means that to best use this dataset, it should be processed break appart different components, which may be useful for different types of analysis. Example analysis might include:</p>
+<ul>
+<li>Description of each animal’s time with the Animal Care and Control,</li>
+<li>Descriptive, temporal, and other exploratory analysis of species managed by the division.
+<ul>
+<li>Identify the kinds of animals that are brought into the shelter and why;</li>
+<li>Identify trends of intakes, returns, adoptions, fosters, and euthanization…
+<ul>
+<li>by species and breed, age groups, or intake and return reasons or movement types</li>
+</ul></li>
+</ul></li>
+<li>Visualize pathways through the shelter by animals</li>
+<li>Model animal outcomes</li>
+</ul>
+</div>
+</div>
+<div id="processing-intake-data-for-visual-analytics" class="section level3">
+<h3>Processing Intake Data for Visual Analytics</h3>
+<p>First, the data set is processed to ensure that data has proper data types used by R in analysis. The code chuck below provides details about how variables are updated to proper data types. Note, <em>animalage</em> is ignored, but will be processed later in the notebook.</p>
+<pre class="r"><code>#Copy intake to new data.frame data 
+data &lt;- intake
+
+#List of factor variables column names
+intake_fac &lt;- colnames(data[,c(1,3,5:10,12,13,15,18,20)])
+#Converts variables from character strings to factors
+for(i in 1:length(intake_fac)){
+  data[,intake_fac[i]] &lt;- data[,intake_fac[i]] %&gt;% as.factor()
+}
+
+#List of date variable column names
+intake_date &lt;- colnames(data[,c(2,14,17,19)])
+#Convert variables from character strings to dates
+for(i in 1:length(intake_date)){
+  if(length(data[data[,intake_date[i]]==&quot;&quot;,intake_date[i]])&gt;0){
+    data[data[,intake_date[i]]==&quot;&quot;,intake_date[i]] &lt;- NA
+  }
+  data[,intake_date[i]] &lt;- data[,intake_date[i]] %&gt;% as.Date()
+}
+rm(i, intake_date, intake_fac)</code></pre>
+<div id="creating-an-animal-data-set" class="section level4">
+<h4>Creating an Animal Data Set</h4>
+<p>Animal data set description</p>
+<pre class="r"><code>#Creates demographic data set of unique animals with intake cases
+animals &lt;- data[,c(&quot;id&quot;,&quot;sheltercode&quot;,&quot;identichipnumber&quot;,&quot;animalname&quot;,&quot;animalage&quot;,&quot;sexname&quot;,&quot;speciesname&quot;,&quot;breedname&quot;,&quot;basecolour&quot;)] %&gt;% unique()
+
+#Processes animal age to
+tmp &lt;- as.data.frame(as.character(animals$animalage),stringsAsFactors = F)
+names(tmp) &lt;- &quot;animalage&quot;
+tmp$intakeage &lt;- as.numeric(0)
+for(i in 1:nrow(tmp)){
+  #Converts string to a dataframe by way of 2 col matrice
+  d &lt;- stringr::str_split(tmp[i,]$animalage,&quot;\\ &quot;) %&gt;% unlist() 
+  if(length(d)==2){
+    d &lt;- d %&gt;% matrix(ncol=2) %&gt;% data.frame()
+  } else {
+    d &lt;- d %&gt;% matrix(ncol=2) %&gt;% t() %&gt;% data.frame()
+  }
+  d$X1 &lt;- as.character(d$X1) %&gt;% as.numeric()
+  # Years to months
+  if(length(d[d$X2==&quot;years&quot; | d$X2==&quot;year&quot;,]$X2)&gt;0){
+    d[d$X2==&quot;years&quot; | d$X2==&quot;year&quot;,]$X1 &lt;- d[d$X2==&quot;years&quot; | d$X2==&quot;year&quot;,]$X1 * 12
+  }
+  #Weeks to months
+  if(length(d[d$X2==&quot;weeks.&quot; | d$X2==&quot;week.&quot;,]$X2)&gt;0){
+    d[d$X2==&quot;weeks.&quot; | d$X2==&quot;week.&quot;,]$X1 &lt;- d[d$X2==&quot;weeks.&quot; | d$X2==&quot;week.&quot;,]$X1 * (1/4.5)
+  }
+  #Days to months
+  if(length(d[d$X2==&quot;days.&quot; | d$X2==&quot;day.&quot;,]$X2)&gt;0){
+    d[d$X2==&quot;weeks.&quot; | d$X2==&quot;week.&quot;,]$X1 &lt;- d[d$X2==&quot;weeks.&quot; | d$X2==&quot;week.&quot;,]$X1 * (1/30)
+  }
+  tmp[i,]$intakeage &lt;- sum(d$X1)
+}
+#Creates new column in animals data.frame
+animals$intakeage &lt;- tmp$intakeage
+#Removes objects
+rm(i,d,tmp)
+
+#Summarize intake cases
+summary(animals)</code></pre>
+<pre><code>##        id         sheltercode          identichipnumber   animalname  
+##  15801  :   1   B1704028:   1                  :1938    Luna   :  40  
+##  15932  :   1   B1704061:   1   0A10785A1E     :   4    Buddy  :  34  
+##  28859  :   1   B1704124:   1   981020009920224:   3    Lucy   :  33  
+##  30812  :   1   B1705201:   1   991001000578554:   3    Daisy  :  31  
+##  31469  :   1   B1705202:   1   021027788      :   2    Bella  :  29  
+##  40705  :   1   B1705264:   1   0A10592A42     :   2    Max    :  27  
+##  (Other):8573   (Other) :8573   (Other)        :6627    (Other):8385  
+##   animalage            sexname           speciesname  
+##  Length:8579        Female :4091   Cat         :4633  
+##  Class :character   Male   :4244   Dog         :3307  
+##  Mode  :character   Unknown: 244   House Rabbit: 205  
+##                                    Rat         : 124  
+##                                    Guinea Pig  : 110  
+##                                    Bird        :  47  
+##                                    (Other)     : 153  
+##                 breedname              basecolour     intakeage      
+##  Domestic Short Hair :3755   Black          :1253   Min.   :   0.00  
+##  Domestic Medium Hair: 381   Black and White: 763   1st Qu.:  10.00  
+##  Domestic Long Hair  : 287   Black and Brown: 538   Median :  20.00  
+##  Bully Breed Mix     : 248   Grey           : 475   Mean   :  41.27  
+##  Labrador Retriever  : 147   Orange         : 411   3rd Qu.:  46.00  
+##  Beagle              : 131   Grey and White : 299   Max.   :1209.00  
+##  (Other)             :3630   (Other)        :4840</code></pre>
+</div>
+<div id="creating-an-intake-data-set" class="section level4">
+<h4>Creating an Intake Data Set</h4>
+<p>Create a data set of all animals based on caseid_i as unique ID.</p>
+<pre class="r"><code>#Creates demographic data set of unique animals with intake cases
+intakes &lt;- data[,c(&quot;id&quot;,&quot;intakedate&quot;,&quot;intakereason&quot;,&quot;location&quot;)] %&gt;% unique()
+
+#Summarize intake cases
+summary(intakes)</code></pre>
+<pre><code>##        id         intakedate        
+##  15801  :   1   Min.   :2009-11-28  
+##  15932  :   1   1st Qu.:2017-10-31  
+##  28859  :   1   Median :2018-08-22  
+##  30812  :   1   Mean   :2018-08-16  
+##  31469  :   1   3rd Qu.:2019-05-30  
+##  40705  :   1   Max.   :2020-02-13  
+##  (Other):8573                       
+##                             intakereason 
+##  Stray                            :4081  
+##  Incompatible with owner lifestyle:1152  
+##  Litter relinquishment            : 754  
+##  Moving                           : 439  
+##  Unsuitable Accommodation         : 331  
+##  Unable to Afford                 : 315  
+##  (Other)                          :1507  
+##                        location   
+##  Adoptable Dogs            :1673  
+##  Adoptable Cat Kennels     : 725  
+##  Lobby                     : 563  
+##  Adoptable window colony   : 487  
+##  Adoptable Cat Glass Colony: 468  
+##  Adoptable Cat Big Colony  : 440  
+##  (Other)                   :4223</code></pre>
+</div>
+<div id="creating-a-movement-data-set" class="section level4">
+<h4>Creating a Movement Data Set</h4>
+<pre class="r"><code>#Creates demographic data set of unique animals with intake cases
+move &lt;- data[,c(&quot;id&quot;,&quot;intakedate&quot;,&quot;movementdate&quot;,&quot;movementtype&quot;)] %&gt;% unique()
+
+#Calculate new fields
+
+#Summarize movements
+summary(move)</code></pre>
+<pre><code>##        id          intakedate          movementdate       
+##  58510  :   11   Min.   :2009-11-28   Min.   :2013-03-30  
+##  60702  :   11   1st Qu.:2017-10-25   1st Qu.:2017-12-09  
+##  55456  :   10   Median :2018-08-16   Median :2018-09-22  
+##  61384  :   10   Mean   :2018-08-11   Mean   :2018-09-18  
+##  58410  :    7   3rd Qu.:2019-05-28   3rd Qu.:2019-06-29  
+##  47575  :    6   Max.   :2020-02-13   Max.   :2020-02-13  
+##  (Other):12252                                            
+##            movementtype 
+##  Adoption        :7102  
+##  Escaped         :   4  
+##  Foster          :2944  
+##  Reclaimed       :1642  
+##  Released To Wild:   9  
+##  Stolen          :   8  
+##  Transfer        : 598</code></pre>
+<p>Do we add age, gender, species and breed information? OR leave that for a join? Calculate time to move for intakes</p>
+</div>
+<div id="creating-a-returns-data-set" class="section level4">
+<h4>Creating a Returns Data Set</h4>
+<pre class="r"><code>#Creates demographic data set of unique animals with intake cases
+return &lt;- data[,c(&quot;id&quot;,&quot;intakedate&quot;,&quot;movementdate&quot;,&quot;returndate&quot;,&quot;returnedreason&quot;)] %&gt;% unique()
+return &lt;- return[!is.na(return$returndate),]
+
+#Calculate new fields
+
+#Summarize intake cases
+summary(return)</code></pre>
+<pre><code>##        id         intakedate          movementdate       
+##  58510  :  10   Min.   :2013-01-11   Min.   :2013-03-30  
+##  60702  :  10   1st Qu.:2017-10-09   1st Qu.:2017-11-11  
+##  61384  :  10   Median :2018-07-20   Median :2018-08-26  
+##  55456  :   9   Mean   :2018-07-27   Mean   :2018-08-25  
+##  58410  :   6   3rd Qu.:2019-05-16   3rd Qu.:2019-06-08  
+##  47575  :   5   Max.   :2020-02-01   Max.   :2020-02-12  
+##  (Other):3932                                            
+##    returndate                                   returnedreason
+##  Min.   :2017-04-01   Stray                            :3128  
+##  1st Qu.:2018-01-25   Incompatible with owner lifestyle: 360  
+##  Median :2018-11-03   Return Adopt - Behavior          :  66  
+##  Mean   :2018-10-19   Return adopt - lifestyle issue   :  53  
+##  3rd Qu.:2019-07-25   Moving                           :  52  
+##  Max.   :2020-02-13   Incompatible with other pets     :  38  
+##                       (Other)                          : 285</code></pre>
+<p>Create a date for movements… order by animal id and date, assign move #; creat id – {caseid}<em>r</em>#assign carry over move date to calc time out of shelter</p>
+</div>
+<div id="creating-a-deceased-animals-data-set" class="section level4">
+<h4>Creating a Deceased Animals Data Set</h4>
+<p>Add max(return date) as field</p>
+<pre class="r"><code>#Creates demographic data set of unique animals with intake cases
+dead &lt;- data[,c(&quot;id&quot;,&quot;intakedate&quot;,&quot;deceaseddate&quot;,&quot;deceasedreason&quot;,
+                &quot;diedoffshelter&quot;,&quot;puttosleep&quot;,&quot;isdoa&quot;)] %&gt;% unique()
+dead &lt;- dead[!is.na(dead$deceaseddate),]
+
+#Calculate new fields
+
+#Summarize intake cases
+summary(dead)</code></pre>
+<pre><code>##        id        intakedate          deceaseddate       
+##  46437  :  1   Min.   :2016-10-26   Min.   :2017-04-02  
+##  47360  :  1   1st Qu.:2017-09-08   1st Qu.:2017-12-08  
+##  47742  :  1   Median :2018-06-02   Median :2018-08-30  
+##  55371  :  1   Mean   :2018-05-28   Mean   :2018-08-30  
+##  55396  :  1   3rd Qu.:2018-12-27   3rd Qu.:2019-06-02  
+##  55397  :  1   Max.   :2019-10-30   Max.   :2020-02-02  
+##  (Other):275                                            
+##                                deceasedreason diedoffshelter   
+##  Died in care                         :96     Min.   :0.00000  
+##  UU - untreatable, unmanageable health:72     1st Qu.:0.00000  
+##  Owner Requested                      :17     Median :0.00000  
+##  Dead On Arrival                      :16     Mean   :0.09253  
+##  Biting                               :15     3rd Qu.:0.00000  
+##  UU-untreatable, unmanageable Behavior:13     Max.   :1.00000  
+##  (Other)                              :52                      
+##    puttosleep         isdoa        
+##  Min.   :0.0000   Min.   :0.00000  
+##  1st Qu.:0.0000   1st Qu.:0.00000  
+##  Median :1.0000   Median :0.00000  
+##  Mean   :0.5445   Mean   :0.07117  
+##  3rd Qu.:1.0000   3rd Qu.:0.00000  
+##  Max.   :1.0000   Max.   :1.00000  
+## </code></pre>
+</div>
+</div>
+<div id="supplemental-statistic-for-animal-data" class="section level3">
+<h3>Supplemental Statistic for Animal Data</h3>
+<p>fostered - binary medical - binary adopted - count return - count timeInSelter timeInFoster timeInAdopt diseased</p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

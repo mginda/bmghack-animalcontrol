@@ -1,8 +1,5 @@
 ---
 title: "Visualization Notebook"
-author: "Michael Ginda"
-date: "2/14/2020"
-output: html_document
 ---
 
 ```{r setup, include=FALSE}

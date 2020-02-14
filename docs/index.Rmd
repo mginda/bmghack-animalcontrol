@@ -1,5 +1,5 @@
 ---
-title: "Data Documentation and Processing"
+title: "Bloomington Animal Care and Control Data"
 ---
 ```{r setup, include=FALSE}
 library(knitr)
@@ -7,18 +7,16 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Introduction
-Bloomington Animal Care and Control data is available from the Bloomington city government's data portal, [BClear](). The Animal Care and Control Division has prepared two data sets that the public may use to understand how the city handles animal welfare:
+Bloomington Animal Care and Control data is available through [BClear](https://data.bloomington.in.gov/), data portal for Bloomington, Indiana's city government. The Animal Care and Control Division has prepared two data sets that the public may use to understand how the city handles animal welfare. 
 
-*  [Annual Statistics (2004-2019)](https://data.bloomington.in.gov/dataset/animal-care-and-control/resource/7a847ec2-31c6-48e3-b0bc-02af2fa94587) - these data represent high level annual statistics for the division, which includes revenue, budgets, staffing, counts of animal intakes and movements;
-*  [Adoptions (2018-Present)](https://data.bloomington.in.gov/dataset/adopted-animals/resource/8854ce02-e8f5-44b9-b85f-17f002a7d023) - these data represent animal intake, adoption, and control records maintained by the division. This is a complex, messy data set that tracks individual stories of animals taken in by the city. 
+This notebook was created for the **BMG Hack's - Let's Get Visual - Civic Data Challenge**. The notebook provides a description of each data set, and provides code for the data processing performed on these data that (hopefully) will facilitate analysis and visualization that can be updated, re-used, and shared with others! 
 
-This team will be working with both data sets. This notebook will provide a description of each data set, and any data processing that will facilitate analysis and visualization by team members that can be updated, re-used, and shared with others!
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.
 
-The **Annual Statistics** data is great for those interested in practicing some basic implementing data visualizations with a tidy data set. 
+## About the Data Sets
+*  **[Annual Statistics (2004-2019)](https://data.bloomington.in.gov/dataset/animal-care-and-control/resource/7a847ec2-31c6-48e3-b0bc-02af2fa94587)** - These data represent high level annual statistics for the division, which includes revenue, budgets, staffing, counts of animal intakes and movements. These data is great for those interested in practicing implementing basic data visualizations using a tidy data set.
 
-The **Adoptions** data set is much larger and complex than the annual statistics, with over 12,000 intake records. The table is a roll-up of an internal data base, and includes both redundant data and some potentially misleading fields.
-
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+*  **[Adoptions (2017-Present)](https://data.bloomington.in.gov/dataset/adopted-animals/resource/8854ce02-e8f5-44b9-b85f-17f002a7d023)** - These data represent animal case records maintained by the division. This is a much larger and complex data set compared to the annual statistics. The Bloomington Animal Shelter, which uses the [Shelter Manager](https://www.sheltermanager.com/site/en_tour.html) database to manage its case load. The data provided by the city is a roll-up of multiple tables from the shelter database. Currently, there are over 12,000 intake records available to download.
 
 # Setting up R
 Here we set up the R environment, and load in the R Packages that will be used in the notebook.
