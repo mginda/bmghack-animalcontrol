@@ -11,4 +11,6 @@ The Annual Statistics data is great for those interested in practicing some basi
 
 The Adoptions data set is much larger and complex than the annual statistics, with over 12,000 intake records. The table is a roll-up of an internal data base, and includes both redundant data and some potentially misleading fields.
 
+## [Data Documentation and Processing R Notebook](https://mginda.github.io/bmghack-animalcontrol/)
+
 ## Data Visualization Ideas
