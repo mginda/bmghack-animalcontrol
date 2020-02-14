@@ -1,6 +1,5 @@
 ---
 title: "Bloomington Animal Care & Control Data - R Notebook"
-output: html_notebook
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -222,8 +221,6 @@ for(i in 1:length(intake_date)){
   data[,intake_date[i]] <- data[,intake_date[i]] %>% as.Date()
 }
 rm(i, intake_date, intake_fac)
-
-write.csv(data, file=paste0(getwd(),"/data/","bmg-acc-cases.",max(data$intakedate),".csv"), row.names=F)
 ```
 
 #### Creating an Animal Data Set
@@ -265,9 +262,6 @@ animals$intakeage <- tmp$intakeage
 #Removes objects
 rm(i,d,tmp)
 
-#Save data set for later use
-write.csv(animals, file=paste0(getwd(),"/data/","bmg-acc-animals.",max(data$intakedate),".csv"), row.names=F)
-
 #Summarize intake cases
 summary(animals)
 ```
@@ -279,9 +273,6 @@ Create a data set of all animals based on caseid_i as unique ID.
 #Creates demographic data set of unique animals with intake cases
 intakes <- data[,c("id","intakedate","intakereason","location")] %>% unique()
 
-#Save data set for later use
-write.csv(intakes, file=paste0(getwd(),"/data/","bmg-acc-intakes.",max(data$intakedate),".csv"), row.names=F)
-
 #Summarize intake cases
 summary(intakes)
 ```
@@ -292,9 +283,6 @@ summary(intakes)
 move <- data[,c("id","intakedate","movementdate","movementtype")] %>% unique()
 
 #Calculate new fields
-
-#Save data set for later use
-write.csv(move, file=paste0(getwd(),"/data/","bmg-acc-moves.",max(data$intakedate),".csv"), row.names=F)
 
 #Summarize movements
 summary(move)
@@ -311,9 +299,6 @@ return <- return[!is.na(return$returndate),]
 
 #Calculate new fields
 
-#Save data set for later use
-write.csv(return, file=paste0(getwd(),"/data/","bmg-acc-returns.",max(data$intakedate),".csv"), row.names=F)
-
 #Summarize intake cases
 summary(return)
 ```
@@ -329,12 +314,7 @@ dead <- data[,c("id","intakedate","deceaseddate","deceasedreason",
                 "diedoffshelter","puttosleep","isdoa")] %>% unique()
 dead <- dead[!is.na(dead$deceaseddate),]
 
-
-
 #Calculate new fields
-
-#Save data set for later use
-write.csv(dead, file=paste0(getwd(),"/data/","bmg-acc-deaths.",max(data$intakedate),".csv"), row.names=F)
 
 #Summarize intake cases
 summary(dead)
