@@ -1,0 +1,351 @@
+---
+title: "Bloomington Animal Care & Control Data - R Notebook"
+output: html_notebook
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+Bloomington Animal Care and Control data is available from the Bloomington city government's data portal, [BClear](). The Animal Care and Control Division has prepared two data sets that the public may use to understand how the city handles animal welfare:
+
+*  [Annual Statistics (2004-2019)](https://data.bloomington.in.gov/dataset/animal-care-and-control/resource/7a847ec2-31c6-48e3-b0bc-02af2fa94587) - these data represent high level annual statistics for the division, which includes revenue, budgets, staffing, counts of animal intakes and movements;
+*  [Adoptions (2018-Present)](https://data.bloomington.in.gov/dataset/adopted-animals/resource/8854ce02-e8f5-44b9-b85f-17f002a7d023) - these data represent animal intake, adoption, and control records maintained by the division. This is a complex, messy data set that tracks individual stories of animals taken in by the city. 
+
+This team will be working with both data sets. This notebook will provide a description of each data set, and any data processing that will facilitate analysis and visualization by team members that can be updated, re-used, and shared with others!
+
+The **Annual Statistics** data is great for those interested in practicing some basic implementing data visualizations with a tidy data set. 
+
+The **Adoptions** data set is much larger and complex than the annual statistics, with over 12,000 intake records. The table is a roll-up of an internal data base, and includes both redundant data and some potentially misleading fields.
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+# Setting up R
+Here we set up the R environment, and load in the R Packages that will be used in the notebook.
+
+```{r enviro, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+#Clean up environment
+rm(list=ls())
+
+#Packages used in notebook
+library(curl)        # Data downloads via URL
+library(tidyr)       # Tidyverse data processing piping, string manipulation
+library(readr)       # Data parsing
+library(plyr)        # Combining and Splitting Data
+library(dplyr)       # Data analysis and aggregations
+library(magrittr)    # Piping
+```
+
+# Loading Data from Animal Care and Control
+Data is loaded directly into R using a CURL function that uses URLS the **BClear** data for the Animal Care and Control data. Data is provided a CSVs with headers.
+
+```{r data-load, echo=TRUE}
+#Annual Statistics
+annual <- read.csv(curl(url="https://data.bloomington.in.gov/dataset/9a0fc126-0775-4952-96ff-76ece67ffbc7/resource/7a847ec2-31c6-48e3-b0bc-02af2fa94587/download/animal-care-and-control-data-set-2004-2019.csv"), header=TRUE, stringsAsFactors = F)
+
+#Intake and adoption records
+intake <- read.csv(curl(url="https://data.bloomington.in.gov/dataset/94d3f457-57b5-45be-bee0-a0106f59b7ed/resource/8854ce02-e8f5-44b9-b85f-17f002a7d023/download/animals.csv"), header=TRUE, stringsAsFactors = F)
+```
+
+# Data Documentation and Processing Notes
+Before we will analyze and visualize these data, lets look at the variables in the data set to ensure that they are using the correct data type in R, and determine how variables relate to each other. We then can develop data processing routines that clean up the data for ease of use, and to develop new data structures for a given visual analysis workflow.
+
+## Annual Statistics
+
+### Data Structure
+There are two issues with the Animial Care and Control Divisions' Annual Statistics data set:
+
+1. Variables use verbose names with have had punctuation added for spaces and text is captialized;
+2. Monetary values are captured as character strings with symbols and empty spaces rather than providing providing a numeric values. We need to fix these two issues with our data.
+
+```{r str-an, echo=FALSE}
+str(annual[,c(4,16,17)])
+```
+
+### Preparing Data
+
+```{r pro-an, echo = T, results = 'hide'}
+#Save original column name values
+annual_cols <- colnames(annual)
+#Substitutes periods from original column names with spaces
+annual_cols <- gsub("\\.","\\ ",annual_cols)
+#Renames fields to shorter values
+names(annual) <- c("year","employees","vehicles","budget","surrender","stray","impound",
+                   "intake","adopt","return","euthanize","tranfer","foster","serviceCalls",
+                   "emergencyCalls","grants","revenue")
+
+#Parse the budget, grants and revenue fields to create numeric values instead of character strings
+annual$budget <- parse_number(annual$budget, na="NA")
+annual$grants <- parse_number(annual$grants, na="NA")
+annual$revenue <- parse_number(annual$revenue, na="NA")
+```
+
+Now we can get accurate descriptive data summaries for the `r length(colnames(annual))` variables in the Annual Statistics observations for the Animal Control Division. Variables measured, include:
+
+* Number of employees - *employees* 
+* Number of vehicles - *vehicles*
+* Annual Budget - *budget* - $
+* Grants Recieved - *grants* - $
+* Revenue from Adoptions - *revenue* - $
+* Service Calls - *serviceCalls*
+* Emergency Calls - *emergencyCalls*
+* Number of Owner Surrended - *surrender*
+* Number of Strays - *stray*
+* Number of Impounded - *impound*
+* Total Number of Intakes - *intake*
+* Number of Transfer to other Shelters - *transfer*
+* Number of Fosters - *foster*
+* Number of Adoptions - *adopt*
+* Number of Returnes - *return*
+* Number of Euthinizations - *euthenize*
+
+### Summary Descriptive Statistics
+
+```{r summary-an, echo=FALSE}
+#Annual Statistics
+summary(annual)
+```
+
+### Example Annual Statistics Observations
+
+```{r head-an, echo=FALSE}
+#Annual Statistics
+head(annual)
+```
+
+## Animal Case Data
+A review of the Animal Case data set is more complex due to the nature of the data set, requiring an indepth look at the both data structure and type and values of variable recorded across the observations (e.g. counts of values for catoregorical aka factor aka qualitative fields). There are `r length(rownames(intake))` observations across `r length(colnames(intake))` variables in this data set. The data structure is provided below. 
+
+### Data Structure
+```{r str-in, echo=FALSE}
+#Intake Structure
+str(intake)
+```
+
+A review of the data structure shows that variables often share common names, which indicates a relations across variables. Examples of this are fields beginning with *intake*, *movement*, *return*, and *deceased*. The common names, and review of the other variable names suggests that this data set is a composite report from an intake database maintained by Animal Care and Control, of a minimum 5 data tables. An example of how a these variable names might be grouped follows:
+
+#### 1. Animal Identification and Description
+These fields describe animals taken in by Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements.
+
+* Shelter Code - *sheltercode* - a numeric unique identifier with `r length(unique(intake$sheltercode))`values.
+  * The difference between unique identifers and total number of observations in the data set (`r length(rownames(intake))-length(unique(intake$sheltercode))`) indicates that there may be multiple intake records for a given animal in the data set.
+  * The letter code starting each id indicates species class (e.g. `r intake[1,]$sheltercode` for cat).
+* Animal identity chip - *identichipnumber* - factor variable with `r length(unique(intake$identichipnumber))` unique values
+  * Not all animals have chip identifiers.
+* Animal name - *animalname* - factor variable with `r length(unique(intake$animalname))` unique values
+  * We've got some common names!
+* Breed - *breedname* - factor variable with `r length(unique(intake$breedname))` unique values
+* Animal coloration - *basecolour* - factor variable with `r length(unique(intake$basecolour))` unique values
+* Species - *speciesname* - factor variable with `r length(unique(intake$speciesname))` unique values.
+  * There are some surprises here
+* Animal age (estimated) - *animalage* - string with values such as `r intake[1,]$animalage`
+  * This field is valuable, but requires processing to extract a usable estimate of age (years or months)
+* Animal sex - *sex* - factor variable with `r length(unique(intake$sexname))` unique values.
+
+#### 2. Intake Data
+These fields describe intake data for animals managed by Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements.
+
+* Intake identifier - *id* - a numeric unique identifier with `r length(unique(intake$id))` unique values.
+  * The number of unqiue ids and unique shelter codes are identical. And, as with *sheltercodes* variable above, the count of unique *id* values is less than total intake records provided by the division. This suggests unique identifier is linked to the animal's intial intake.
+* Intake date - *intakedate* - a date field (YYYY-MM-DD) ranging from `r min(as.Date(intake$intakedate))` to `r max(as.Date(intake$intakedate))`.
+  * Intake data sets may require more examination and potentiall filtering to removing intakes prior 2017, the first year when records begin were first collected in full.
+  * Needs processing to as.Date() type.
+* Intake reason - *intakereason* - a factor variable with `r length(unique(intake$intakereason))` unique values.
+* Location within shelter - *location* - a factor variable with `r length(unique(intake$location))` unique values.
+
+#### 3. Animals on the Move
+These fields describe adoptions of animals managed by Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements. 
+
+* Movement date - *movementdate* - a date field (YYYY-MM-DD) ranging from `r min(as.Date(intake$movementdate))` to `r max(as.Date(intake$movementdate))`.
+  * Needs processing to as.Date() data types.
+* Movement type - *movementtype* - a factor variable with `r length(unique(intake$movementtype))` unique values.
+  * This field indicates what happens to an animal after the intake is logged. Values include: 
+* Trial status - *istrial* - a binary (1/0) variable indicating if the animal is a trial adoption.
+  * All values are currently *0*, meaning the field has no value and should be removed.
+* Transfer status - *istransfer* - a binary (1/0) variable indicating if the animal is transferred from the system. 
+
+#### 4. Returned Animals
+These fields describe data related to animal that return to Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements. 
+
+* Return date - *returndate* - a date field (YYYY-MM-DD) ranging from `r min(as.Date(intake[intake$returndate!="",]$returndate))` to `r max(as.Date(intake[intake$returndate!="",]$returndate))`.
+  * Not all intake records include a return date, indicating the animal has not been returned to the system.
+  * Needs processing to as.Date() data types.
+* Return reason - *returnedreason* - a factor variable with `r length(unique(intake$returnedreason))` unique values.
+  * Some interesting unique values include: `r head(unique(intake$returnedreason),3)`. 
+  * This variable may be an interesting feature to explore reasons based on animal type and demographics. This may be useful for a predictive model at intake.
+
+#### 5. Deceased Animals
+These fields describe data related to animal that have died while managed by Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements. 
+
+* Deceased date - *deceaseddate* - a date field (YYYY-MM-DD) ranging from `r min(as.Date(intake[intake$deceaseddate!="",]$deceaseddate))` to `r max(as.Date(intake[intake$deceaseddate!="",]$deceaseddate))`.
+  * Not all intake records include a deceased date, indicating the animal is alive!
+  * Needs processing to as.Date() data types.
+* Deceased reason - *deceasedreason* - a factor variable with `r length(unique(intake$deceasedreason))` unique values.
+  * Some interesting unique values include: `r head(unique(intake$deceasedreason),3)`. 
+  * This variable may be an interesting feature to explore reasons based on animal type and demographics. This may be useful for a predictive model at intake.
+  * All animals have a deceased reason even if they are not dead.
+* Animal died off selter - *diedoffshelter* -  a binary (1/0) variable indicating if the animal is died outside of the shelter.
+* Euthanize flag - *puttosleep* - a binary (1/0) variable indicating if the animal is euthanized from the system.
+* Dead on arrival flag - *isdoa* - a binary (1/0) variable indicating if the animal is died when they arrived at the shelter.
+
+Taken together, the full data set is a composite of at lease 5 data tables in a larger database on animals managed by Animal Care and Control. This means that to best use this dataset, it should be processed break appart different components, which may be useful for different types of analysis. Example analysis might include:
+
+* Description of each animal's time with the Animal Care and Control,
+* Descriptive, temporal, and other exploratory analysis of species managed by the division.
+   * Identify the kinds of animals that are brought into the shelter and why;
+   * Identify trends of intakes, returns, adoptions, fosters, and euthanization...
+      * by species and breed, age groups, or intake and return reasons or movement types
+* Visualize pathways through the shelter by animals
+* Model animal outcomes
+
+### Processing Intake Data for Visual Analytics
+First, the data set is processed to ensure that data has proper data types used by R in analysis. The code chuck below provides details about how variables are updated to proper data types. Note, *animalage* is ignored, but will be processed later in the notebook.
+
+```{r pro-in-datatypes, echo=TRUE, warning=TRUE}
+#Copy intake to new data.frame data 
+data <- intake
+
+#List of factor variables column names
+intake_fac <- colnames(data[,c(1,3,5:10,12,13,15,18,20)])
+#Converts variables from character strings to factors
+for(i in 1:length(intake_fac)){
+  data[,intake_fac[i]] <- data[,intake_fac[i]] %>% as.factor()
+}
+
+#List of date variable column names
+intake_date <- colnames(data[,c(2,14,17,19)])
+#Convert variables from character strings to dates
+for(i in 1:length(intake_date)){
+  if(length(data[data[,intake_date[i]]=="",intake_date[i]])>0){
+    data[data[,intake_date[i]]=="",intake_date[i]] <- NA
+  }
+  data[,intake_date[i]] <- data[,intake_date[i]] %>% as.Date()
+}
+rm(i, intake_date, intake_fac)
+
+write.csv(data, file=paste0(getwd(),"/data/","bmg-acc-cases.",max(data$intakedate),".csv"), row.names=F)
+```
+
+#### Creating an Animal Data Set
+Animal data set description
+
+```{r pro-animals, echo=TRUE, warning=TRUE}
+#Creates demographic data set of unique animals with intake cases
+animals <- data[,c("id","sheltercode","identichipnumber","animalname","animalage","sexname","speciesname","breedname","basecolour")] %>% unique()
+
+#Processes animal age to
+tmp <- as.data.frame(as.character(animals$animalage),stringsAsFactors = F)
+names(tmp) <- "animalage"
+tmp$intakeage <- as.numeric(0)
+for(i in 1:nrow(tmp)){
+  #Converts string to a dataframe by way of 2 col matrice
+  d <- stringr::str_split(tmp[i,]$animalage,"\\ ") %>% unlist() 
+  if(length(d)==2){
+    d <- d %>% matrix(ncol=2) %>% data.frame()
+  } else {
+    d <- d %>% matrix(ncol=2) %>% t() %>% data.frame()
+  }
+  d$X1 <- as.character(d$X1) %>% as.numeric()
+  # Years to months
+  if(length(d[d$X2=="years" | d$X2=="year",]$X2)>0){
+    d[d$X2=="years" | d$X2=="year",]$X1 <- d[d$X2=="years" | d$X2=="year",]$X1 * 12
+  }
+  #Weeks to months
+  if(length(d[d$X2=="weeks." | d$X2=="week.",]$X2)>0){
+    d[d$X2=="weeks." | d$X2=="week.",]$X1 <- d[d$X2=="weeks." | d$X2=="week.",]$X1 * (1/4.5)
+  }
+  #Days to months
+  if(length(d[d$X2=="days." | d$X2=="day.",]$X2)>0){
+    d[d$X2=="weeks." | d$X2=="week.",]$X1 <- d[d$X2=="weeks." | d$X2=="week.",]$X1 * (1/30)
+  }
+  tmp[i,]$intakeage <- sum(d$X1)
+}
+#Creates new column in animals data.frame
+animals$intakeage <- tmp$intakeage
+#Removes objects
+rm(i,d,tmp)
+
+#Save data set for later use
+write.csv(animals, file=paste0(getwd(),"/data/","bmg-acc-animals.",max(data$intakedate),".csv"), row.names=F)
+
+#Summarize intake cases
+summary(animals)
+```
+
+#### Creating an Intake Data Set
+Create a data set of all animals based on caseid_i as unique ID.
+
+```{r pro-intake, echo=TRUE, warning=TRUE}
+#Creates demographic data set of unique animals with intake cases
+intakes <- data[,c("id","intakedate","intakereason","location")] %>% unique()
+
+#Save data set for later use
+write.csv(intakes, file=paste0(getwd(),"/data/","bmg-acc-intakes.",max(data$intakedate),".csv"), row.names=F)
+
+#Summarize intake cases
+summary(intakes)
+```
+
+#### Creating a Movement Data Set
+```{r pro-move, echo=TRUE, warning=TRUE}
+#Creates demographic data set of unique animals with intake cases
+move <- data[,c("id","intakedate","movementdate","movementtype")] %>% unique()
+
+#Calculate new fields
+
+#Save data set for later use
+write.csv(move, file=paste0(getwd(),"/data/","bmg-acc-moves.",max(data$intakedate),".csv"), row.names=F)
+
+#Summarize movements
+summary(move)
+```
+
+Do we add age, gender, species and breed information? OR leave that for a join?
+Calculate time to move for intakes 
+
+#### Creating a Returns Data Set
+```{r pro-return, echo=TRUE, warning=TRUE}
+#Creates demographic data set of unique animals with intake cases
+return <- data[,c("id","intakedate","movementdate","returndate","returnedreason")] %>% unique()
+return <- return[!is.na(return$returndate),]
+
+#Calculate new fields
+
+#Save data set for later use
+write.csv(return, file=paste0(getwd(),"/data/","bmg-acc-returns.",max(data$intakedate),".csv"), row.names=F)
+
+#Summarize intake cases
+summary(return)
+```
+
+Create a date for movements... order by animal id and date, assign move #; creat id -- {caseid}_r_#assign
+carry over move date to calc time out of shelter
+
+#### Creating a Deceased Animals Data Set 
+Add max(return date) as field
+```{r pro-doa, echo=TRUE, warning=TRUE}
+#Creates demographic data set of unique animals with intake cases
+dead <- data[,c("id","intakedate","deceaseddate","deceasedreason",
+                "diedoffshelter","puttosleep","isdoa")] %>% unique()
+dead <- dead[!is.na(dead$deceaseddate),]
+
+
+
+#Calculate new fields
+
+#Save data set for later use
+write.csv(dead, file=paste0(getwd(),"/data/","bmg-acc-deaths.",max(data$intakedate),".csv"), row.names=F)
+
+#Summarize intake cases
+summary(dead)
+```
+
+### Supplemental Statistic for Animal Data
+fostered - binary
+medical - binary
+adopted - count
+return - count
+timeInSelter
+timeInFoster
+timeInAdopt
+diseased
