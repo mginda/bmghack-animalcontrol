@@ -7,7 +7,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Introduction
-Bloomington Animal Care and Control data is available through [BClear](https://data.bloomington.in.gov/), data portal for Bloomington, Indiana's city government. The Animal Care and Control Division has prepared two data sets that the public may use to understand how the city handles animal welfare. 
+Bloomington Animal Care and Control data is available through **[BClear](https://data.bloomington.in.gov/)**, a data portal for Bloomington, Indiana's city government. The Animal Care and Control Division has prepared two data sets that the public may use to understand how the city handles animal welfare. 
 
 This notebook was created for the **BMG Hack's - Let's Get Visual - Civic Data Challenge**. The notebook provides a description of each data set, and provides code for the data processing performed on these data that (hopefully) will facilitate analysis and visualization that can be updated, re-used, and shared with others! 
 
