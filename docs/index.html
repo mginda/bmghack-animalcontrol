@@ -307,8 +307,10 @@ $(document).ready(function () {
 </ul>
 </div>
 </div>
-<div id="setting-up-r" class="section level1">
-<h1>Setting up R</h1>
+<div id="data-documentation-and-processing-notes" class="section level1">
+<h1>Data Documentation and Processing Notes</h1>
+<div id="setting-up-r" class="section level2">
+<h2>Setting up R</h2>
 <p>Here we set up the R environment, and load in the R Packages that will be used in the notebook.</p>
 <pre class="r"><code>#Clean up environment
 rm(list=ls())
@@ -321,18 +323,16 @@ library(plyr)        # Combining and Splitting Data
 library(dplyr)       # Data analysis and aggregations
 library(magrittr)    # Piping</code></pre>
 </div>
-<div id="loading-data-from-animal-care-and-control" class="section level1">
-<h1>Loading Data from Animal Care and Control</h1>
+<div id="loading-data-from-animal-care-and-control" class="section level2">
+<h2>Loading Data from Animal Care and Control</h2>
 <p>Data is loaded directly into R using a CURL function that uses URLS the <strong>BClear</strong> data for the Animal Care and Control data. Data is provided a CSVs with headers.</p>
 <pre class="r"><code>#Annual Statistics
 annual &lt;- read.csv(curl(url=&quot;https://data.bloomington.in.gov/dataset/9a0fc126-0775-4952-96ff-76ece67ffbc7/resource/7a847ec2-31c6-48e3-b0bc-02af2fa94587/download/animal-care-and-control-data-set-2004-2019.csv&quot;), header=TRUE, stringsAsFactors = F)
 
 #Intake and adoption records
 intake &lt;- read.csv(curl(url=&quot;https://data.bloomington.in.gov/dataset/94d3f457-57b5-45be-bee0-a0106f59b7ed/resource/8854ce02-e8f5-44b9-b85f-17f002a7d023/download/animals.csv&quot;), header=TRUE, stringsAsFactors = F)</code></pre>
-</div>
-<div id="data-documentation-and-processing-notes" class="section level1">
-<h1>Data Documentation and Processing Notes</h1>
 <p>Before we will analyze and visualize these data, lets look at the variables in the data set to ensure that they are using the correct data type in R, and determine how variables relate to each other. We then can develop data processing routines that clean up the data for ease of use, and to develop new data structures for a given visual analysis workflow.</p>
+</div>
 <div id="annual-statistics" class="section level2">
 <h2>Annual Statistics</h2>
 <div id="data-structure" class="section level3">
@@ -444,9 +444,12 @@ annual$revenue &lt;- parse_number(annual$revenue, na=&quot;NA&quot;)</code></pre
 </div>
 <div id="animal-case-data" class="section level2">
 <h2>Animal Case Data</h2>
-<p>A review of the Animal Case data set is more complex due to the nature of the data set, requiring an indepth look at the both data structure and type and values of variable recorded across the observations (e.g. counts of values for catoregorical aka factor aka qualitative fields). There are 12316 observations across 23 variables in this data set. The data structure is provided below.</p>
+<p>The Animal Case data set is more complex data set because it is a composite taken from from the Shelter Manager database. By reviewing the data structure and type and values of variable recorded across the observations (e.g. counts of values for catoregorical aka factor aka qualitative fields), cleaner data sets will be derived to aid analysis and visualization.</p>
 <div id="data-structure-1" class="section level3">
 <h3>Data Structure</h3>
+<p>There are 12316 observations across 23 variables in this data set. The data structure provides a description of the variables, and is shown below.</p>
+<p>Reading variable names shows that the data set uses common subjects for related variables. Examples of variable relationships include fields starting with: <em>intake</em>, <em>movement</em>, <em>return</em>, and <em>deceased</em>. This suggests that there are a minimum of four tables combined in this data set.</p>
+<p>Data tables are likely combined by the <em>id</em> field, which acts as the primary key in the shelter database. This field will be used in all derived data subsets, to help join related data.</p>
 <pre><code>## &#39;data.frame&#39;:    12316 obs. of  23 variables:
 ##  $ id              : int  15801 15932 28859 30812 30812 31469 31469 40705 40706 46238 ...
 ##  $ intakedate      : chr  &quot;2009-11-28 00:00:00&quot; &quot;2009-12-08 00:00:00&quot; &quot;2012-08-10 00:00:00&quot; &quot;2013-01-11 00:00:00&quot; ...
@@ -471,11 +474,51 @@ annual$revenue &lt;- parse_number(annual$revenue, na=&quot;NA&quot;)</code></pre
 ##  $ diedoffshelter  : int  0 0 0 0 0 0 0 0 0 0 ...
 ##  $ puttosleep      : int  0 0 0 0 0 0 0 0 0 0 ...
 ##  $ isdoa           : int  0 0 0 0 0 0 0 0 0 0 ...</code></pre>
-<p>A review of the data structure shows that variables often share common names, which indicates a relations across variables. Examples of this are fields beginning with <em>intake</em>, <em>movement</em>, <em>return</em>, and <em>deceased</em>. The common names, and review of the other variable names suggests that this data set is a composite report from an intake database maintained by Animal Care and Control, of a minimum 5 data tables. An example of how a these variable names might be grouped follows:</p>
-<div id="animal-identification-and-description" class="section level4">
-<h4>1. Animal Identification and Description</h4>
-<p>These fields describe animals taken in by Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements.</p>
+</div>
+<div id="processing-intake-data-for-visual-analytics" class="section level3">
+<h3>Processing Intake Data for Visual Analytics</h3>
+<p>The goal of data processing is to create different subsets that best represent data for potential analysis and visualizations. The data sets derived from the origianl data set include:</p>
+<ol style="list-style-type: decimal">
+<li>Animal Identification data</li>
+<li>Intake Case data</li>
+<li>Movement data (adoptions, fosters, transfers, etc.)</li>
+<li>Returned Animals data</li>
+<li>Deceased Animals data</li>
+<li>Supplemental Animal Statistics</li>
+<li>Animal Case Intake and Outcome Log</li>
+</ol>
+<div id="assigning-data-types" class="section level4">
+<h4>Assigning Data Types</h4>
+<p>Before subsetting the animal case data set into cleaner subsets, it is processed to ensure that variables have the proper data types assigned. The data set requires transforming fields into factor/categorical variables, and dates. Note, <em>animalage</em> is ignored, but it is processed later in the <em>Animal Idenfification</em> data set.</p>
+<pre class="r"><code>#Copy intake to new data.frame data 
+data &lt;- intake
+
+#List of factor variables column names
+intake_fac &lt;- colnames(data[,c(1,3,5:10,12,13,15,18,20)])
+#Converts variables from character strings to factors
+for(i in 1:length(intake_fac)){
+  data[,intake_fac[i]] &lt;- data[,intake_fac[i]] %&gt;% as.factor()
+}
+
+#List of date variable column names
+intake_date &lt;- colnames(data[,c(2,14,17,19)])
+#Convert variables from character strings to dates
+for(i in 1:length(intake_date)){
+  if(length(data[data[,intake_date[i]]==&quot;&quot;,intake_date[i]])&gt;0){
+    data[data[,intake_date[i]]==&quot;&quot;,intake_date[i]] &lt;- NA
+  }
+  data[,intake_date[i]] &lt;- data[,intake_date[i]] %&gt;% as.Date()
+}
+rm(i, intake_date, intake_fac)</code></pre>
+</div>
+<div id="animal-identification-data" class="section level4">
+<h4>1. Animal Identification Data</h4>
+<p>This data set describes animals taken in by Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements. The variables included in this data set are:</p>
 <ul>
+<li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8579 unique values.
+<ul>
+<li>This field acts as the primary key that will connect data sets together</li>
+</ul></li>
 <li>Shelter Code - <em>sheltercode</em> - a numeric unique identifier with 8579values.
 <ul>
 <li>The difference between unique identifers and total number of observations in the data set (3737) indicates that there may be multiple intake records for a given animal in the data set.</li>
@@ -501,120 +544,6 @@ annual$revenue &lt;- parse_number(annual$revenue, na=&quot;NA&quot;)</code></pre
 </ul></li>
 <li>Animal sex - <em>sex</em> - factor variable with 3 unique values.</li>
 </ul>
-</div>
-<div id="intake-data" class="section level4">
-<h4>2. Intake Data</h4>
-<p>These fields describe intake data for animals managed by Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements.</p>
-<ul>
-<li>Intake identifier - <em>id</em> - a numeric unique identifier with 8579 unique values.
-<ul>
-<li>The number of unqiue ids and unique shelter codes are identical. And, as with <em>sheltercodes</em> variable above, the count of unique <em>id</em> values is less than total intake records provided by the division. This suggests unique identifier is linked to the animal’s intial intake.</li>
-</ul></li>
-<li>Intake date - <em>intakedate</em> - a date field (YYYY-MM-DD) ranging from 2009-11-28 to 2020-02-13.
-<ul>
-<li>Intake data sets may require more examination and potentiall filtering to removing intakes prior 2017, the first year when records begin were first collected in full.</li>
-<li>Needs processing to as.Date() type.</li>
-</ul></li>
-<li>Intake reason - <em>intakereason</em> - a factor variable with 27 unique values.</li>
-<li>Location within shelter - <em>location</em> - a factor variable with 39 unique values.</li>
-</ul>
-</div>
-<div id="animals-on-the-move" class="section level4">
-<h4>3. Animals on the Move</h4>
-<p>These fields describe adoptions of animals managed by Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements.</p>
-<ul>
-<li>Movement date - <em>movementdate</em> - a date field (YYYY-MM-DD) ranging from 2013-03-30 to 2020-02-13.
-<ul>
-<li>Needs processing to as.Date() data types.</li>
-</ul></li>
-<li>Movement type - <em>movementtype</em> - a factor variable with 7 unique values.
-<ul>
-<li>This field indicates what happens to an animal after the intake is logged. Values include:</li>
-</ul></li>
-<li>Trial status - <em>istrial</em> - a binary (1/0) variable indicating if the animal is a trial adoption.
-<ul>
-<li>All values are currently <em>0</em>, meaning the field has no value and should be removed.</li>
-</ul></li>
-<li>Transfer status - <em>istransfer</em> - a binary (1/0) variable indicating if the animal is transferred from the system.</li>
-</ul>
-</div>
-<div id="returned-animals" class="section level4">
-<h4>4. Returned Animals</h4>
-<p>These fields describe data related to animal that return to Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements.</p>
-<ul>
-<li>Return date - <em>returndate</em> - a date field (YYYY-MM-DD) ranging from 2017-04-01 to 2020-02-13.
-<ul>
-<li>Not all intake records include a return date, indicating the animal has not been returned to the system.</li>
-<li>Needs processing to as.Date() data types.</li>
-</ul></li>
-<li>Return reason - <em>returnedreason</em> - a factor variable with 24 unique values.
-<ul>
-<li>Some interesting unique values include: Stray, Incompatible with owner lifestyle, Rabies Monitoring.</li>
-<li>This variable may be an interesting feature to explore reasons based on animal type and demographics. This may be useful for a predictive model at intake.</li>
-</ul></li>
-</ul>
-</div>
-<div id="deceased-animals" class="section level4">
-<h4>5. Deceased Animals</h4>
-<p>These fields describe data related to animal that have died while managed by Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements.</p>
-<ul>
-<li>Deceased date - <em>deceaseddate</em> - a date field (YYYY-MM-DD) ranging from 2017-04-02 to 2020-02-02.
-<ul>
-<li>Not all intake records include a deceased date, indicating the animal is alive!</li>
-<li>Needs processing to as.Date() data types.</li>
-</ul></li>
-<li>Deceased reason - <em>deceasedreason</em> - a factor variable with 14 unique values.
-<ul>
-<li>Some interesting unique values include: Died in care, UU - untreatable, unmanageable health, Healthy.</li>
-<li>This variable may be an interesting feature to explore reasons based on animal type and demographics. This may be useful for a predictive model at intake.</li>
-<li>All animals have a deceased reason even if they are not dead.</li>
-</ul></li>
-<li>Animal died off selter - <em>diedoffshelter</em> - a binary (1/0) variable indicating if the animal is died outside of the shelter.</li>
-<li>Euthanize flag - <em>puttosleep</em> - a binary (1/0) variable indicating if the animal is euthanized from the system.</li>
-<li>Dead on arrival flag - <em>isdoa</em> - a binary (1/0) variable indicating if the animal is died when they arrived at the shelter.</li>
-</ul>
-<p>Taken together, the full data set is a composite of at lease 5 data tables in a larger database on animals managed by Animal Care and Control. This means that to best use this dataset, it should be processed break appart different components, which may be useful for different types of analysis. Example analysis might include:</p>
-<ul>
-<li>Description of each animal’s time with the Animal Care and Control,</li>
-<li>Descriptive, temporal, and other exploratory analysis of species managed by the division.
-<ul>
-<li>Identify the kinds of animals that are brought into the shelter and why;</li>
-<li>Identify trends of intakes, returns, adoptions, fosters, and euthanization…
-<ul>
-<li>by species and breed, age groups, or intake and return reasons or movement types</li>
-</ul></li>
-</ul></li>
-<li>Visualize pathways through the shelter by animals</li>
-<li>Model animal outcomes</li>
-</ul>
-</div>
-</div>
-<div id="processing-intake-data-for-visual-analytics" class="section level3">
-<h3>Processing Intake Data for Visual Analytics</h3>
-<p>First, the data set is processed to ensure that data has proper data types used by R in analysis. The code chuck below provides details about how variables are updated to proper data types. Note, <em>animalage</em> is ignored, but will be processed later in the notebook.</p>
-<pre class="r"><code>#Copy intake to new data.frame data 
-data &lt;- intake
-
-#List of factor variables column names
-intake_fac &lt;- colnames(data[,c(1,3,5:10,12,13,15,18,20)])
-#Converts variables from character strings to factors
-for(i in 1:length(intake_fac)){
-  data[,intake_fac[i]] &lt;- data[,intake_fac[i]] %&gt;% as.factor()
-}
-
-#List of date variable column names
-intake_date &lt;- colnames(data[,c(2,14,17,19)])
-#Convert variables from character strings to dates
-for(i in 1:length(intake_date)){
-  if(length(data[data[,intake_date[i]]==&quot;&quot;,intake_date[i]])&gt;0){
-    data[data[,intake_date[i]]==&quot;&quot;,intake_date[i]] &lt;- NA
-  }
-  data[,intake_date[i]] &lt;- data[,intake_date[i]] %&gt;% as.Date()
-}
-rm(i, intake_date, intake_fac)</code></pre>
-<div id="creating-an-animal-data-set" class="section level4">
-<h4>Creating an Animal Data Set</h4>
-<p>Animal data set description</p>
 <pre class="r"><code>#Creates demographic data set of unique animals with intake cases
 animals &lt;- data[,c(&quot;id&quot;,&quot;sheltercode&quot;,&quot;identichipnumber&quot;,&quot;animalname&quot;,&quot;animalage&quot;,&quot;sexname&quot;,&quot;speciesname&quot;,&quot;breedname&quot;,&quot;basecolour&quot;)] %&gt;% unique()
 
@@ -677,9 +606,22 @@ summary(animals)</code></pre>
 ##  Beagle              : 131   Grey and White : 299   Max.   :1209.00  
 ##  (Other)             :3630   (Other)        :4840</code></pre>
 </div>
-<div id="creating-an-intake-data-set" class="section level4">
-<h4>Creating an Intake Data Set</h4>
-<p>Create a data set of all animals based on caseid_i as unique ID.</p>
+<div id="intake-data" class="section level4">
+<h4>2. Intake Data</h4>
+<p>These fields describe intake data for animals managed by Animal Care and Control. The variables included in this data set are:</p>
+<ul>
+<li>Intake identifier - <em>id</em> - a numeric unique identifier with 8579 unique values.
+<ul>
+<li>The number of unqiue ids and unique shelter codes are identical. And, as with <em>sheltercodes</em> variable above, the count of unique <em>id</em> values is less than total intake records provided by the division. This suggests unique identifier is linked to the animal’s intial intake.</li>
+</ul></li>
+<li>Intake date - <em>intakedate</em> - a date field (YYYY-MM-DD) ranging from 2009-11-28 to 2020-02-13.
+<ul>
+<li>Intake data sets may require more examination and potentiall filtering to removing intakes prior 2017, the first year when records begin were first collected in full.</li>
+<li>Needs processing to as.Date() type.</li>
+</ul></li>
+<li>Intake reason - <em>intakereason</em> - a factor variable with 27 unique values.</li>
+<li>Location within shelter - <em>location</em> - a factor variable with 39 unique values.</li>
+</ul>
 <pre class="r"><code>#Creates demographic data set of unique animals with intake cases
 intakes &lt;- data[,c(&quot;id&quot;,&quot;intakedate&quot;,&quot;intakereason&quot;,&quot;location&quot;)] %&gt;% unique()
 
@@ -710,8 +652,24 @@ summary(intakes)</code></pre>
 ##  Adoptable Cat Big Colony  : 440  
 ##  (Other)                   :4223</code></pre>
 </div>
-<div id="creating-a-movement-data-set" class="section level4">
-<h4>Creating a Movement Data Set</h4>
+<div id="animals-on-the-move-data" class="section level4">
+<h4>3. Animals on the Move Data</h4>
+<p>These fields describe adoptions of animals managed by Animal Care and Control. The variables included in this data set are:</p>
+<ul>
+<li>Movement date - <em>movementdate</em> - a date field (YYYY-MM-DD) ranging from 2013-03-30 to 2020-02-13.
+<ul>
+<li>Needs processing to as.Date() data types.</li>
+</ul></li>
+<li>Movement type - <em>movementtype</em> - a factor variable with 7 unique values.
+<ul>
+<li>This field indicates what happens to an animal after the intake is logged. Values include:</li>
+</ul></li>
+<li>Trial status - <em>istrial</em> - a binary (1/0) variable indicating if the animal is a trial adoption.
+<ul>
+<li>All values are currently <em>0</em>, meaning the field has no value and should be removed.</li>
+</ul></li>
+<li>Transfer status - <em>istransfer</em> - a binary (1/0) variable indicating if the animal is transferred from the system.</li>
+</ul>
 <pre class="r"><code>#Creates demographic data set of unique animals with intake cases
 move &lt;- data[,c(&quot;id&quot;,&quot;intakedate&quot;,&quot;movementdate&quot;,&quot;movementtype&quot;)] %&gt;% unique()
 
@@ -737,8 +695,21 @@ summary(move)</code></pre>
 ##  Transfer        : 598</code></pre>
 <p>Do we add age, gender, species and breed information? OR leave that for a join? Calculate time to move for intakes</p>
 </div>
-<div id="creating-a-returns-data-set" class="section level4">
-<h4>Creating a Returns Data Set</h4>
+<div id="returned-animals-data" class="section level4">
+<h4>4. Returned Animals Data</h4>
+<p>These fields describe data related to animal that return to Animal Care and Control. The variables included in this data set are:</p>
+<ul>
+<li>Return date - <em>returndate</em> - a date field (YYYY-MM-DD) ranging from 2017-04-01 to 2020-02-13.
+<ul>
+<li>Not all intake records include a return date, indicating the animal has not been returned to the system.</li>
+<li>Needs processing to as.Date() data types.</li>
+</ul></li>
+<li>Return reason - <em>returnedreason</em> - a factor variable with 24 unique values.
+<ul>
+<li>Some interesting unique values include: Stray, Incompatible with owner lifestyle, Rabies Monitoring.</li>
+<li>This variable may be an interesting feature to explore reasons based on animal type and demographics. This may be useful for a predictive model at intake.</li>
+</ul></li>
+</ul>
 <pre class="r"><code>#Creates demographic data set of unique animals with intake cases
 return &lt;- data[,c(&quot;id&quot;,&quot;intakedate&quot;,&quot;movementdate&quot;,&quot;returndate&quot;,&quot;returnedreason&quot;)] %&gt;% unique()
 return &lt;- return[!is.na(return$returndate),]
@@ -765,8 +736,25 @@ summary(return)</code></pre>
 ##                       (Other)                          : 285</code></pre>
 <p>Create a date for movements… order by animal id and date, assign move #; creat id – {caseid}<em>r</em>#assign carry over move date to calc time out of shelter</p>
 </div>
-<div id="creating-a-deceased-animals-data-set" class="section level4">
-<h4>Creating a Deceased Animals Data Set</h4>
+<div id="deceased-animals-data" class="section level4">
+<h4>5. Deceased Animals Data</h4>
+<p>These fields describe data related to animal that have died while managed by Animal Care and Control. The variables included in this data set are:</p>
+<ul>
+<li>Deceased date - <em>deceaseddate</em> - a date field (YYYY-MM-DD) ranging from 2017-04-02 to 2020-02-02.
+<ul>
+<li>Not all intake records include a deceased date, indicating the animal is alive!</li>
+<li>Needs processing to as.Date() data types.</li>
+</ul></li>
+<li>Deceased reason - <em>deceasedreason</em> - a factor variable with 14 unique values.
+<ul>
+<li>Some interesting unique values include: Died in care, UU - untreatable, unmanageable health, Healthy.</li>
+<li>This variable may be an interesting feature to explore reasons based on animal type and demographics. This may be useful for a predictive model at intake.</li>
+<li>All animals have a deceased reason even if they are not dead.</li>
+</ul></li>
+<li>Animal died off selter - <em>diedoffshelter</em> - a binary (1/0) variable indicating if the animal is died outside of the shelter.</li>
+<li>Euthanize flag - <em>puttosleep</em> - a binary (1/0) variable indicating if the animal is euthanized from the system.</li>
+<li>Dead on arrival flag - <em>isdoa</em> - a binary (1/0) variable indicating if the animal is died when they arrived at the shelter.</li>
+</ul>
 <p>Add max(return date) as field</p>
 <pre class="r"><code>#Creates demographic data set of unique animals with intake cases
 dead &lt;- data[,c(&quot;id&quot;,&quot;intakedate&quot;,&quot;deceaseddate&quot;,&quot;deceasedreason&quot;,
@@ -804,8 +792,11 @@ summary(dead)</code></pre>
 </div>
 </div>
 <div id="supplemental-statistic-for-animal-data" class="section level3">
-<h3>Supplemental Statistic for Animal Data</h3>
+<h3>8. Supplemental Statistic for Animal Data</h3>
 <p>fostered - binary medical - binary adopted - count return - count timeInSelter timeInFoster timeInAdopt diseased</p>
+</div>
+<div id="animal-case-intake-and-outcome-log" class="section level3">
+<h3>7. Animal Case Intake and Outcome Log</h3>
 </div>
 </div>
 </div>
