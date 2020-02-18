@@ -12,11 +12,15 @@ This notebook was created for the **BMG Hack's - Let's Get Visual - Civic Data C
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.
 
-## About the Data Sets
+## About the Original Data Sets
 
 *  **[Annual Statistics (2004-2019)](https://data.bloomington.in.gov/dataset/animal-care-and-control/resource/7a847ec2-31c6-48e3-b0bc-02af2fa94587)** - These data represent high level annual statistics for the division, which includes revenue, budgets, staffing, counts of animal intakes and movements. These data is great for those interested in practicing implementing basic data visualizations using a tidy data set.
 
 *  **[Adoptions (2017-Present)](https://data.bloomington.in.gov/dataset/adopted-animals/resource/8854ce02-e8f5-44b9-b85f-17f002a7d023)** - These data represent animal case records maintained by the division. This is a much larger and complex data set compared to the annual statistics. The Bloomington Animal Shelter, which uses the [Shelter Manager](https://www.sheltermanager.com/site/en_tour.html) database to manage its case load. The data provided by the city is a roll-up of multiple tables from the shelter database. Currently, there are over 12,000 intake records available to download.
+
+## Processed Data Download
+
+
 
 # Data Documentation and Processing Notes
 
@@ -226,6 +230,7 @@ for(i in 1:nrow(tmp)){
 }
 #Creates new column in animals data.frame
 animals$intakeage <- tmp$intakeage
+
 #Removes objects
 rm(i,d,tmp)
 
@@ -239,15 +244,22 @@ These fields describe intake data for animals managed by Animal Care and Control
 
 * Intake identifier - *id* - a numeric unique identifier with `r length(unique(intake$id))` unique values.
   * The number of unqiue ids and unique shelter codes are identical. And, as with *sheltercodes* variable above, the count of unique *id* values is less than total intake records provided by the division. This suggests unique identifier is linked to the animal's intial intake.
-* Intake date - *intakedate* - a date field (YYYY-MM-DD) ranging from `r min(as.Date(intake$intakedate))` to `r max(as.Date(intake$intakedate))`.
+* Intake date - *intakedate* - changed to -> *date* - a date field (YYYY-MM-DD) ranging from `r min(as.Date(intake$intakedate))` to `r max(as.Date(intake$intakedate))`.
   * Intake data sets may require more examination and potentiall filtering to removing intakes prior 2017, the first year when records begin were first collected in full.
   * Needs processing to as.Date() type.
-* Intake reason - *intakereason* - a factor variable with `r length(unique(intake$intakereason))` unique values.
+* Intake reason - *intakereason*  - changed to -> *interaction* - a factor variable with `r length(unique(intake$intakereason))` unique values.
 * Location within shelter - *location* - a factor variable with `r length(unique(intake$location))` unique values.
+* Interation type - *type* - a new field that indicates the type of interaction with the shelter
 
 ```{r pro-intake, echo=TRUE, warning=TRUE}
 #Creates demographic data set of unique animals with intake cases
 intakes <- data[,c("id","intakedate","intakereason","location")] %>% unique()
+
+#Update field names
+names(intakes)[2:3] <- c("date","interaction")
+
+#Interaction type
+intakes$type <- "intake"
 
 #Summarize intake cases
 summary(intakes)
@@ -257,81 +269,176 @@ summary(intakes)
 
 These fields describe adoptions of animals managed by Animal Care and Control. The variables included in this data set are:
 
-* Movement date - *movementdate* - a date field (YYYY-MM-DD) ranging from `r min(as.Date(intake$movementdate))` to `r max(as.Date(intake$movementdate))`.
+* Animal Case identifier - *id* - a numeric unique identifier with `r length(unique(intake$id))` unique values.
+* Movement date - *movementdate* - changed to -> *date* - a date field (YYYY-MM-DD) ranging from `r min(as.Date(intake$movementdate))` to `r max(as.Date(intake$movementdate))`.
   * Needs processing to as.Date() data types.
-* Movement type - *movementtype* - a factor variable with `r length(unique(intake$movementtype))` unique values.
+* Movement type - *movementtype* - changed to -> *interaction* - a factor variable with `r length(unique(intake$movementtype))` unique values.
   * This field indicates what happens to an animal after the intake is logged. Values include: 
 * Trial status - *istrial* - a binary (1/0) variable indicating if the animal is a trial adoption.
   * All values are currently *0*, meaning the field has no value and should be removed.
 * Transfer status - *istransfer* - a binary (1/0) variable indicating if the animal is transferred from the system. 
+* Interation type - *type* - a new field that indicates the type of interaction with the shelter system.
 
 ```{r pro-move, echo=TRUE, warning=TRUE}
 #Creates demographic data set of unique animals with intake cases
-move <- data[,c("id","intakedate","movementdate","movementtype")] %>% unique()
-
-#Calculate new fields
+move <- data[,c("id","movementdate","movementtype")] %>% 
+  unique() %>% 
+  arrange(id)
+names(move)[2:3] <- c("date","interaction")
+move$type <- "move"
 
 #Summarize movements
 summary(move)
 ```
 
-Do we add age, gender, species and breed information? OR leave that for a join?
-Calculate time to move for intakes 
-
 #### 4. Returned Animals Data
 
 These fields describe data related to animal that return to Animal Care and Control. The variables included in this data set are:
 
-* Return date - *returndate* - a date field (YYYY-MM-DD) ranging from `r min(as.Date(intake[intake$returndate!="",]$returndate))` to `r max(as.Date(intake[intake$returndate!="",]$returndate))`.
+* Animal Case identifier - *id* - a numeric unique identifier with `r length(unique(intake$id))` unique values.
+* Return date - *returndate* - changed to -> *date* - a date field (YYYY-MM-DD) ranging from `r min(as.Date(intake[intake$returndate!="",]$returndate))` to `r max(as.Date(intake[intake$returndate!="",]$returndate))`.
   * Not all intake records include a return date, indicating the animal has not been returned to the system.
   * Needs processing to as.Date() data types.
-* Return reason - *returnedreason* - a factor variable with `r length(unique(intake$returnedreason))` unique values.
+* Return reason - *returnedreason* - changed to -> *interaction* - a factor variable with `r length(unique(intake$returnedreason))` unique values.
   * Some interesting unique values include: `r head(unique(intake$returnedreason),3)`. 
   * This variable may be an interesting feature to explore reasons based on animal type and demographics. This may be useful for a predictive model at intake.
+* Interation type - *type* - a new field that indicates the type of interaction with the shelter system.
   
 ```{r pro-return, echo=TRUE, warning=TRUE}
 #Creates demographic data set of unique animals with intake cases
-return <- data[,c("id","intakedate","movementdate","returndate","returnedreason")] %>% unique()
+return <- data[,c("id","returndate","movementdate","returnedreason")] %>%
+  unique() %>% 
+  arrange(id)
 return <- return[!is.na(return$returndate),]
 
-#Calculate new fields
+#Update field names
+names(return)[c(2,4)] <- c("date","interaction")
+
+#Add interaction type
+return$type <- "return"
+
+#Time to return
+return$duration <- difftime(return$date,return$date, unit="day")
 
 #Summarize intake cases
 summary(return)
 ```
 
-Create a date for movements... order by animal id and date, assign move #; creat id -- {caseid}_r_#assign
-carry over move date to calc time out of shelter 
-
 #### 5. Deceased Animals Data
 
 These fields describe data related to animal that have died while managed by Animal Care and Control. The variables included in this data set are: 
 
-* Deceased date - *deceaseddate* - a date field (YYYY-MM-DD) ranging from `r min(as.Date(intake[intake$deceaseddate!="",]$deceaseddate))` to `r max(as.Date(intake[intake$deceaseddate!="",]$deceaseddate))`.
+* Animal Case identifier - *id* - a numeric unique identifier with `r length(unique(intake$id))` unique values.
+* Deceased date - *deceaseddate* - changed to -> *date* - a date field (YYYY-MM-DD) ranging from `r min(as.Date(intake[intake$deceaseddate!="",]$deceaseddate))` to `r max(as.Date(intake[intake$deceaseddate!="",]$deceaseddate))`.
   * Not all intake records include a deceased date, indicating the animal is alive!
   * Needs processing to as.Date() data types.
-* Deceased reason - *deceasedreason* - a factor variable with `r length(unique(intake$deceasedreason))` unique values.
+* Deceased reason - *deceasedreason* - changed to -> *interaction* - a factor variable with `r length(unique(intake$deceasedreason))` unique values.
   * Some interesting unique values include: `r head(unique(intake$deceasedreason),3)`. 
   * This variable may be an interesting feature to explore reasons based on animal type and demographics. This may be useful for a predictive model at intake.
   * All animals have a deceased reason even if they are not dead.
 * Animal died off selter - *diedoffshelter* -  a binary (1/0) variable indicating if the animal is died outside of the shelter.
 * Euthanize flag - *puttosleep* - a binary (1/0) variable indicating if the animal is euthanized from the system.
 * Dead on arrival flag - *isdoa* - a binary (1/0) variable indicating if the animal is died when they arrived at the shelter.
+* Interation type - *type* - a new field that indicates the type of interaction with the shelter system.
 
-Add max(return date) as field
 ```{r pro-doa, echo=TRUE, warning=TRUE}
 #Creates demographic data set of unique animals with intake cases
-dead <- data[,c("id","intakedate","deceaseddate","deceasedreason",
+dead <- data[,c("id","deceaseddate","deceasedreason",
                 "diedoffshelter","puttosleep","isdoa")] %>% unique()
 dead <- dead[!is.na(dead$deceaseddate),]
 
-#Calculate new fields
+#Update field names
+names(dead)[2:3] <- c("date","interaction")
+
+#Adds interaction type
+dead$type <- "dead"
 
 #Summarize intake cases
 summary(dead)
 ```
 
-### 8. Supplemental Statistic for Animal Data
+### 6. Animal Case Interaction Log
+
+
+* Animal Case identifier - *id* - a numeric unique identifier with `r length(unique(intake$id))` unique values.
+* Interaction date - *date* - a date field (YYYY-MM-DD) for an interaction with the shelter system.
+* Interaction - *interaction* - a factor variable that describes the interaction with the shelter system.
+* Interation type - *type* - a factor variable that indicates the type of interaction with the shelter system (e.g intake, movement, return, dead).
+* Duration - *duration* - Measure of time between an interaction with the shelter system, measured in days.
+
+```{r pro-ani-log}
+#Creating shelter interaction dataframe
+interactions <- rbind(intakes[,c("id","date","interaction","type")],
+                    move[,c("id","date","interaction","type")],
+                    return[,c("id","date","interaction","type")],
+                    dead[,c("id","date","interaction","type")]) %>% 
+                arrange(id,date)
+
+#Loop calculates duration between shelter interaction for each animal's case
+interactions$duration <- NA
+for(i in 1:length(unique(intakes$id))){
+  tmp <- interactions[interactions$id==intakes[i,]$id,c("id","date","duration")]
+  dur <- difftime(tmp[2:nrow(tmp),]$date,tmp[1:(nrow(tmp)-1),]$date,unit="day") %>% 
+           unclass() %>% 
+           as.numeric()
+  dur <- c(dur,NA)
+  tmp$duration <- dur
+  interactions[interactions$id==intakes[i,]$id,]$duration <- tmp$duration
+}
+
+#Transforms type into a factor variables
+interactions$type <- as.factor(interactions$type)
+
+#Clean environment
+rm(tmp,dur,i)
+
+#Summary of data
+summary(interactions)
+```
+
+### 7. Supplemental Statistic for Animal Data
+
+* Total time in shelter - 
+* Number of Interactions with Shelter - 
+* Adopted - t/f or count
+* Fostered - t/f or count
+* Reclaimed - t/f or count
+* Returned - count
+
+
+```{r pro-ani-sup}
+#New data frame of supplemental stats
+animals_s <- animals
+
+#Total Shelter Interactions (Intake+Returns+Movements+Deaths)
+
+
+#Time in Selter
+
+
+#Adopted
+
+
+
+#Fostered
+
+
+
+#Returned Count
+animals_s$hasReturned <- 0
+tmp <- ddply(return,~id,summarise,
+             hasReturned = length(date)
+             )
+animals_s <- join(animals_s,tmp,by="id")
+
+#Death stats
+
+
+  
+  
+summary(animals_s)
+```
+
 fostered - binary
 medical - binary
 adopted - count
@@ -340,5 +447,3 @@ timeInSelter
 timeInFoster
 timeInAdopt
 diseased
-
-### 7. Animal Case Intake and Outcome Log

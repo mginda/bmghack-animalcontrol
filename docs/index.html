@@ -297,12 +297,15 @@ $(document).ready(function () {
 <p>Bloomington Animal Care and Control data is available through <strong><a href="https://data.bloomington.in.gov/">BClear</a></strong>, a data portal for Bloomington, Indiana’s city government. The Animal Care and Control Division has prepared two data sets that the public may use to understand how the city handles animal welfare.</p>
 <p>This notebook was created for the <strong>BMG Hack’s - Let’s Get Visual - Civic Data Challenge</strong>. The notebook provides a description of each data set, and provides code for the data processing performed on these data that (hopefully) will facilitate analysis and visualization that can be updated, re-used, and shared with others!</p>
 <p>This is an <a href="http://rmarkdown.rstudio.com">R Markdown</a> Notebook. When you execute code within the notebook, the results appear beneath the code.</p>
-<div id="about-the-data-sets" class="section level2">
-<h2>About the Data Sets</h2>
+<div id="about-the-original-data-sets" class="section level2">
+<h2>About the Original Data Sets</h2>
 <ul>
 <li><p><strong><a href="https://data.bloomington.in.gov/dataset/animal-care-and-control/resource/7a847ec2-31c6-48e3-b0bc-02af2fa94587">Annual Statistics (2004-2019)</a></strong> - These data represent high level annual statistics for the division, which includes revenue, budgets, staffing, counts of animal intakes and movements. These data is great for those interested in practicing implementing basic data visualizations using a tidy data set.</p></li>
 <li><p><strong><a href="https://data.bloomington.in.gov/dataset/adopted-animals/resource/8854ce02-e8f5-44b9-b85f-17f002a7d023">Adoptions (2017-Present)</a></strong> - These data represent animal case records maintained by the division. This is a much larger and complex data set compared to the annual statistics. The Bloomington Animal Shelter, which uses the <a href="https://www.sheltermanager.com/site/en_tour.html">Shelter Manager</a> database to manage its case load. The data provided by the city is a roll-up of multiple tables from the shelter database. Currently, there are over 12,000 intake records available to download.</p></li>
 </ul>
+</div>
+<div id="processed-data-download" class="section level2">
+<h2>Processed Data Download</h2>
 </div>
 <div id="data-documentation-and-processing-notes" class="section level1">
 <h1>Data Documentation and Processing Notes</h1>
@@ -444,10 +447,10 @@ annual$revenue &lt;- parse_number(annual$revenue, na=&quot;NA&quot;)</code></pre
 <p>The Animal Case data set is more complex data set because it is a composite taken from from the Shelter Manager database. By reviewing the data structure and type and values of variable recorded across the observations (e.g. counts of values for catoregorical aka factor aka qualitative fields), cleaner data sets will be derived to aid analysis and visualization.</p>
 <div id="data-structure-1" class="section level3">
 <h3>Data Structure</h3>
-<p>There are 12316 observations across 23 variables in this data set. The data structure provides a description of the variables, and is shown below.</p>
+<p>There are 12351 observations across 23 variables in this data set. The data structure provides a description of the variables, and is shown below.</p>
 <p>Reading variable names shows that the data set uses common subjects for related variables. Examples of variable relationships include fields starting with: <em>intake</em>, <em>movement</em>, <em>return</em>, and <em>deceased</em>. This suggests that there are a minimum of four tables combined in this data set.</p>
 <p>Data tables are likely combined by the <em>id</em> field, which acts as the primary key in the shelter database. This field will be used in all derived data subsets, to help join related data.</p>
-<pre><code>## &#39;data.frame&#39;:    12316 obs. of  23 variables:
+<pre><code>## &#39;data.frame&#39;:    12351 obs. of  23 variables:
 ##  $ id              : int  15801 15932 28859 30812 30812 31469 31469 40705 40706 46238 ...
 ##  $ intakedate      : chr  &quot;2009-11-28 00:00:00&quot; &quot;2009-12-08 00:00:00&quot; &quot;2012-08-10 00:00:00&quot; &quot;2013-01-11 00:00:00&quot; ...
 ##  $ intakereason    : chr  &quot;Moving&quot; &quot;Moving&quot; &quot;Abandoned&quot; &quot;Abandoned&quot; ...
@@ -512,20 +515,20 @@ rm(i, intake_date, intake_fac)</code></pre>
 <h4>1. Animal Identification Data</h4>
 <p>This data set describes animals taken in by Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements. The variables included in this data set are:</p>
 <ul>
-<li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8579 unique values.
+<li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8600 unique values.
 <ul>
 <li>This field acts as the primary key that will connect data sets together</li>
 </ul></li>
-<li>Shelter Code - <em>sheltercode</em> - a numeric unique identifier with 8579values.
+<li>Shelter Code - <em>sheltercode</em> - a numeric unique identifier with 8600values.
 <ul>
-<li>The difference between unique identifers and total number of observations in the data set (3737) indicates that there may be multiple intake records for a given animal in the data set.</li>
+<li>The difference between unique identifers and total number of observations in the data set (3751) indicates that there may be multiple intake records for a given animal in the data set.</li>
 <li>The letter code starting each id indicates species class (e.g. C09115463 for cat).</li>
 </ul></li>
-<li>Animal identity chip - <em>identichipnumber</em> - factor variable with 6594 unique values
+<li>Animal identity chip - <em>identichipnumber</em> - factor variable with 6609 unique values
 <ul>
 <li>Not all animals have chip identifiers.</li>
 </ul></li>
-<li>Animal name - <em>animalname</em> - factor variable with 4911 unique values
+<li>Animal name - <em>animalname</em> - factor variable with 4926 unique values
 <ul>
 <li>We’ve got some common names!</li>
 </ul></li>
@@ -573,91 +576,100 @@ for(i in 1:nrow(tmp)){
 }
 #Creates new column in animals data.frame
 animals$intakeage &lt;- tmp$intakeage
+
 #Removes objects
 rm(i,d,tmp)
 
 #Summarize intake cases
 summary(animals)</code></pre>
 <pre><code>##        id         sheltercode          identichipnumber   animalname  
-##  15801  :   1   B1704028:   1                  :1938    Luna   :  40  
+##  15801  :   1   B1704028:   1                  :1945    Luna   :  40  
 ##  15932  :   1   B1704061:   1   0A10785A1E     :   4    Buddy  :  34  
-##  28859  :   1   B1704124:   1   981020009920224:   3    Lucy   :  33  
+##  28859  :   1   B1704124:   1   981020009920224:   3    Lucy   :  34  
 ##  30812  :   1   B1705201:   1   991001000578554:   3    Daisy  :  31  
 ##  31469  :   1   B1705202:   1   021027788      :   2    Bella  :  29  
 ##  40705  :   1   B1705264:   1   0A10592A42     :   2    Max    :  27  
-##  (Other):8573   (Other) :8573   (Other)        :6627    (Other):8385  
+##  (Other):8594   (Other) :8594   (Other)        :6641    (Other):8405  
 ##   animalage            sexname           speciesname  
-##  Length:8579        Female :4091   Cat         :4633  
-##  Class :character   Male   :4244   Dog         :3307  
-##  Mode  :character   Unknown: 244   House Rabbit: 205  
+##  Length:8600        Female :4102   Cat         :4644  
+##  Class :character   Male   :4254   Dog         :3313  
+##  Mode  :character   Unknown: 244   House Rabbit: 209  
 ##                                    Rat         : 124  
 ##                                    Guinea Pig  : 110  
 ##                                    Bird        :  47  
 ##                                    (Other)     : 153  
 ##                 breedname              basecolour     intakeage      
-##  Domestic Short Hair :3755   Black          :1253   Min.   :   0.00  
-##  Domestic Medium Hair: 381   Black and White: 763   1st Qu.:  10.00  
-##  Domestic Long Hair  : 287   Black and Brown: 538   Median :  20.00  
-##  Bully Breed Mix     : 248   Grey           : 475   Mean   :  41.27  
-##  Labrador Retriever  : 147   Orange         : 411   3rd Qu.:  46.00  
-##  Beagle              : 131   Grey and White : 299   Max.   :1209.00  
-##  (Other)             :3630   (Other)        :4840</code></pre>
+##  Domestic Short Hair :3765   Black          :1253   Min.   :   0.00  
+##  Domestic Medium Hair: 381   Black and White: 768   1st Qu.:  10.00  
+##  Domestic Long Hair  : 288   Black and Brown: 539   Median :  20.00  
+##  Bully Breed Mix     : 249   Grey           : 477   Mean   :  41.24  
+##  Labrador Retriever  : 147   Orange         : 413   3rd Qu.:  46.00  
+##  Beagle              : 131   Grey and White : 302   Max.   :1209.00  
+##  (Other)             :3639   (Other)        :4848</code></pre>
 </div>
 <div id="intake-data" class="section level4">
 <h4>2. Intake Data</h4>
 <p>These fields describe intake data for animals managed by Animal Care and Control. The variables included in this data set are:</p>
 <ul>
-<li>Intake identifier - <em>id</em> - a numeric unique identifier with 8579 unique values.
+<li>Intake identifier - <em>id</em> - a numeric unique identifier with 8600 unique values.
 <ul>
 <li>The number of unqiue ids and unique shelter codes are identical. And, as with <em>sheltercodes</em> variable above, the count of unique <em>id</em> values is less than total intake records provided by the division. This suggests unique identifier is linked to the animal’s intial intake.</li>
 </ul></li>
-<li>Intake date - <em>intakedate</em> - a date field (YYYY-MM-DD) ranging from 2009-11-28 to 2020-02-13.
+<li>Intake date - <em>intakedate</em> - changed to -&gt; <em>date</em> - a date field (YYYY-MM-DD) ranging from 2009-11-28 to 2020-02-14.
 <ul>
 <li>Intake data sets may require more examination and potentiall filtering to removing intakes prior 2017, the first year when records begin were first collected in full.</li>
 <li>Needs processing to as.Date() type.</li>
 </ul></li>
-<li>Intake reason - <em>intakereason</em> - a factor variable with 27 unique values.</li>
+<li>Intake reason - <em>intakereason</em> - changed to -&gt; <em>interaction</em> - a factor variable with 27 unique values.</li>
 <li>Location within shelter - <em>location</em> - a factor variable with 39 unique values.</li>
+<li>Interation type - <em>type</em> - a new field that indicates the type of interaction with the shelter</li>
 </ul>
 <pre class="r"><code>#Creates demographic data set of unique animals with intake cases
 intakes &lt;- data[,c(&quot;id&quot;,&quot;intakedate&quot;,&quot;intakereason&quot;,&quot;location&quot;)] %&gt;% unique()
 
+#Update field names
+names(intakes)[2:3] &lt;- c(&quot;date&quot;,&quot;interaction&quot;)
+
+#Interaction type
+intakes$type &lt;- &quot;intake&quot;
+
 #Summarize intake cases
 summary(intakes)</code></pre>
-<pre><code>##        id         intakedate        
+<pre><code>##        id            date           
 ##  15801  :   1   Min.   :2009-11-28  
 ##  15932  :   1   1st Qu.:2017-10-31  
 ##  28859  :   1   Median :2018-08-22  
-##  30812  :   1   Mean   :2018-08-16  
-##  31469  :   1   3rd Qu.:2019-05-30  
-##  40705  :   1   Max.   :2020-02-13  
-##  (Other):8573                       
-##                             intakereason 
-##  Stray                            :4081  
-##  Incompatible with owner lifestyle:1152  
-##  Litter relinquishment            : 754  
-##  Moving                           : 439  
+##  30812  :   1   Mean   :2018-08-17  
+##  31469  :   1   3rd Qu.:2019-05-31  
+##  40705  :   1   Max.   :2020-02-14  
+##  (Other):8594                       
+##                             interaction  
+##  Stray                            :4090  
+##  Incompatible with owner lifestyle:1157  
+##  Litter relinquishment            : 757  
+##  Moving                           : 441  
 ##  Unsuitable Accommodation         : 331  
 ##  Unable to Afford                 : 315  
-##  (Other)                          :1507  
-##                        location   
-##  Adoptable Dogs            :1673  
-##  Adoptable Cat Kennels     : 725  
-##  Lobby                     : 563  
-##  Adoptable window colony   : 487  
-##  Adoptable Cat Glass Colony: 468  
-##  Adoptable Cat Big Colony  : 440  
-##  (Other)                   :4223</code></pre>
+##  (Other)                          :1509  
+##                        location        type          
+##  Adoptable Dogs            :1677   Length:8600       
+##  Adoptable Cat Kennels     : 726   Class :character  
+##  Lobby                     : 563   Mode  :character  
+##  Adoptable window colony   : 487                     
+##  Adoptable Cat Glass Colony: 471                     
+##  Adoptable Cat Big Colony  : 442                     
+##  (Other)                   :4234</code></pre>
 </div>
 <div id="animals-on-the-move-data" class="section level4">
 <h4>3. Animals on the Move Data</h4>
 <p>These fields describe adoptions of animals managed by Animal Care and Control. The variables included in this data set are:</p>
 <ul>
-<li>Movement date - <em>movementdate</em> - a date field (YYYY-MM-DD) ranging from 2013-03-30 to 2020-02-13.
+<li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8600 unique values.</li>
+<li>Movement date - <em>movementdate</em> - changed to -&gt; <em>date</em> - a date field (YYYY-MM-DD) ranging from 2013-03-30 to 2020-02-17.
 <ul>
 <li>Needs processing to as.Date() data types.</li>
 </ul></li>
-<li>Movement type - <em>movementtype</em> - a factor variable with 7 unique values.
+<li>Movement type - <em>movementtype</em> - changed to -&gt; <em>interaction</em> - a factor variable with 7 unique values.
 <ul>
 <li>This field indicates what happens to an animal after the intake is logged. Values include:</li>
 </ul></li>
@@ -666,83 +678,104 @@ summary(intakes)</code></pre>
 <li>All values are currently <em>0</em>, meaning the field has no value and should be removed.</li>
 </ul></li>
 <li>Transfer status - <em>istransfer</em> - a binary (1/0) variable indicating if the animal is transferred from the system.</li>
+<li>Interation type - <em>type</em> - a new field that indicates the type of interaction with the shelter system.</li>
 </ul>
 <pre class="r"><code>#Creates demographic data set of unique animals with intake cases
-move &lt;- data[,c(&quot;id&quot;,&quot;intakedate&quot;,&quot;movementdate&quot;,&quot;movementtype&quot;)] %&gt;% unique()
-
-#Calculate new fields
+move &lt;- data[,c(&quot;id&quot;,&quot;movementdate&quot;,&quot;movementtype&quot;)] %&gt;% 
+  unique() %&gt;% 
+  arrange(id)
+names(move)[2:3] &lt;- c(&quot;date&quot;,&quot;interaction&quot;)
+move$type &lt;- &quot;move&quot;
 
 #Summarize movements
 summary(move)</code></pre>
-<pre><code>##        id          intakedate          movementdate       
-##  58510  :   11   Min.   :2009-11-28   Min.   :2013-03-30  
-##  60702  :   11   1st Qu.:2017-10-25   1st Qu.:2017-12-09  
-##  55456  :   10   Median :2018-08-16   Median :2018-09-22  
-##  61384  :   10   Mean   :2018-08-11   Mean   :2018-09-18  
-##  58410  :    7   3rd Qu.:2019-05-28   3rd Qu.:2019-06-29  
-##  47575  :    6   Max.   :2020-02-13   Max.   :2020-02-13  
-##  (Other):12252                                            
-##            movementtype 
-##  Adoption        :7102  
-##  Escaped         :   4  
-##  Foster          :2944  
-##  Reclaimed       :1642  
-##  Released To Wild:   9  
-##  Stolen          :   8  
-##  Transfer        : 598</code></pre>
-<p>Do we add age, gender, species and breed information? OR leave that for a join? Calculate time to move for intakes</p>
+<pre><code>##        id             date                      interaction  
+##  58510  :   11   Min.   :2013-03-30   Adoption        :7128  
+##  60702  :   11   1st Qu.:2017-12-10   Escaped         :   4  
+##  55456  :   10   Median :2018-09-24   Foster          :2945  
+##  61384  :   10   Mean   :2018-09-19   Reclaimed       :1647  
+##  58410  :    7   3rd Qu.:2019-07-01   Released To Wild:   9  
+##  47575  :    6   Max.   :2020-02-17   Stolen          :   8  
+##  (Other):12287                        Transfer        : 601  
+##      type          
+##  Length:12342      
+##  Class :character  
+##  Mode  :character  
+##                    
+##                    
+##                    
+## </code></pre>
 </div>
 <div id="returned-animals-data" class="section level4">
 <h4>4. Returned Animals Data</h4>
 <p>These fields describe data related to animal that return to Animal Care and Control. The variables included in this data set are:</p>
 <ul>
-<li>Return date - <em>returndate</em> - a date field (YYYY-MM-DD) ranging from 2017-04-01 to 2020-02-13.
+<li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8600 unique values.</li>
+<li>Return date - <em>returndate</em> - changed to -&gt; <em>date</em> - a date field (YYYY-MM-DD) ranging from 2017-04-01 to 2020-02-17.
 <ul>
 <li>Not all intake records include a return date, indicating the animal has not been returned to the system.</li>
 <li>Needs processing to as.Date() data types.</li>
 </ul></li>
-<li>Return reason - <em>returnedreason</em> - a factor variable with 24 unique values.
+<li>Return reason - <em>returnedreason</em> - changed to -&gt; <em>interaction</em> - a factor variable with 25 unique values.
 <ul>
 <li>Some interesting unique values include: Stray, Incompatible with owner lifestyle, Rabies Monitoring.</li>
 <li>This variable may be an interesting feature to explore reasons based on animal type and demographics. This may be useful for a predictive model at intake.</li>
 </ul></li>
+<li>Interation type - <em>type</em> - a new field that indicates the type of interaction with the shelter system.</li>
 </ul>
 <pre class="r"><code>#Creates demographic data set of unique animals with intake cases
-return &lt;- data[,c(&quot;id&quot;,&quot;intakedate&quot;,&quot;movementdate&quot;,&quot;returndate&quot;,&quot;returnedreason&quot;)] %&gt;% unique()
+return &lt;- data[,c(&quot;id&quot;,&quot;returndate&quot;,&quot;movementdate&quot;,&quot;returnedreason&quot;)] %&gt;%
+  unique() %&gt;% 
+  arrange(id)
 return &lt;- return[!is.na(return$returndate),]
 
-#Calculate new fields
+#Update field names
+names(return)[c(2,4)] &lt;- c(&quot;date&quot;,&quot;interaction&quot;)
+
+#Add interaction type
+return$type &lt;- &quot;return&quot;
+
+#Time to return
+return$duration &lt;- difftime(return$date,return$date, unit=&quot;day&quot;)
 
 #Summarize intake cases
 summary(return)</code></pre>
-<pre><code>##        id         intakedate          movementdate       
-##  58510  :  10   Min.   :2013-01-11   Min.   :2013-03-30  
-##  60702  :  10   1st Qu.:2017-10-09   1st Qu.:2017-11-11  
-##  61384  :  10   Median :2018-07-20   Median :2018-08-26  
-##  55456  :   9   Mean   :2018-07-27   Mean   :2018-08-25  
-##  58410  :   6   3rd Qu.:2019-05-16   3rd Qu.:2019-06-08  
-##  47575  :   5   Max.   :2020-02-01   Max.   :2020-02-12  
-##  (Other):3932                                            
-##    returndate                                   returnedreason
-##  Min.   :2017-04-01   Stray                            :3128  
-##  1st Qu.:2018-01-25   Incompatible with owner lifestyle: 360  
-##  Median :2018-11-03   Return Adopt - Behavior          :  66  
-##  Mean   :2018-10-19   Return adopt - lifestyle issue   :  53  
-##  3rd Qu.:2019-07-25   Moving                           :  52  
-##  Max.   :2020-02-13   Incompatible with other pets     :  38  
-##                       (Other)                          : 285</code></pre>
-<p>Create a date for movements… order by animal id and date, assign move #; creat id – {caseid}<em>r</em>#assign carry over move date to calc time out of shelter</p>
+<pre><code>##        id            date             movementdate       
+##  58510  :  10   Min.   :2017-04-01   Min.   :2013-03-30  
+##  60702  :  10   1st Qu.:2018-01-25   1st Qu.:2017-11-11  
+##  61384  :  10   Median :2018-11-05   Median :2018-08-28  
+##  55456  :   9   Mean   :2018-10-20   Mean   :2018-08-26  
+##  58410  :   6   3rd Qu.:2019-07-25   3rd Qu.:2019-06-08  
+##  47575  :   5   Max.   :2020-02-17   Max.   :2020-02-15  
+##  (Other):3944                                            
+##                             interaction       type          
+##  Stray                            :3135   Length:3994       
+##  Incompatible with owner lifestyle: 360   Class :character  
+##  Return Adopt - Behavior          :  68   Mode  :character  
+##  Moving                           :  53                     
+##  Return adopt - lifestyle issue   :  53                     
+##  Incompatible with other pets     :  38                     
+##  (Other)                          : 287                     
+##    duration       
+##  Length:3994      
+##  Class :difftime  
+##  Mode  :numeric   
+##                   
+##                   
+##                   
+## </code></pre>
 </div>
 <div id="deceased-animals-data" class="section level4">
 <h4>5. Deceased Animals Data</h4>
 <p>These fields describe data related to animal that have died while managed by Animal Care and Control. The variables included in this data set are:</p>
 <ul>
-<li>Deceased date - <em>deceaseddate</em> - a date field (YYYY-MM-DD) ranging from 2017-04-02 to 2020-02-02.
+<li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8600 unique values.</li>
+<li>Deceased date - <em>deceaseddate</em> - changed to -&gt; <em>date</em> - a date field (YYYY-MM-DD) ranging from 2017-04-02 to 2020-02-02.
 <ul>
 <li>Not all intake records include a deceased date, indicating the animal is alive!</li>
 <li>Needs processing to as.Date() data types.</li>
 </ul></li>
-<li>Deceased reason - <em>deceasedreason</em> - a factor variable with 14 unique values.
+<li>Deceased reason - <em>deceasedreason</em> - changed to -&gt; <em>interaction</em> - a factor variable with 14 unique values.
 <ul>
 <li>Some interesting unique values include: Died in care, UU - untreatable, unmanageable health, Healthy.</li>
 <li>This variable may be an interesting feature to explore reasons based on animal type and demographics. This may be useful for a predictive model at intake.</li>
@@ -751,49 +784,173 @@ summary(return)</code></pre>
 <li>Animal died off selter - <em>diedoffshelter</em> - a binary (1/0) variable indicating if the animal is died outside of the shelter.</li>
 <li>Euthanize flag - <em>puttosleep</em> - a binary (1/0) variable indicating if the animal is euthanized from the system.</li>
 <li>Dead on arrival flag - <em>isdoa</em> - a binary (1/0) variable indicating if the animal is died when they arrived at the shelter.</li>
+<li>Interation type - <em>type</em> - a new field that indicates the type of interaction with the shelter system.</li>
 </ul>
-<p>Add max(return date) as field</p>
 <pre class="r"><code>#Creates demographic data set of unique animals with intake cases
-dead &lt;- data[,c(&quot;id&quot;,&quot;intakedate&quot;,&quot;deceaseddate&quot;,&quot;deceasedreason&quot;,
+dead &lt;- data[,c(&quot;id&quot;,&quot;deceaseddate&quot;,&quot;deceasedreason&quot;,
                 &quot;diedoffshelter&quot;,&quot;puttosleep&quot;,&quot;isdoa&quot;)] %&gt;% unique()
 dead &lt;- dead[!is.na(dead$deceaseddate),]
 
-#Calculate new fields
+#Update field names
+names(dead)[2:3] &lt;- c(&quot;date&quot;,&quot;interaction&quot;)
+
+#Adds interaction type
+dead$type &lt;- &quot;dead&quot;
 
 #Summarize intake cases
 summary(dead)</code></pre>
-<pre><code>##        id        intakedate          deceaseddate       
-##  46437  :  1   Min.   :2016-10-26   Min.   :2017-04-02  
-##  47360  :  1   1st Qu.:2017-09-08   1st Qu.:2017-12-08  
-##  47742  :  1   Median :2018-06-02   Median :2018-08-30  
-##  55371  :  1   Mean   :2018-05-28   Mean   :2018-08-30  
-##  55396  :  1   3rd Qu.:2018-12-27   3rd Qu.:2019-06-02  
-##  55397  :  1   Max.   :2019-10-30   Max.   :2020-02-02  
-##  (Other):275                                            
-##                                deceasedreason diedoffshelter   
-##  Died in care                         :96     Min.   :0.00000  
-##  UU - untreatable, unmanageable health:72     1st Qu.:0.00000  
-##  Owner Requested                      :17     Median :0.00000  
-##  Dead On Arrival                      :16     Mean   :0.09253  
-##  Biting                               :15     3rd Qu.:0.00000  
-##  UU-untreatable, unmanageable Behavior:13     Max.   :1.00000  
-##  (Other)                              :52                      
-##    puttosleep         isdoa        
-##  Min.   :0.0000   Min.   :0.00000  
-##  1st Qu.:0.0000   1st Qu.:0.00000  
-##  Median :1.0000   Median :0.00000  
-##  Mean   :0.5445   Mean   :0.07117  
-##  3rd Qu.:1.0000   3rd Qu.:0.00000  
-##  Max.   :1.0000   Max.   :1.00000  
+<pre><code>##        id           date           
+##  46437  :  1   Min.   :2017-04-02  
+##  47360  :  1   1st Qu.:2017-12-08  
+##  47742  :  1   Median :2018-08-30  
+##  55371  :  1   Mean   :2018-08-30  
+##  55396  :  1   3rd Qu.:2019-06-02  
+##  55397  :  1   Max.   :2020-02-02  
+##  (Other):275                       
+##                                 interaction diedoffshelter   
+##  Died in care                         :96   Min.   :0.00000  
+##  UU - untreatable, unmanageable health:72   1st Qu.:0.00000  
+##  Owner Requested                      :17   Median :0.00000  
+##  Dead On Arrival                      :16   Mean   :0.09253  
+##  Biting                               :15   3rd Qu.:0.00000  
+##  UU-untreatable, unmanageable Behavior:13   Max.   :1.00000  
+##  (Other)                              :52                    
+##    puttosleep         isdoa             type          
+##  Min.   :0.0000   Min.   :0.00000   Length:281        
+##  1st Qu.:0.0000   1st Qu.:0.00000   Class :character  
+##  Median :1.0000   Median :0.00000   Mode  :character  
+##  Mean   :0.5445   Mean   :0.07117                     
+##  3rd Qu.:1.0000   3rd Qu.:0.00000                     
+##  Max.   :1.0000   Max.   :1.00000                     
 ## </code></pre>
 </div>
 </div>
-<div id="supplemental-statistic-for-animal-data" class="section level3">
-<h3>8. Supplemental Statistic for Animal Data</h3>
-<p>fostered - binary medical - binary adopted - count return - count timeInSelter timeInFoster timeInAdopt diseased</p>
+<div id="animal-case-interaction-log" class="section level3">
+<h3>6. Animal Case Interaction Log</h3>
+<ul>
+<li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8600 unique values.</li>
+<li>Interaction date - <em>date</em> - a date field (YYYY-MM-DD) for an interaction with the shelter system.</li>
+<li>Interaction - <em>interaction</em> - a factor variable that describes the interaction with the shelter system.</li>
+<li>Interation type - <em>type</em> - a factor variable that indicates the type of interaction with the shelter system (e.g intake, movement, return, dead).</li>
+<li>Duration - <em>duration</em> - Measure of time between an interaction with the shelter system, measured in days.</li>
+</ul>
+<pre class="r"><code>#Creating shelter interaction dataframe
+interactions &lt;- rbind(intakes[,c(&quot;id&quot;,&quot;date&quot;,&quot;interaction&quot;,&quot;type&quot;)],
+                    move[,c(&quot;id&quot;,&quot;date&quot;,&quot;interaction&quot;,&quot;type&quot;)],
+                    return[,c(&quot;id&quot;,&quot;date&quot;,&quot;interaction&quot;,&quot;type&quot;)],
+                    dead[,c(&quot;id&quot;,&quot;date&quot;,&quot;interaction&quot;,&quot;type&quot;)]) %&gt;% 
+                arrange(id,date)
+
+#Loop calculates duration between shelter interaction for each animal&#39;s case
+interactions$duration &lt;- NA
+for(i in 1:length(unique(intakes$id))){
+  tmp &lt;- interactions[interactions$id==intakes[i,]$id,c(&quot;id&quot;,&quot;date&quot;,&quot;duration&quot;)]
+  dur &lt;- difftime(tmp[2:nrow(tmp),]$date,tmp[1:(nrow(tmp)-1),]$date,unit=&quot;day&quot;) %&gt;% 
+           unclass() %&gt;% 
+           as.numeric()
+  dur &lt;- c(dur,NA)
+  tmp$duration &lt;- dur
+  interactions[interactions$id==intakes[i,]$id,]$duration &lt;- tmp$duration
+}
+
+#Transforms type into a factor variables
+interactions$type &lt;- as.factor(interactions$type)
+
+#Clean environment
+rm(tmp,dur,i)
+
+#Summary of data
+summary(interactions)</code></pre>
+<pre><code>##        id             date           
+##  58510  :   22   Min.   :2009-11-28  
+##  60702  :   22   1st Qu.:2017-12-03  
+##  61384  :   22   Median :2018-09-15  
+##  55456  :   20   Mean   :2018-09-13  
+##  58410  :   14   3rd Qu.:2019-06-25  
+##  47575  :   12   Max.   :2020-02-17  
+##  (Other):25105                       
+##                             interaction       type          duration      
+##  Stray                            :7225   dead  :  281   Min.   :   0.00  
+##  Adoption                         :7128   intake: 8600   1st Qu.:   2.00  
+##  Foster                           :2945   move  :12342   Median :   8.00  
+##  Reclaimed                        :1647   return: 3994   Mean   :  22.93  
+##  Incompatible with owner lifestyle:1517                  3rd Qu.:  22.00  
+##  Litter relinquishment            : 757                  Max.   :2723.00  
+##  (Other)                          :3998                  NA&#39;s   :8600</code></pre>
 </div>
-<div id="animal-case-intake-and-outcome-log" class="section level3">
-<h3>7. Animal Case Intake and Outcome Log</h3>
+<div id="supplemental-statistic-for-animal-data" class="section level3">
+<h3>7. Supplemental Statistic for Animal Data</h3>
+<ul>
+<li>Total time in shelter -</li>
+<li>Number of Interactions with Shelter -</li>
+<li>Adopted - t/f or count</li>
+<li>Fostered - t/f or count</li>
+<li>Reclaimed - t/f or count</li>
+<li>Returned - count</li>
+</ul>
+<pre class="r"><code>#New data frame of supplemental stats
+animals_s &lt;- animals
+
+#Total Shelter Interactions (Intake+Returns+Movements+Deaths)
+
+
+#Time in Selter
+
+
+#Adopted
+
+
+
+#Fostered
+
+
+
+#Returned Count
+animals_s$hasReturned &lt;- 0
+tmp &lt;- ddply(return,~id,summarise,
+             hasReturned = length(date)
+             )
+animals_s &lt;- join(animals_s,tmp,by=&quot;id&quot;)
+
+#Death stats
+
+
+  
+  
+summary(animals_s)</code></pre>
+<pre><code>##        id         sheltercode          identichipnumber   animalname  
+##  15801  :   1   B1704028:   1                  :1945    Luna   :  40  
+##  15932  :   1   B1704061:   1   0A10785A1E     :   4    Buddy  :  34  
+##  28859  :   1   B1704124:   1   981020009920224:   3    Lucy   :  34  
+##  30812  :   1   B1705201:   1   991001000578554:   3    Daisy  :  31  
+##  31469  :   1   B1705202:   1   021027788      :   2    Bella  :  29  
+##  40705  :   1   B1705264:   1   0A10592A42     :   2    Max    :  27  
+##  (Other):8594   (Other) :8594   (Other)        :6641    (Other):8405  
+##   animalage            sexname           speciesname  
+##  Length:8600        Female :4102   Cat         :4644  
+##  Class :character   Male   :4254   Dog         :3313  
+##  Mode  :character   Unknown: 244   House Rabbit: 209  
+##                                    Rat         : 124  
+##                                    Guinea Pig  : 110  
+##                                    Bird        :  47  
+##                                    (Other)     : 153  
+##                 breedname              basecolour     intakeage      
+##  Domestic Short Hair :3765   Black          :1253   Min.   :   0.00  
+##  Domestic Medium Hair: 381   Black and White: 768   1st Qu.:  10.00  
+##  Domestic Long Hair  : 288   Black and Brown: 539   Median :  20.00  
+##  Bully Breed Mix     : 249   Grey           : 477   Mean   :  41.24  
+##  Labrador Retriever  : 147   Orange         : 413   3rd Qu.:  46.00  
+##  Beagle              : 131   Grey and White : 302   Max.   :1209.00  
+##  (Other)             :3639   (Other)        :4848                    
+##   hasReturned  hasReturned    
+##  Min.   :0    Min.   : 1.000  
+##  1st Qu.:0    1st Qu.: 1.000  
+##  Median :0    Median : 1.000  
+##  Mean   :0    Mean   : 1.337  
+##  3rd Qu.:0    3rd Qu.: 1.500  
+##  Max.   :0    Max.   :10.000  
+##               NA&#39;s   :5613</code></pre>
+<p>fostered - binary medical - binary adopted - count return - count timeInSelter timeInFoster timeInAdopt diseased</p>
 </div>
 </div>
 </div>

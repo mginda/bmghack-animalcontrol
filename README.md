@@ -14,3 +14,13 @@ The Adoptions data set is much larger and complex than the annual statistics, wi
 ## [Data Documentation and Processing R Notebook](https://mginda.github.io/bmghack-animalcontrol/)
 
 ## Data Visualization Ideas
+
+Example analysis and visualizations might include:
+
+* Description of each animal's time with the Animal Care and Control,
+* Descriptive, temporal, and other exploratory analysis of species managed by the division.
+   * Identify the kinds of animals that are brought into the shelter and why;
+   * Identify trends of intakes, returns, adoptions, fosters, and euthanization...
+      * by species and breed, age groups, or intake and return reasons or movement types
+* Visualize pathways through the shelter by animals
+* Model animal outcomes
