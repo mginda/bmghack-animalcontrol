@@ -19,8 +19,9 @@ This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute
 *  **[Adoptions (2017-Present)](https://data.bloomington.in.gov/dataset/adopted-animals/resource/8854ce02-e8f5-44b9-b85f-17f002a7d023)** - These data represent animal case records maintained by the division. This is a much larger and complex data set compared to the annual statistics. The Bloomington Animal Shelter, which uses the [Shelter Manager](https://www.sheltermanager.com/site/en_tour.html) database to manage its case load. The data provided by the city is a roll-up of multiple tables from the shelter database. Currently, there are over 12,000 intake records available to download.
 
 ## Processed Data Download
+A ZIP copy of files produced by data processing scripts is available to download from the GitHub repository:
 
-
+### **[Processed Animal Care and Control  Data](https://github.com/mginda/bmghack-animalcontrol/raw/master/data/bmg-acc-data.zip)**
 
 # Data Documentation and Processing Notes
 
@@ -123,8 +124,6 @@ head(annual)
 
 The Animal Case data set is more complex data set because it is a composite taken from from the Shelter Manager database. By reviewing the data structure and type and values of variable recorded across the observations (e.g. counts of values for catoregorical aka factor aka qualitative fields), cleaner data sets will be derived to aid analysis and visualization.
 
-
-
 ### Data Structure
 
 There are `r length(rownames(intake))` observations across `r length(colnames(intake))` variables in this data set. The data structure provides a description of the variables, and is shown below. 
@@ -143,12 +142,12 @@ str(intake)
 The goal of data processing is to create different subsets that best represent data for potential analysis and visualizations. The data sets derived from the origianl data set include:
 
 1. Animal Identification data
-2. Intake Case data 
+2. Intake Case data
 3. Movement data (adoptions, fosters, transfers, etc.)
 4. Returned Animals data
 5. Deceased Animals data
-6. Supplemental Animal Statistics 
-7. Animal Case Intake and Outcome Log
+6. Animal Case Intake and Outcome log
+7. Supplemental Animal Statistics
 
 #### Assigning Data Types
 Before subsetting the animal case data set into cleaner subsets, it is processed to ensure that variables have the proper data types assigned. The data set requires transforming fields into factor/categorical variables, and dates. Note, *animalage* is ignored, but it is processed later in the *Animal Idenfification* data set.
@@ -405,7 +404,6 @@ summary(interactions)
 * Reclaimed - t/f or count
 * Returned - count
 
-
 ```{r pro-ani-sup}
 #New data frame of supplemental stats
 animals_s <- animals
@@ -438,12 +436,3 @@ animals_s <- join(animals_s,tmp,by="id")
   
 summary(animals_s)
 ```
-
-fostered - binary
-medical - binary
-adopted - count
-return - count
-timeInSelter
-timeInFoster
-timeInAdopt
-diseased
