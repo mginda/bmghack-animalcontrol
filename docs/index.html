@@ -306,9 +306,9 @@ $(document).ready(function () {
 </div>
 <div id="data-documentation-and-processing-notes" class="section level1">
 <h1>Data Documentation and Processing Notes</h1>
-<div id="download-processed-animal-care-and-control-data" class="section level3">
-<h3><strong><a href="https://github.com/mginda/bmghack-animalcontrol/raw/master/data/bmg-acc-data.zip">Download Processed Animal Care and Control Data</a></strong></h3>
-<p>The download link provides a ZIP file the data processing outputs produced by the scripts documented in this workflow.</p>
+<p>The data review and processing workflow for both data sets provided by Bloomington Animal Care and Control are documented below. Processing result outputs are collected in a ZIP file and available for download in the link below. Data is provided in CSV format.</p>
+<div id="processed-animal-care-and-control-data" class="section level4">
+<h4><strong><a href="https://github.com/mginda/bmghack-animalcontrol/raw/master/data/bmg-acc-data.zip">Processed Animal Care and Control Data</a></strong></h4>
 </div>
 <div id="jump-to" class="section level3">
 <h3>Jump to:</h3>
@@ -317,8 +317,10 @@ $(document).ready(function () {
 <li><a href="https://mginda.github.io/bmghack-animalcontrol#cases">Animal Case Data</a></li>
 </ul>
 </div>
-<div id="setting-up-r" class="section level2">
-<h2>Setting up R</h2>
+<div id="workflow-set-up" class="section level2">
+<h2>Workflow Set-up</h2>
+<div id="r-environment" class="section level3">
+<h3>R Environment</h3>
 <p>Here we set up the R environment, and load in the R Packages that will be used in the notebook.</p>
 <pre class="r"><code>#Clean up environment
 rm(list=ls())
@@ -331,8 +333,8 @@ library(plyr)        # Combining and Splitting Data
 library(dplyr)       # Data analysis and aggregations
 library(magrittr)    # Piping</code></pre>
 </div>
-<div id="loading-data-from-animal-care-and-control" class="section level2">
-<h2>Loading Data from Animal Care and Control</h2>
+<div id="loading-data-from-animal-care-and-control" class="section level3">
+<h3>Loading Data from Animal Care and Control</h3>
 <p>Data is loaded directly into R using a CURL function that uses <strong>BClear</strong> URLS to data downloads for the Animal Care and Control data. Data is provided a CSVs with headers.</p>
 <pre class="r"><code>#Annual Statistics
 annual &lt;- read.csv(curl(url=&quot;https://data.bloomington.in.gov/dataset/9a0fc126-0775-4952-96ff-76ece67ffbc7/resource/7a847ec2-31c6-48e3-b0bc-02af2fa94587/download/animal-care-and-control-data-set-2004-2019.csv&quot;), header=TRUE, stringsAsFactors = F)
@@ -340,6 +342,7 @@ annual &lt;- read.csv(curl(url=&quot;https://data.bloomington.in.gov/dataset/9a0
 #Intake and adoption records
 intake &lt;- read.csv(curl(url=&quot;https://data.bloomington.in.gov/dataset/94d3f457-57b5-45be-bee0-a0106f59b7ed/resource/8854ce02-e8f5-44b9-b85f-17f002a7d023/download/animals.csv&quot;), header=TRUE, stringsAsFactors = F)</code></pre>
 <p>Before analyzing and visualizing these data, the variables in the data set were reviewed to ensure that they have the correct data type in R, and to determine how variables relate to each other. The data processing routine documented below is used to clean-up and reshape the data to aid development and resuse of these data in a visual analytics workflow.</p>
+</div>
 </div>
 <div id="annual-statistics" class="section level2">
 <h2><a href="#annual-stats">Annual Statistics</a></h2>

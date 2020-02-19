@@ -20,16 +20,18 @@ This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute
 
 # Data Documentation and Processing Notes
 
-### **[Download Processed Animal Care and Control  Data](https://github.com/mginda/bmghack-animalcontrol/raw/master/data/bmg-acc-data.zip)**
+The data review and processing workflow for both data sets provided by Bloomington Animal Care and Control are documented  below. Processing result outputs are collected in a ZIP file and available for download in the link below. Data is provided in CSV format.
 
-The download link provides a ZIP file the data processing outputs produced by the scripts documented in this workflow.
+#### **[Processed Animal Care and Control  Data](https://github.com/mginda/bmghack-animalcontrol/raw/master/data/bmg-acc-data.zip)**
 
 ### Jump to:
 
 * [Annual Statistics](https://mginda.github.io/bmghack-animalcontrol#annual-stats)
 * [Animal Case Data](https://mginda.github.io/bmghack-animalcontrol#cases)
 
-## Setting up R
+## Workflow Set-up
+
+### R Environment
 
 Here we set up the R environment, and load in the R Packages that will be used in the notebook.
 
@@ -46,7 +48,7 @@ library(dplyr)       # Data analysis and aggregations
 library(magrittr)    # Piping
 ```
 
-## Loading Data from Animal Care and Control
+### Loading Data from Animal Care and Control
 
 Data is loaded directly into R using a CURL function that uses **BClear** URLS to data downloads for the Animal Care and Control data. Data is provided a CSVs with headers.
 
