@@ -306,15 +306,15 @@ $(document).ready(function () {
 </div>
 <div id="data-documentation-and-processing-notes" class="section level1">
 <h1>Data Documentation and Processing Notes</h1>
-<p>The data review and processing workflow for both data sets provided by Bloomington Animal Care and Control are documented below. Processing result outputs are collected in a ZIP file and available for download in the link below. Data is provided in CSV format.</p>
+<p>The review and processing workflow for both Bloomington Animal Care and Control data sets are documented below. Processing result outputs are collected in a ZIP file and available for download in the link below. Data is provided in CSV format.</p>
 <div id="processed-animal-care-and-control-data" class="section level4">
 <h4><strong><a href="https://github.com/mginda/bmghack-animalcontrol/raw/master/data/bmg-acc-data.zip">Processed Animal Care and Control Data</a></strong></h4>
 </div>
 <div id="jump-to" class="section level3">
 <h3>Jump to:</h3>
 <ul>
-<li><a href="https://mginda.github.io/bmghack-animalcontrol/#annual-stats">Annual Statistics</a></li>
-<li><a href="https://mginda.github.io/bmghack-animalcontrol/#cases">Animal Case Data</a></li>
+<li><a href="#annual-stats">Annual Statistics</a></li>
+<li><a href="#cases">Animal Case Data</a></li>
 </ul>
 </div>
 <div id="workflow-set-up" class="section level2">
@@ -344,8 +344,8 @@ intake &lt;- read.csv(curl(url=&quot;https://data.bloomington.in.gov/dataset/94d
 <p>Before analyzing and visualizing these data, the variables in the data set were reviewed to ensure that they have the correct data type in R, and to determine how variables relate to each other. The data processing routine documented below is used to clean-up and reshape the data to aid development and resuse of these data in a visual analytics workflow.</p>
 </div>
 </div>
-<div id="annual-statistics" class="section level2">
-<h2><a href="#annual-stats">Annual Statistics</a></h2>
+<div id="annual-stats" class="section level2">
+<h2>Annual Statistics</h2>
 <div id="data-structure" class="section level3">
 <h3>Data Structure</h3>
 <p>There are two issues with the Animial Care and Control Divisions’ Annual Statistics data set:</p>
@@ -453,18 +453,18 @@ annual$revenue &lt;- parse_number(annual$revenue, na=&quot;NA&quot;)</code></pre
 ## 6 112187.8</code></pre>
 </div>
 </div>
-<div id="animal-case-data" class="section level2">
-<h2><a href="#cases">Animal Case Data</a></h2>
+<div id="cases" class="section level2">
+<h2>Animal Case Data</h2>
 <p>The Animal Case data set is more complex data set because it is a composite taken from from the Shelter Manager database. By reviewing the data structure and type and values of variable recorded across the observations (e.g. counts of values for catoregorical aka factor aka qualitative fields), cleaner data sets will be derived to aid analysis and visualization.</p>
 <p>The goal of data processing is to create different subsets that best represent data for potential analysis and visualizations. The data sets derived from the origianl data set include:</p>
 <ol style="list-style-type: decimal">
-<li><a href="https://mginda.github.io/bmghack-animalcontrol/#animals">Animal Identification data</a></li>
-<li><a href="https://mginda.github.io/bmghack-animalcontrol/#intakes">Intake Case data</a></li>
-<li><a href="https://mginda.github.io/bmghack-animalcontrol/#moves">Movement data (adoptions, fosters, transfers, etc.)</a></li>
-<li><a href="https://mginda.github.io/bmghack-animalcontrol/#returns">Returned Animals data</a></li>
-<li><a href="https://mginda.github.io/bmghack-animalcontrol/#dead">Deceased Animals data</a></li>
-<li><a href="https://mginda.github.io/bmghack-animalcontrol/#log">Animal Case Intake and Outcome log</a></li>
-<li><a href="https://mginda.github.io/bmghack-animalcontrol/#sup">Supplemental Animal Statistics</a></li>
+<li><a href="#animals">Animal Identification</a></li>
+<li><a href="#intakes">Intake Cases</a></li>
+<li><a href="adoptions,%20fosters,%20transfers,%20etc.">Animals on the Move</a>](#moves)</li>
+<li><a href="#returns">Returned Animals</a></li>
+<li><a href="#dead">Deceased Animals</a></li>
+<li><a href="#log">Shelter Interaction Log</a></li>
+<li><a href="#sup">Supplemental Animal Statistics</a></li>
 </ol>
 <div id="data-structure-1" class="section level3">
 <h3>Data Structure</h3>
@@ -520,8 +520,8 @@ for(i in 1:length(intake_date)){
 rm(i, intake_date, intake_fac)</code></pre>
 </div>
 </div>
-<div id="animal-identification-data" class="section level3">
-<h3><a href="#animals">1. Animal Identification Data</a></h3>
+<div id="animals" class="section level3">
+<h3>1. Animal Identification</h3>
 <p>This data set describes animals taken in by Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements. The variables included in this data set are:</p>
 <ul>
 <li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8603 unique values.
@@ -616,8 +616,8 @@ summary(animals)</code></pre>
 ##  Beagle              : 131   Grey and White : 302   Max.   :1209.00  
 ##  (Other)             :3639   (Other)        :4850</code></pre>
 </div>
-<div id="intake-data" class="section level3">
-<h3><a href="#intakes">2. Intake Data</a></h3>
+<div id="intakes" class="section level3">
+<h3>2. Intake Cases</h3>
 <p>These fields describe intake data for animals managed by Animal Care and Control. The variables included in this data set are:</p>
 <ul>
 <li>Intake identifier - <em>id</em> - a numeric unique identifier with 8603 unique values.
@@ -669,8 +669,8 @@ summary(intakes)</code></pre>
 ##  Adoptable Cat Big Colony  : 442                     
 ##  (Other)                   :4236</code></pre>
 </div>
-<div id="animals-on-the-move-data" class="section level3">
-<h3><a href="#moves">3. Animals on the Move Data</a></h3>
+<div id="moves" class="section level3">
+<h3>3. Animals on the Move</h3>
 <p>These fields describe adoptions of animals managed by Animal Care and Control. The variables included in this data set are:</p>
 <ul>
 <li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8603 unique values.</li>
@@ -715,8 +715,8 @@ summary(move)</code></pre>
 ##                    
 ## </code></pre>
 </div>
-<div id="returned-animals-data" class="section level3">
-<h3><a href="#returns">4. Returned Animals Data</a></h3>
+<div id="returns" class="section level3">
+<h3>4. Returned Animals</h3>
 <p>These fields describe data related to animal that return to Animal Care and Control. The variables included in this data set are:</p>
 <ul>
 <li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8603 unique values.</li>
@@ -774,8 +774,8 @@ summary(return)</code></pre>
 ##                   
 ## </code></pre>
 </div>
-<div id="deceased-animals-data" class="section level3">
-<h3><a href="#dead">5. Deceased Animals Data</a></h3>
+<div id="dead" class="section level3">
+<h3>5. Deceased Animals</h3>
 <p>These fields describe data related to animal that have died while managed by Animal Care and Control. The variables included in this data set are:</p>
 <ul>
 <li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8603 unique values.</li>
@@ -833,8 +833,9 @@ summary(dead)</code></pre>
 ##  Max.   :1.0000   Max.   :1.00000                     
 ## </code></pre>
 </div>
-<div id="animal-case-interaction-log" class="section level3">
-<h3><a href="#log">6. Animal Case Interaction Log</a></h3>
+<div id="log" class="section level3">
+<h3>6. Shelter Interaction Log</h3>
+<p>The Shelter Interaction Log provides a time series data set provides another data structure that may be relevant for a variety of visual analytic and modeling workflows. This data set captures the intake and outcomes data for each case managed by the shelter as a list. The list is ordered by the <em>Case ID</em> and <em>Date</em> of an interactions with the shelter system. This data may be joined to the animal descriptive data to help subset or filter the interaction logs.</p>
 <ul>
 <li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8603 unique values.</li>
 <li>Interaction date - <em>date</em> - a date field (YYYY-MM-DD) for an interaction with the shelter system.</li>
@@ -886,8 +887,8 @@ summary(interactions)</code></pre>
 ##  Litter relinquishment            : 757                  Max.   :2723.00  
 ##  (Other)                          :4004                  NA&#39;s   :8603</code></pre>
 </div>
-<div id="supplemental-statistic-for-animal-data" class="section level3">
-<h3><a href="#sup">7. Supplemental Statistic for Animal Data</a></h3>
+<div id="sup" class="section level3">
+<h3>7. Supplemental Statistic for Animals</h3>
 <ul>
 <li>Total time in shelter -</li>
 <li>Number of Interactions with Shelter -</li>

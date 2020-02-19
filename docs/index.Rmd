@@ -20,14 +20,14 @@ This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute
 
 # Data Documentation and Processing Notes
 
-The data review and processing workflow for both data sets provided by Bloomington Animal Care and Control are documented  below. Processing result outputs are collected in a ZIP file and available for download in the link below. Data is provided in CSV format.
+The review and processing workflow for both Bloomington Animal Care and Control data sets are documented  below. Processing result outputs are collected in a ZIP file and available for download in the link below. Data is provided in CSV format.
 
 #### **[Processed Animal Care and Control  Data](https://github.com/mginda/bmghack-animalcontrol/raw/master/data/bmg-acc-data.zip)**
 
 ### Jump to:
 
-* [Annual Statistics](https://mginda.github.io/bmghack-animalcontrol/#annual-stats)
-* [Animal Case Data](https://mginda.github.io/bmghack-animalcontrol/#cases)
+* [Annual Statistics](#annual-stats)
+* [Animal Case Data](#cases)
 
 ## Workflow Set-up
 
@@ -62,7 +62,7 @@ intake <- read.csv(curl(url="https://data.bloomington.in.gov/dataset/94d3f457-57
 
 Before analyzing and visualizing these data, the variables in the data set were reviewed to ensure that they have the correct data type in R, and to determine how variables relate to each other. The data processing routine documented below is used to clean-up and reshape the data to aid development and resuse of these data in a visual analytics workflow.
 
-## [Annual Statistics](#annual-stats)
+## Annual Statistics {#annual-stats}
 
 ### Data Structure
 
@@ -126,19 +126,19 @@ summary(annual)
 head(annual)
 ```
 
-## [Animal Case Data](#cases)
+## Animal Case Data {#cases}
 
 The Animal Case data set is more complex data set because it is a composite taken from from the Shelter Manager database. By reviewing the data structure and type and values of variable recorded across the observations (e.g. counts of values for catoregorical aka factor aka qualitative fields), cleaner data sets will be derived to aid analysis and visualization.
 
 The goal of data processing is to create different subsets that best represent data for potential analysis and visualizations. The data sets derived from the origianl data set include:
 
-1. [Animal Identification data](https://mginda.github.io/bmghack-animalcontrol/#animals)
-2. [Intake Case data](https://mginda.github.io/bmghack-animalcontrol/#intakes)
-3. [Movement data (adoptions, fosters, transfers, etc.)](https://mginda.github.io/bmghack-animalcontrol/#moves)
-4. [Returned Animals data](https://mginda.github.io/bmghack-animalcontrol/#returns)
-5. [Deceased Animals data](https://mginda.github.io/bmghack-animalcontrol/#dead)
-6. [Animal Case Intake and Outcome log](https://mginda.github.io/bmghack-animalcontrol/#log)
-7. [Supplemental Animal Statistics](https://mginda.github.io/bmghack-animalcontrol/#sup)
+1. [Animal Identification](#animals)
+2. [Intake Cases](#intakes)
+3. [Animals on the Move](adoptions, fosters, transfers, etc.)](#moves)
+4. [Returned Animals](#returns)
+5. [Deceased Animals](#dead)
+6. [Shelter Interaction Log](#log)
+7. [Supplemental Animal Statistics](#sup)
 
 ### Data Structure
 
@@ -179,7 +179,7 @@ for(i in 1:length(intake_date)){
 rm(i, intake_date, intake_fac)
 ```
 
-### [1. Animal Identification Data](#animals)
+### 1. Animal Identification {#animals}
 
 This data set describes animals taken in by Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements. The variables included in this data set are:
 
@@ -241,7 +241,7 @@ rm(i,d,tmp)
 summary(animals)
 ```
 
-### [2. Intake Data](#intakes)
+### 2. Intake Cases {#intakes}
 
 These fields describe intake data for animals managed by Animal Care and Control. The variables included in this data set are:
 
@@ -268,7 +268,7 @@ intakes$type <- "intake"
 summary(intakes)
 ```
 
-### [3. Animals on the Move Data](#moves)
+### 3. Animals on the Move {#moves}
 
 These fields describe adoptions of animals managed by Animal Care and Control. The variables included in this data set are:
 
@@ -294,7 +294,7 @@ move$type <- "move"
 summary(move)
 ```
 
-### [4. Returned Animals Data](#returns)
+### 4. Returned Animals {#returns}
 
 These fields describe data related to animal that return to Animal Care and Control. The variables included in this data set are:
 
@@ -327,7 +327,7 @@ return$duration <- difftime(return$date,return$date, unit="day")
 summary(return)
 ```
 
-### [5. Deceased Animals Data](#dead)
+### 5. Deceased Animals {#dead}
 
 These fields describe data related to animal that have died while managed by Animal Care and Control. The variables included in this data set are: 
 
@@ -360,8 +360,9 @@ dead$type <- "dead"
 summary(dead)
 ```
 
-### [6. Animal Case Interaction Log](#log)
+### 6. Shelter Interaction Log {#log}
 
+The Shelter Interaction Log provides a time series data set provides another data structure that may be relevant for a variety of visual analytic and modeling workflows. This data set captures the intake and outcomes data for each case managed by the shelter as a list. The list is ordered by the *Case ID* and *Date* of an interactions with the shelter system. This data may be joined to the animal descriptive data to help subset or filter the interaction logs.
 
 * Animal Case identifier - *id* - a numeric unique identifier with `r length(unique(intake$id))` unique values.
 * Interaction date - *date* - a date field (YYYY-MM-DD) for an interaction with the shelter system.
@@ -399,7 +400,7 @@ rm(tmp,dur,i)
 summary(interactions)
 ```
 
-### [7. Supplemental Statistic for Animal Data](#sup)
+### 7. Supplemental Statistic for Animals {#sup}
 
 * Total time in shelter - 
 * Number of Interactions with Shelter - 
