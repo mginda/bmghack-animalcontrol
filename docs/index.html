@@ -460,7 +460,7 @@ annual$revenue &lt;- parse_number(annual$revenue, na=&quot;NA&quot;)</code></pre
 <ol style="list-style-type: decimal">
 <li><a href="#animals">Animal Identification</a></li>
 <li><a href="#intakes">Intake Cases</a></li>
-<li><a href="adoptions,%20fosters,%20transfers,%20etc.">Animals on the Move</a>](#moves)</li>
+<li><a href="#moves">Animals on the Move (adoptions, fosters, transfers, etc.)</a></li>
 <li><a href="#returns">Returned Animals</a></li>
 <li><a href="#dead">Deceased Animals</a></li>
 <li><a href="#log">Shelter Interaction Log</a></li>
@@ -522,7 +522,7 @@ rm(i, intake_date, intake_fac)</code></pre>
 </div>
 <div id="animals" class="section level3">
 <h3>1. Animal Identification</h3>
-<p>This data set describes animals taken in by Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements. The variables included in this data set are:</p>
+<p>Animals taken in by Animal Care and Control Division are described across a variety of features, including multiple identifiers, a basic description of the animal, and the location within the shelter. The variables included in this data set are:</p>
 <ul>
 <li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8603 unique values.
 <ul>
@@ -618,7 +618,7 @@ summary(animals)</code></pre>
 </div>
 <div id="intakes" class="section level3">
 <h3>2. Intake Cases</h3>
-<p>These fields describe intake data for animals managed by Animal Care and Control. The variables included in this data set are:</p>
+<p>Intake Case data include any variable that relates to when an animal first interacts with the Animal Care and Control shelter system. Intake related variables included in this data set are:</p>
 <ul>
 <li>Intake identifier - <em>id</em> - a numeric unique identifier with 8603 unique values.
 <ul>
@@ -671,7 +671,7 @@ summary(intakes)</code></pre>
 </div>
 <div id="moves" class="section level3">
 <h3>3. Animals on the Move</h3>
-<p>These fields describe adoptions of animals managed by Animal Care and Control. The variables included in this data set are:</p>
+<p>After the initial intake, the goal of the shelter is to move animals out of the Animal Care and Control system. Some example movements include when an animal being fostered or adopted. Variables related to animal movements, include:</p>
 <ul>
 <li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8603 unique values.</li>
 <li>Movement date - <em>movementdate</em> - changed to -&gt; <em>date</em> - a date field (YYYY-MM-DD) ranging from 2013-03-30 to 2020-02-18.
@@ -680,7 +680,7 @@ summary(intakes)</code></pre>
 </ul></li>
 <li>Movement type - <em>movementtype</em> - changed to -&gt; <em>interaction</em> - a factor variable with 7 unique values.
 <ul>
-<li>This field indicates what happens to an animal after the intake is logged. Values include:</li>
+<li>This field indicates what happens to an animal after the intake is logged..</li>
 </ul></li>
 <li>Trial status - <em>istrial</em> - a binary (1/0) variable indicating if the animal is a trial adoption.
 <ul>
@@ -717,7 +717,7 @@ summary(move)</code></pre>
 </div>
 <div id="returns" class="section level3">
 <h3>4. Returned Animals</h3>
-<p>These fields describe data related to animal that return to Animal Care and Control. The variables included in this data set are:</p>
+<p>Occasionally, an animal returns to the shelter. However, rather than creating a new intake case, the animal’s interaction is logged as a return. Variables related to returned to the shelter system describe cause and date for a return to Animal Care and Control. The variables included in this data set are:</p>
 <ul>
 <li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8603 unique values.</li>
 <li>Return date - <em>returndate</em> - changed to -&gt; <em>date</em> - a date field (YYYY-MM-DD) ranging from 2017-04-01 to 2020-02-18.
@@ -776,7 +776,7 @@ summary(return)</code></pre>
 </div>
 <div id="dead" class="section level3">
 <h3>5. Deceased Animals</h3>
-<p>These fields describe data related to animal that have died while managed by Animal Care and Control. The variables included in this data set are:</p>
+<p>Sometimes animals taken in or returned to the shelter that cannot be released. In these cases, the Animal Care and Control Division will euthanize an animal, or in rare cases, document a death that takes place at intake. The variables that describe data related to animal that have died while managed by Animal Care and Control included in this data set are:</p>
 <ul>
 <li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8603 unique values.</li>
 <li>Deceased date - <em>deceaseddate</em> - changed to -&gt; <em>date</em> - a date field (YYYY-MM-DD) ranging from 2017-04-02 to 2020-02-02.

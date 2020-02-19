@@ -134,7 +134,7 @@ The goal of data processing is to create different subsets that best represent d
 
 1. [Animal Identification](#animals)
 2. [Intake Cases](#intakes)
-3. [Animals on the Move](adoptions, fosters, transfers, etc.)](#moves)
+3. [Animals on the Move (adoptions, fosters, transfers, etc.)](#moves)
 4. [Returned Animals](#returns)
 5. [Deceased Animals](#dead)
 6. [Shelter Interaction Log](#log)
@@ -181,7 +181,7 @@ rm(i, intake_date, intake_fac)
 
 ### 1. Animal Identification {#animals}
 
-This data set describes animals taken in by Animal Care and Control. Variables are described below with notes relevant for understanding the data set and potential processing requirements. The variables included in this data set are:
+Animals taken in by Animal Care and Control Division are described across a variety of features, including multiple identifiers, a basic description of the animal, and the location within the shelter. The variables included in this data set are:
 
 * Animal Case identifier - *id* - a numeric unique identifier with `r length(unique(intake$id))` unique values.
   * This field acts as the primary key that will connect data sets together
@@ -243,7 +243,7 @@ summary(animals)
 
 ### 2. Intake Cases {#intakes}
 
-These fields describe intake data for animals managed by Animal Care and Control. The variables included in this data set are:
+Intake Case data include any variable that relates to when an animal first interacts with the Animal Care and Control shelter system. Intake related variables included in this data set are:
 
 * Intake identifier - *id* - a numeric unique identifier with `r length(unique(intake$id))` unique values.
   * The number of unqiue ids and unique shelter codes are identical. And, as with *sheltercodes* variable above, the count of unique *id* values is less than total intake records provided by the division. This suggests unique identifier is linked to the animal's intial intake.
@@ -270,13 +270,13 @@ summary(intakes)
 
 ### 3. Animals on the Move {#moves}
 
-These fields describe adoptions of animals managed by Animal Care and Control. The variables included in this data set are:
+After the initial intake, the goal of the shelter is to move animals out of the Animal Care and Control system. Some example movements include when an animal being fostered or adopted. Variables related to animal movements, include:
 
 * Animal Case identifier - *id* - a numeric unique identifier with `r length(unique(intake$id))` unique values.
 * Movement date - *movementdate* - changed to -> *date* - a date field (YYYY-MM-DD) ranging from `r min(as.Date(intake$movementdate))` to `r max(as.Date(intake$movementdate))`.
   * Needs processing to as.Date() data types.
 * Movement type - *movementtype* - changed to -> *interaction* - a factor variable with `r length(unique(intake$movementtype))` unique values.
-  * This field indicates what happens to an animal after the intake is logged. Values include: 
+  * This field indicates what happens to an animal after the intake is logged..
 * Trial status - *istrial* - a binary (1/0) variable indicating if the animal is a trial adoption.
   * All values are currently *0*, meaning the field has no value and should be removed.
 * Transfer status - *istransfer* - a binary (1/0) variable indicating if the animal is transferred from the system. 
@@ -296,7 +296,7 @@ summary(move)
 
 ### 4. Returned Animals {#returns}
 
-These fields describe data related to animal that return to Animal Care and Control. The variables included in this data set are:
+Occasionally, an animal returns to the shelter. However, rather than creating a new intake case, the animal's interaction is logged as a return. Variables related to returned to the shelter system describe cause and date for a return to Animal Care and Control. The variables included in this data set are:
 
 * Animal Case identifier - *id* - a numeric unique identifier with `r length(unique(intake$id))` unique values.
 * Return date - *returndate* - changed to -> *date* - a date field (YYYY-MM-DD) ranging from `r min(as.Date(intake[intake$returndate!="",]$returndate))` to `r max(as.Date(intake[intake$returndate!="",]$returndate))`.
@@ -329,7 +329,7 @@ summary(return)
 
 ### 5. Deceased Animals {#dead}
 
-These fields describe data related to animal that have died while managed by Animal Care and Control. The variables included in this data set are: 
+Sometimes animals taken in or returned to the shelter that cannot be released. In these cases, the Animal Care and Control Division will euthanize an animal, or in rare cases, document a death that takes place at intake. The variables that describe data related to animal that have died while managed by Animal Care and Control included in this data set are: 
 
 * Animal Case identifier - *id* - a numeric unique identifier with `r length(unique(intake$id))` unique values.
 * Deceased date - *deceaseddate* - changed to -> *date* - a date field (YYYY-MM-DD) ranging from `r min(as.Date(intake[intake$deceaseddate!="",]$deceaseddate))` to `r max(as.Date(intake[intake$deceaseddate!="",]$deceaseddate))`.
