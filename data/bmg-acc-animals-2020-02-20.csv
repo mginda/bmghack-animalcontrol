@@ -320,7 +320,7 @@
 "55563","C1704099","981020021837679","Blake","1 year 8 months.","Male","Cat","Domestic Medium Hair","Orange",20
 "55564","C1704100","981020021834210","Margot","1 year 8 months.","Female","Cat","Domestic Short Hair","Tortie",20
 "55565","C1704128","981020021799707","Pepper","3 years 7 months.","Female","Cat","Domestic Short Hair","Black and Brown",43
-"55567","D1704108","0A1255764B","Lucy","8 years 5 months.","Female","Dog","Terrier","Tan and White",101
+"55567","D1704108","0A1255764B","Lucy","8 years 7 months.","Female","Dog","Terrier","Tan and White",103
 "55569","C1704125","981020021790992","Bella","4 years 11 months.","Female","Cat","Siamese","Lilac",59
 "55570","D1704129","981020021803009","Gertie","2 years 7 months.","Female","Dog","Beagle","Brown and White",31
 "55571","C1704127","981020021075983","Cranberry","1 year 7 months.","Male","Cat","Domestic Short Hair","Black and White",19
@@ -499,7 +499,7 @@
 "55796","G1705263","","Ziggy","4 years 0 months.","Female","Guinea Pig","Guinea Pig","Buff",48
 "55797","B1705264","","Ducky","2 years 1 month.","Unknown","Bird","Duck","Grey",25
 "55799","P1705263","","Wally","4 years 6 months.","Male","Pig","Pot Bellied","Black",54
-"55800","D1705264","981020021513844","Maggie Mae","3 years 0 months.","Female","Dog","Beagle","Tricolour",36
+"55800","D1705264","981020021513844","Maggie Mae","3 years 1 month.","Female","Dog","Beagle","Tricolour",37
 "55801","D1705265","981020021845092","Edward","2 years 7 months.","Male","Dog","Chihuahua","Tan",31
 "55804","D1705267","981010001271708","Sophie","11 years 2 months.","Female","Dog","Schnauzer","Black",134
 "55805","D1705268","4A19253A7B","Carly","10 years 8 months.","Female","Dog","Cavalier King Charles Spaniel","White and Brown",128
@@ -628,7 +628,7 @@
 "55971","D1705355","981020021826965","Cash","2 years 10 months.","Male","Dog","Boxer/Pitbull","Tan",34
 "55972","C1705357","981020013494349","Harvey","4 years 2 months.","Male","Cat","Domestic Short Hair","Black and White",50
 "55975","D1705360","","Tyson","4 years 10 months.","Male","Dog","Chihuahua/Mix","Black",58
-"55976","D1705361","","Chevy","2 years 11 months.","Male","Dog","Labrador Retriever/Mix","White and Tan",35
+"55976","D1705361","","Chevy","4 years 2 months.","Male","Dog","Labrador Retriever/Mix","White and Tan",50
 "55978","C1705362","981020021850362","Jeeves","2 years 6 months.","Male","Cat","Domestic Short Hair","Black and White",30
 "55979","D1705363","","Charlie","1 year 11 months.","Male","Dog","Labrador Retriever/Hound","Red and White",23
 "55980","D1705359","981020021843741","Gyps","5 years 5 months.","Female","Dog","Shiba Inu/Labrador Retriever","Black",65
@@ -2660,7 +2660,7 @@
 "58617","D1801101","","Wilson","2 years 9 months.","Male","Dog","Coonhound/Mix","Red and White",33
 "58618","D1801103","","Spencer","2 years 9 months.","Male","Dog","Coonhound/Mix","Red and White",33
 "58619","C1801105","981020021482808","Holly","4 years 11 months.","Female","Cat","Domestic Short Hair","Black",59
-"58621","D1801105","981020021473140","Janet","1 year 2 months.","Female","Dog","Border Collie/Mix","Black and White",14
+"58621","D1801105","981020021473140","Janet","2 years 5 months.","Female","Dog","Border Collie/Mix","Black and White",29
 "58622","C1801106","981020021498088","Kyle","2 years 11 months.","Male","Cat","Domestic Short Hair","Black and Brown",35
 "58623","D1801107","981020021493471","Tank","2 years 5 months.","Male","Dog","Labrador Retriever/Mix","Cream",29
 "58625","C1801107","981020021467785","Reginauld","1 year 4 months.","Male","Cat","Domestic Short Hair","Black and grey",16
@@ -2912,7 +2912,7 @@
 "58951","C1803259","981020025778009","Mr. Beans","1 year 2 months.","Male","Cat","Domestic Short Hair","Grey",14
 "58952","C1803260","981020025476624","Sushi","1 year 2 months.","Female","Cat","Domestic Short Hair","Grey",14
 "58953","D1803261","981020025680313","Loekie","2 years 3 months.","Female","Dog","Shar-Pei/Labrador Retriever","Red",27
-"58959","D1803233","981020025484418","Harvey","11 years 2 months.","Male","Dog","American Bulldog","White and Brindle",134
+"58959","D1803233","981020025484418","Harvey","11 years 11 months.","Male","Dog","American Bulldog","White and Brindle",143
 "58960","D1803262","49322F0922","JoJo","13 years 6 months.","Male","Dog","Bichon Frise","White",162
 "58961","C1803239","981020025494651","Sal","1 year 4 months.","Male","Cat","Domestic Short Hair","Black",16
 "58962","C1803240","981020025777856","Babe","3 years 7 months.","Female","Cat","Domestic Short Hair","Black",43
@@ -3185,7 +3185,7 @@
 "59292","D1804404","956000003390954","Dakota","8 years 10 months.","Female","Dog","Pitbull/Labrador Retriever","Tan",106
 "59293","D1804302","991001000578554","Mika","5 years 10 months.","Female","Dog","Great Pyrenees","White and Black",70
 "59294","F1804406","","Sleepy Head","1 year 1 month.","Male","Ferret","Ferret","White and Brown",13
-"59295","D1804407","981020025195186","Sprockets","5 years 6 months.","Male","Dog","Bloodhound/Labrador Retriever","Red",66
+"59295","D1804407","981020025195186","Sprockets","6 years 9 months.","Male","Dog","Bloodhound/Labrador Retriever","Red",81
 "59299","C1804408","981020025712612","Max","3 years 7 months.","Female","Cat","Domestic Short Hair","Grey",43
 "59300","C1804409","0A1276613E","Calista","8 years 1 month.","Female","Cat","Domestic Short Hair","Torbie",97
 "59302","C1804410","981020027245959","Caitlin","1 year 6 months.","Female","Cat","Domestic Short Hair","Orange and White",18
@@ -3619,7 +3619,7 @@
 "59832","C1806628","981020027019813","Bronco","6 months.","Male","Cat","Domestic Long Hair","Buff",6
 "59833","D1806657","981020027321721","Hershey","11 months.","Male","Dog","Dachshund, miniature","Tan",11
 "59834","D1806658","981020027285790","Bows","11 months.","Female","Dog","Dachshund, miniature","Tan",11
-"59836","C1806643","981020027051901","Bee","1 year 0 months.","Male","Cat","Domestic Short Hair","Orange and White",12
+"59836","C1806643","981020027051901","Bee","1 year 9 months.","Male","Cat","Domestic Short Hair","Orange and White",21
 "59837","H1806659","","Maui","1 year 9 months.","Male","Hamster","Hamster","Brown",21
 "59838","H1806660","","Majesty","1 year 9 months.","Male","Hamster","Hamster","White",21
 "59839","G1806661","","Nioami","3 years 11 months.","Unknown","Gerbil","Gerbil","Brown, Black and White",47
@@ -4266,7 +4266,7 @@
 "60646","C18081084","981020027355878","LL Cool J","1 year 0 months.","Male","Cat","Domestic Short Hair","Orange",12
 "60648","C18081085","981020017643819","Natasha","3 years 2 months.","Female","Cat","Domestic Short Hair","Black",38
 "60649","D1808597","981020027288536","Snickers Bar","8 years 3 months.","Female","Dog","Beagle/German Shepherd Dog","Tan and Black",99
-"60650","C18081086","981020027294747","Snugglie","1 year 9 months.","Female","Cat","Domestic Short Hair","Grey",21
+"60650","C18081086","981020027294747","Snugglie","1 year 10 months.","Female","Cat","Domestic Short Hair","Grey",22
 "60651","C18081087","981020029330017","Willow","2 years 10 months.","Female","Cat","Domestic Short Hair","Dilute tortoiseshell",34
 "60652","C18081088","981020029364627","Stella","4 years 3 months.","Female","Cat","Domestic Short Hair","Black and grey",51
 "60653","C18081089","981020029324243","Soleus","20 weeks.","Male","Cat","Domestic Short Hair","Buff and white",4.44444444444444
@@ -7037,7 +7037,7 @@
 "64146","C19071187","981020031374721","Perdita","8 months.","Female","Cat","Domestic Short Hair","Black",8
 "64150","D19071189","981020017366873","Jackson","6 years 0 months.","Male","Dog","Black Labrador Retriever","Black",72
 "64151","C19071290","981020033149622","Whatchamacallit","8 months.","Female","Cat","Domestic Short Hair","Black and Brown",8
-"64153","D19071190","981020031380441","Scarlett","9 months.","Female","Dog","Labrador Retriever","Black and White",9
+"64153","D19071190","981020031380441","Scarlett","1 year 0 months.","Female","Dog","Labrador Retriever","Black and White",12
 "64154","D19071159","","Sapphire","7 years 0 months.","Female","Dog","Bully Breed Mix","Black and White",84
 "64155","D19071191","","Marshall","10 months.","Male","Dog","Labrador Retriever","Black and White",10
 "64157","C19071192","981020033149466","Hamlet","5 years 3 months.","Male","Cat","Domestic Short Hair","Black and White",63
@@ -7186,7 +7186,7 @@
 "64331","C19081269","985112005872494","Freddie","3 years 6 months.","Male","Cat","Siamese/Domestic Short Hair","Lynx point",42
 "64333","C19081270","981020021073962","Charlotte","3 years 7 months.","Female","Cat","Domestic Short Hair","Black and Brown",43
 "64334","C19081271","981020021066977","Stella","3 years 5 months.","Female","Cat","Domestic Short Hair","Black and Brown",41
-"64335","C19081272","981020033139628","Loki","7 months.","Male","Cat","Domestic Short Hair","Black, Brown and White",7
+"64335","C19081272","981020033139628","Loki","8 months.","Male","Cat","Domestic Short Hair","Black, Brown and White",8
 "64336","C19081273","981020033136545","Magpie","8 months.","Female","Cat","Domestic Short Hair","Black and White",8
 "64337","D19081274","981020033124010","Belion","1 year 1 month.","Male","Dog","Husky","Brown and White",13
 "64340","C19081274","","Tiny","1 year 3 months.","Female","Cat","Domestic Medium Hair","Calico",15
@@ -7211,7 +7211,7 @@
 "64360","D19081204","","Mildred","9 months.","Female","Dog","Mix","White and Brown",9
 "64361","C19081291","981020033126942","Link","8 months.","Male","Cat","Domestic Short Hair","Grey",8
 "64362","C19081210","981020031857656","Cat-illiac","8 months.","Male","Cat","Domestic Short Hair","Black",8
-"64365","D19081292","981020033147562","Juniper","7 months.","Female","Dog","Beagle","Tricolour",7
+"64365","D19081292","981020033147562","Juniper","8 months.","Female","Dog","Beagle","Tricolour",8
 "64367","C19081224","981020033155803","Mavis","3 years 0 months.","Female","Cat","Domestic Short Hair","Black",36
 "64368","C19081293","981020031830615","Chippy","8 months.","Female","Cat","Domestic Short Hair","Dilute calico",8
 "64370","D19081233","981020033144838","Tiny","1 year 0 months.","Male","Dog","Chihuahua","Cream",12
@@ -7259,7 +7259,7 @@
 "64419","C19081322","981020033838981","Arabella","26 weeks.","Female","Cat","Domestic Short Hair","Brown and Black",5.77777777777778
 "64420","C19081323","981020033850926","Arlene","26 weeks.","Female","Cat","Domestic Short Hair","White and Black",5.77777777777778
 "64421","D19081319","982126056695842","Chloe","8 months.","Female","Dog","Shih Tzu","Tan",8
-"64422","D19081324","985112010329087","Duke","3 years 0 months.","Male","Dog","Catahoula Leopard Dog/Mountain Cur","Red",36
+"64422","D19081324","985112010329087","Duke","3 years 6 months.","Male","Dog","Catahoula Leopard Dog/Mountain Cur","Red",42
 "64424","C19081324","981020031374650","Fizz","1 year 0 months.","Female","Cat","Domestic Short Hair","Brown and Black",12
 "64426","C19081325","981020033133731","Marge","7 months.","Female","Cat","Domestic Short Hair","White and Grey",7
 "64427","D19081325","981020031849420","Milo","4 years 0 months.","Male","Dog","Labrador Retriever/Shep Mix","Yellow",48
@@ -7302,11 +7302,11 @@
 "64476","C19081359","981020031834236","Sissy","2 years 1 month.","Female","Cat","Domestic Short Hair","Brown and Black",25
 "64477","C19081360","981020033145942","Bubba J","2 years 1 month.","Male","Cat","Domestic Short Hair","Brown and Black",25
 "64478","C19081361","981020031832613","Felicia","2 years 1 month.","Female","Cat","Domestic Short Hair","Brown and Black",25
-"64480","C19081362","981020033149000","Tim","7 months.","Male","Cat","Domestic Short Hair","Grey",7
-"64481","C19081363","981020033836830","Dax","7 months.","Male","Cat","Domestic Short Hair","Grey",7
-"64482","C19081364","981020033121631","Evan","7 months.","Male","Cat","Domestic Short Hair","Grey",7
-"64483","C19081365","981020033860065","Ben","7 months.","Male","Cat","Domestic Short Hair","Grey",7
-"64484","C19081366","981020033151199","Paul","7 months.","Male","Cat","Domestic Short Hair","Grey",7
+"64480","C19081362","981020033149000","Tim","8 months.","Male","Cat","Domestic Short Hair","Grey",8
+"64481","C19081363","981020033836830","Dax","8 months.","Male","Cat","Domestic Short Hair","Grey",8
+"64482","C19081364","981020033121631","Evan","8 months.","Male","Cat","Domestic Short Hair","Grey",8
+"64483","C19081365","981020033860065","Ben","8 months.","Male","Cat","Domestic Short Hair","Grey",8
+"64484","C19081366","981020033151199","Paul","8 months.","Male","Cat","Domestic Short Hair","Grey",8
 "64485","D19081367","0A12670f0A","Nigel","8 years 0 months.","Male","Dog","Hound","White and Brown",96
 "64486","C19081368","985113000180637","Mystique","4 years 4 months.","Female","Cat","Domestic Short Hair","Tortie",52
 "64487","C19081355","981020033151373","Fantasia","3 years 0 months.","Female","Cat","Domestic Medium Hair","Tortie",36
@@ -7389,7 +7389,7 @@
 "64583","C19081428","981020033145212","Nugget","8 months.","Male","Cat","Domestic Medium Hair","Orange and White",8
 "64584","C19081429","981020029330984","Max","8 months.","Male","Cat","Domestic Medium Hair","Orange and White",8
 "64585","C19081430","981020033137699","Luna Moon","8 months.","Female","Cat","Domestic Short Hair","Orange",8
-"64587","C19081417","981020033841131","Jimmy Buffet","6 months.","Male","Cat","Domestic Short Hair","Buff",6
+"64587","C19081417","981020033841131","Jimmy Buffet","7 months.","Male","Cat","Domestic Short Hair","Buff",7
 "64588","C19081418","981020033133599","Punkin","7 months.","Female","Cat","Domestic Short Hair","Calico",7
 "64589","D19081419","981020033124762","Oaken","1 year 10 months.","Male","Dog","Husky","Black and White",22
 "64591","C19081424","","Angel","16 years 3 months.","Female","Cat","Domestic Short Hair","White",195
@@ -7419,10 +7419,10 @@
 "64618","D19081444","981020033139659","Tres","9 months.","Female","Dog","German Shepherd Dog/Husky","Chocolate",9
 "64622","D19081445","981020031840496","Joy","7 years 1 month.","Female","Dog","Chihuahua/Pug","Tan",85
 "64624","C19081450","981020031842757","Masie","10 months.","Female","Cat","Domestic Short Hair","Tortie",10
-"64640","C19081451","981020033621205","Google","6 months.","Female","Cat","Domestic Long Hair","Grey and White",6
-"64641","C19081452","981020033140175","Yahoo","6 months.","Male","Cat","Domestic Short Hair","Grey and White",6
-"64642","C19081453","981020033622373","Bing","6 months.","Male","Cat","Domestic Medium Hair","Orange",6
-"64643","C19081454","981020033130428","Dogpile","6 months.","Male","Cat","Domestic Short Hair","Buff",6
+"64640","C19081451","981020033621205","Google","7 months.","Female","Cat","Domestic Long Hair","Grey and White",7
+"64641","C19081452","981020033140175","Yahoo","7 months.","Male","Cat","Domestic Short Hair","Grey and White",7
+"64642","C19081453","981020033622373","Bing","7 months.","Male","Cat","Domestic Medium Hair","Orange",7
+"64643","C19081454","981020033130428","Dogpile","7 months.","Male","Cat","Domestic Short Hair","Buff",7
 "64644","D19081422","","Stormy","3 years 0 months.","Male","Dog","Beagle","Tricolour",36
 "64646","D19091423","4B5D764B47","Tanner","12 years 1 month.","Male","Dog","Great Pyrenees","White",145
 "64647","C19091455","981020033850788","Manica","6 months.","Male","Cat","Domestic Short Hair","Black",6
@@ -7629,7 +7629,7 @@
 "64915","C19091592","981020033121992","Maggie Blue","2 years 0 months.","Female","Cat","Domestic Short Hair","White and Tabby",24
 "64919","D19091595","981020033123178","Boogie","10 years 0 months.","Male","Dog","Pomeranian","Red",120
 "64920","D19091596","981020033138120","Daisy","1 year 9 months.","Female","Dog","Chihuahua/Jack Russell Terrier","Red",21
-"64922","C19091595","981020031846655","Smoky Jean","1 year 4 months.","Female","Cat","Domestic Short Hair","Torbie",16
+"64922","C19091595","981020031846655","Smoky Jean","1 year 5 months.","Female","Cat","Domestic Short Hair","Torbie",17
 "64923","C19091596","981020031859759","Shera","4 years 2 months.","Female","Cat","Domestic Short Hair","Black and Brown",50
 "64924","H19091597","","Bennie","8 months.","Male","House Rabbit","Dutch/Dwarf","White and Brown",8
 "64925","D19091598","981020033856807","Cleo","1 year 4 months.","Female","Dog","Hound","Brindle",16
@@ -7681,7 +7681,7 @@
 "64991","C19091634","981020033151489","Monty","6 months.","Male","Cat","Domestic Medium Hair","Black",6
 "64992","C19091635","981020031831182","Meleah","6 months.","Female","Cat","Domestic Medium Hair","Black",6
 "64994","C19091636","981020031837641","Smudge","1 year 0 months.","Male","Cat","Domestic Short Hair","Black and White",12
-"64996","C19091620","981020033129844","Peek-a-Boo","25 weeks.","Male","Cat","Domestic Short Hair","Black",5.55555555555556
+"64996","C19091620","981020033129844","Peek-a-Boo","26 weeks.","Male","Cat","Domestic Short Hair","Black",5.77777777777778
 "64997","D19091621","985112002214251","Sinclair","6 years 0 months.","Male","Dog","Terrier","Black",72
 "64998","D19091622","981020033855887","Kookie","7 years 1 month.","Female","Dog","Bully Breed Mix","Brindle and White",85
 "64999","D19091637","981020033133628","Lily","1 year 2 months.","Female","Dog","Heeler/Dalmatian","Black merle",14
@@ -7918,7 +7918,7 @@
 "65294","D19101795","981020033855948","Latte","1 year 1 month.","Male","Dog","Corgi","Red",13
 "65295","D19101796","981020033850301","King","1 year 6 months.","Male","Dog","Bully Breed Mix","Blue",18
 "65296","C19101798","981020033857965","Rhonda","4 years 3 months.","Female","Cat","Domestic Short Hair","Grey",51
-"65297","C19101797","981020033722110","Gizmo","6 months.","Male","Cat","Domestic Medium Hair","White and Orange",6
+"65297","C19101797","981020033722110","Gizmo","7 months.","Male","Cat","Domestic Medium Hair","White and Orange",7
 "65298","C19101799","981020033721562","Winnie","7 months.","Female","Cat","Domestic Short Hair","Black",7
 "65299","C19101800","981020033854704","Tortielinna","4 years 0 months.","Female","Cat","Domestic Short Hair","Tortie",48
 "65300","D19101801","981020033853565","Shy Ronnie","7 years 2 months.","Male","Dog","Dachshund/Mix","Black and Tan",86
@@ -7933,8 +7933,8 @@
 "65312","D19101585","981020033836143","PLUTO","10 months.","Male","Dog","American Bulldog","Black, Brown and White",10
 "65313","C19101807","981020033829931","Gusto","4 years 1 month.","Male","Cat","Domestic Short Hair","Orange",49
 "65314","C19101808","985112011592944","Louis","7 months.","Female","Cat","Domestic Short Hair","Grey and White",7
-"65315","C19101809","981020033710892","Tuesday","25 weeks.","Female","Cat","Domestic Short Hair","Grey and White",5.55555555555556
-"65316","C19101810","981020033711677","Wednesday","25 weeks.","Female","Cat","Domestic Short Hair","Black and Brown",5.55555555555556
+"65315","C19101809","981020033710892","Tuesday","26 weeks.","Female","Cat","Domestic Short Hair","Grey and White",5.77777777777778
+"65316","C19101810","981020033711677","Wednesday","26 weeks.","Female","Cat","Domestic Short Hair","Black and Brown",5.77777777777778
 "65317","C19101811","981020033733177","Eartha Kitt","2 years 3 months.","Female","Cat","Domestic Short Hair","Black and White",27
 "65318","D19101803","981020033839183","Cami","6 years 2 months.","Female","Dog","Husky/German Shepherd Dog","Tan and White",74
 "65320","H19101812","","Calvin","1 year 1 month.","Male","House Rabbit","Hotot","White and Black",13
@@ -8000,7 +8000,7 @@
 "65399","D19101846","982126055707150","Wynona","1 year 0 months.","Female","Dog","Border Collie/Shep Mix","Black and White",12
 "65400","H19101847","","Mochi","5 years 0 months.","Female","House Rabbit","American","Tan and White",60
 "65401","D19101847","981020017280927","Benji","8 years 1 month.","Male","Dog","Basset Hound/Pug","Tricolour",97
-"65402","C19101603","981020033854692","Celina","24 weeks.","Female","Cat","Domestic Short Hair","Calico",5.33333333333333
+"65402","C19101603","981020033854692","Celina","25 weeks.","Female","Cat","Domestic Short Hair","Calico",5.55555555555556
 "65404","C19101848","981020033855889","Arlon","8 months.","Male","Cat","Domestic Long Hair","Grey",8
 "65405","D19101849","","Angie","9 months.","Female","Dog","Beagle","Brown and White",9
 "65406","D19101850","","Lilly","9 months.","Female","Dog","Beagle","Brown and White",9
@@ -8074,7 +8074,7 @@
 "65482","C19111895","981020033745079","Asha","23 weeks.","Female","Cat","Domestic Short Hair","Brown and Black",5.11111111111111
 "65483","G19111896","","Roya","1 year 0 months.","Female","Guinea Pig","American Short hair","Calico",12
 "65487","C19111903","","Sally A","3 years 0 months.","Female","Cat","Domestic Short Hair","Black, Brown and White",36
-"65488","C19112048","981020033838564","Ms. Bellpepper","6 months.","Female","Cat","Domestic Short Hair","Brown and Black",6
+"65488","C19112048","981020033838564","Ms. Bellpepper","7 months.","Female","Cat","Domestic Short Hair","Brown and Black",7
 "65489","C19111896","981020033830674","Brandi","1 year 1 month.","Female","Cat","Domestic Short Hair","Buff",13
 "65490","C19111613","981020033841929","Charlie","1 year 1 month.","Male","Cat","Domestic Short Hair","Buff",13
 "65494","D19111898","","Rex","9 months.","Male","Dog","Bully Breed Mix/Husky","Yellow",9
@@ -8102,7 +8102,7 @@
 "65521","C19111918","981020033835430","Mr. Rochester","3 years 2 months.","Male","Cat","Domestic Short Hair/Siamese","Cream",38
 "65522","C19111919","981020033844800","Miss Abbot","9 months.","Female","Cat","Siamese","Lilac",9
 "65523","C19111920","981020033859967","Mr. Brocklehurst","5 years 1 month.","Male","Cat","Domestic Short Hair","Buff and white",61
-"65524","C19111921","985113000234014","Greta","6 years 2 months.","Female","Cat","Domestic Short Hair","Black and Brown",74
+"65524","C19111921","985113000234014","Wheezer","6 years 3 months.","Female","Cat","Domestic Short Hair","Black and Brown",75
 "65525","C19111922","981020033831194","Harry","4 years 1 month.","Male","Cat","Domestic Short Hair","Black and Brown",49
 "65526","C19111923","981020033853270","Oliver","4 years 1 month.","Male","Cat","Domestic Short Hair","Orange",49
 "65527","C19111924","981020033834652","Fiona","4 years 0 months.","Female","Cat","Domestic Short Hair","Brown and Black",48
@@ -8111,15 +8111,15 @@
 "65530","C19111927","981020033837697","Boom","1 year 7 months.","Male","Cat","Domestic Short Hair","Black",19
 "65531","C19111928","982000362109321","Mimi","5 years 9 months.","Female","Cat","Domestic Medium Hair","Black and Brown",69
 "65532","D19111616","","Loki","9 months.","Male","Dog","Dachshund/Chihuahua","Liver",9
-"65534","C19111929","","Forest Gump","22 weeks.","Male","Cat","Domestic Short Hair","Grey",4.88888888888889
-"65535","C19111930","","Bubba","22 weeks.","Male","Cat","Domestic Short Hair","Black",4.88888888888889
-"65536","C19111931","","Lt. Danna","22 weeks.","Female","Cat","Domestic Short Hair","Grey",4.88888888888889
-"65537","C19111932","","Jenny","22 weeks.","Female","Cat","Domestic Medium Hair","Grey",4.88888888888889
+"65534","C19111929","","Forest Gump","23 weeks.","Male","Cat","Domestic Short Hair","Grey",5.11111111111111
+"65535","C19111930","","Bubba","23 weeks.","Male","Cat","Domestic Short Hair","Black",5.11111111111111
+"65536","C19111931","","Lt. Danna","23 weeks.","Female","Cat","Domestic Short Hair","Grey",5.11111111111111
+"65537","C19111932","","Jenny","23 weeks.","Female","Cat","Domestic Medium Hair","Grey",5.11111111111111
 "65538","D19111924","981020033831298","Dan-oh","2 years 2 months.","Male","Dog","Akita/Labrador Retriever","Tan",26
 "65539","D19111933","981020033852486","Priscilla","3 years 1 month.","Female","Dog","Black and Tan Coonhound","Black and Tan",37
 "65540","D19111934","981020033833090","Buddy","1 year 2 months.","Male","Dog","Labrador Retriever","Black",14
 "65541","C19111935","981020033851133","Dogwood","10 months.","Male","Cat","Domestic Short Hair","Orange",10
-"65543","C19111936","981020033853197","Lucas","23 weeks.","Male","Cat","Domestic Short Hair","Orange",5.11111111111111
+"65543","C19111936","981020033853197","Lucas","24 weeks.","Male","Cat","Domestic Short Hair","Orange",5.33333333333333
 "65544","C19111618","","Bell","1 year 0 months.","Female","Cat","Domestic Short Hair","Calico",12
 "65545","C19111619","981020033842157","Houdini","8 months.","Female","Cat","Siamese","Chocolate Point",8
 "65546","D19111937","0A11155324","Rambo","15 years 4 months.","Male","Dog","Shepherd","Black and Tan",184
@@ -8135,7 +8135,7 @@
 "65559","C19111622","","Simba","2 years 0 months.","Male","Cat","Domestic Short Hair","Orange and White",24
 "65560","C19111623","","Maybe","8 months.","Unknown","Cat","Domestic Short Hair","Black and Brown",8
 "65562","C19111941","981020033844407","Lava","4 years 1 month.","Female","Cat","Domestic Short Hair/Manx","White",49
-"65563","H19111941","","Lolo","7 months.","Male","House Rabbit","Netherland Dwarf","Blue",7
+"65563","H19111941","","Lolo","8 months.","Male","House Rabbit","Netherland Dwarf","Blue",8
 "65564","C19111942","981020035009920","Hilda","14 years 3 months.","Female","Cat","Domestic Short Hair","Grey and White",171
 "65565","D19111624","","Marley","8 months.","Male","Dog","Australian Shepherd/Mountain Cur","Buff and white",8
 "65566","C19111943","981020033853041","Taryn","2 years 0 months.","Male","Cat","Bombay/Domestic Short Hair","Black",24
@@ -8197,9 +8197,9 @@
 "65650","S19111633","","Larry","1 year 0 months.","Unknown","Snake","Ball Python","Brown and Black",12
 "65651","C19111993","","Yin","8 months.","Male","Cat","Domestic Short Hair","White and Grey",8
 "65652","C19111994","","Yang","8 months.","Female","Cat","Domestic Medium Hair","Black and White",8
-"65654","C19111995","981020033714710","Salami","16 weeks.","Male","Cat","Domestic Medium Hair","Grey",3.55555555555556
-"65655","C19111996","981020033724640","Rami","16 weeks.","Female","Cat","Domestic Medium Hair","Grey",3.55555555555556
-"65656","C19111997","981020033737122","Genoa","16 weeks.","Female","Cat","Domestic Medium Hair","Grey and White",3.55555555555556
+"65654","C19111995","981020033714710","Salami","17 weeks.","Male","Cat","Domestic Medium Hair","Grey",3.77777777777778
+"65655","C19111996","981020033724640","Rami","17 weeks.","Female","Cat","Domestic Medium Hair","Grey",3.77777777777778
+"65656","C19111997","981020033737122","Genoa","17 weeks.","Female","Cat","Domestic Medium Hair","Grey and White",3.77777777777778
 "65657","D19111995","981020033829527","Tank","8 months.","Male","Dog","Bully Breed Mix/Mastiff","Brindle and White",8
 "65658","C19111998","","Brutus","11 years 0 months.","Male","Cat","Domestic Short Hair","Grey",132
 "65661","D19111997","956000005741873","Tigger","5 years 1 month.","Female","Dog","Shepherd/Hound","Brindle",61
@@ -8239,7 +8239,7 @@
 "65698","C19112020","981020033843773","Cha-Cha","22 weeks.","Female","Cat","Domestic Short Hair","Black",4.88888888888889
 "65699","C19111635","981020033853736","Harley","1 year 6 months.","Male","Cat","Domestic Short Hair","Black and White",18
 "65700","C19112021","","Monster","12 years 5 months.","Male","Cat","Domestic Short Hair","Black",149
-"65701","D19112020","","Cloe","24 weeks.","Female","Dog","Chihuahua","Tan",5.33333333333333
+"65701","D19112020","","Cloe","25 weeks.","Female","Dog","Chihuahua","Tan",5.55555555555556
 "65702","D19122022","981020019710296","Moose","4 years 1 month.","Male","Dog","Shep Mix","Tan",49
 "65703","D19122021","981020033833864","Abbie","6 years 0 months.","Female","Dog","Yorkshire Terrier/Chihuahua","Tricolour",72
 "65705","D19122023","981020025750710","Goudan","2 years 0 months.","Female","Dog","Husky","Black and White",24
@@ -8268,7 +8268,7 @@
 "65754","D19122037","981020029710851","Vice","8 years 0 months.","Male","Dog","German Shepherd Dog/Bully Breed Mix","White",96
 "65755","D19122038","","Buffy","11 months.","Female","Dog","Silky Terrier","Siver and Tan",11
 "65756","C19122038","981020033735433","Simba","3 years 2 months.","Female","Cat","Domestic Medium Hair","Black and Brown",38
-"65757","C19122039","981020033713081","Ralph","3 years 0 months.","Male","Cat","Domestic Medium Hair","Grey",36
+"65757","C19122039","981020033713081","Ralph","3 years 2 months.","Male","Cat","Domestic Medium Hair","Grey",38
 "65758","C19122040","981020033834871","Snow White","19 weeks.","Female","Cat","Domestic Short Hair","Black",4.22222222222222
 "65759","D19122041","","Infinity","1 year 6 months.","Female","Dog","Boston Terrier","Black and White",18
 "65761","H19122041","","Princess Pickels","4 years 1 month.","Female","House Rabbit","Lionhead","Black",49
@@ -8283,7 +8283,7 @@
 "65771","D19122053","981020033744486","Aphrodite","1 year 0 months.","Female","Dog","Labrador Retriever/Bully Breed Mix","Red and White",12
 "65772","D19122054","981020033856848","Nemi","8 months.","Female","Dog","Bully Breed Mix/Collie","Brindle",8
 "65773","D19122055","981020033841215","Jasper","8 months.","Male","Dog","Chihuahua/Miniature Pinscher","Tan",8
-"65774","D19122056","981020033710990","Summer","7 years 1 month.","Female","Dog","Chocolate Labrador Retriever","Chocolate",85
+"65774","D19122056","981020033710990","Summer","7 years 2 months.","Female","Dog","Chocolate Labrador Retriever","Chocolate",86
 "65775","D19121641","0A123E2067","Bubbie","13 years 1 month.","Male","Dog","Terrier/Basset Hound","White",157
 "65776","D19121642","985112008659459","Missie","3 years 0 months.","Female","Dog","Chihuahua","Tan and White",36
 "65777","D19121643","","Ollie","9 years 0 months.","Male","Dog","Chihuahua","Black and White",108
@@ -8292,7 +8292,7 @@
 "65780","D19122049","","Chase","7 years 0 months.","Male","Dog","Bully Breed Mix","White and Brindle",84
 "65781","D19122050","982126051877992","Bella June","1 year 1 month.","Female","Dog","Bully Breed Mix","Fawn",13
 "65783","C19122059","","Charles","6 years 8 months.","Male","Cat","Siamese","Flame Point",80
-"65787","C19122051","981020033832873","Belinda","6 months.","Female","Cat","Domestic Long Hair","Tortie",6
+"65787","C19122051","981020033832873","Belinda","7 months.","Female","Cat","Domestic Long Hair","Tortie",7
 "65788","D19122060","981020033843422","Mabel","9 months.","Female","Dog","Beagle/Mix","Tricolour",9
 "65789","C19122052","981020033843881","Muffin","3 years 0 months.","Female","Cat","Domestic Medium Hair","Black and White",36
 "65790","H19122061","","Bun Bun","5 years 7 months.","Female","House Rabbit","New Zealand","White and Brown",67
@@ -8307,19 +8307,19 @@
 "65800","G19122065","","Peanut Butter","1 year 0 months.","Male","Guinea Pig","Guinea Pig","Tricolour",12
 "65801","G19122066","","Bubbles","1 year 0 months.","Male","Guinea Pig","Guinea Pig","Black and White",12
 "65802","D19122057","","Benzo","8 months.","Male","Dog","Bully Breed Mix","Brindle",8
-"65803","C19122067","","Bert","15 weeks.","Unknown","Cat","Domestic Short Hair","Black",3.33333333333333
-"65804","C19122068","","Ernie","15 weeks.","Unknown","Cat","Domestic Short Hair","Black",3.33333333333333
+"65803","C19122067","","Bert","16 weeks.","Unknown","Cat","Domestic Short Hair","Black",3.55555555555556
+"65804","C19122068","","Ernie","16 weeks.","Unknown","Cat","Domestic Short Hair","Black",3.55555555555556
 "65806","D19121645","985170000390111","Mecko","6 years 0 months.","Male","Dog","Siberian Husky","Black and White",72
 "65808","H19122069","","Fluffy","2 years 0 months.","Male","House Rabbit","American","White and Brown",24
 "65809","H19122070","","Toki","2 years 0 months.","Male","House Rabbit","American","White and Black",24
 "65810","C19122060","981020033725007","Rebel","5 years 0 months.","Female","Cat","Domestic Short Hair","Grey and White",60
 "65811","C19121646","981020033714128","Sarsaparilla","8 months.","Female","Cat","Domestic Short Hair","Tabbico",8
-"65813","C19122071","981020035038547","Mariana ""Tude""","1 year 3 months.","Female","Cat","Domestic Short Hair","Brown and Black",15
+"65813","C19122071","981020035038547","Mariana","1 year 3 months.","Female","Cat","Domestic Short Hair","Brown and Black",15
 "65815","D19122072","981020033727645","Ace Ventura","1 year 0 months.","Male","Dog","Husky","Tan and White",12
 "65817","C19122074","981020033741203","Socks","8 months.","Male","Cat","Domestic Short Hair","Orange and White",8
 "65818","C19122075","981020033730375","Boots","8 months.","Male","Cat","Domestic Short Hair","Black and White",8
 "65819","C19122062","981020033707746","Tommy","2 years 0 months.","Male","Cat","Domestic Medium Hair","Orange",24
-"65820","C19122063","981020033732442","Honey","26 weeks.","Female","Cat","Domestic Short Hair","Buff",5.77777777777778
+"65820","C19122063","981020033732442","Honey","6 months.","Female","Cat","Domestic Short Hair","Buff",6
 "65823","D19122076","981020033731629","Everest","3 years 0 months.","Female","Dog","Husky","Grey and White",36
 "65824","D19122077","981020033737069","Buster","1 year 4 months.","Male","Dog","Husky","Black and White",16
 "65826","D19122079","981020033718992","Milo","4 years 1 month.","Male","Dog","Husky","Red and White",49
@@ -8331,20 +8331,20 @@
 "65832","D19122065","981020033731830","Vada","2 years 1 month.","Female","Dog","Labrador Retriever/Flat-coated Retriever","Black",25
 "65833","D19122085","981020033725656","Ramey","5 years 0 months.","Male","Dog","Jack Russell Terrier/Shiba Inu","White and Tan",60
 "65834","C19122086","","Cha Cha","10 years 2 months.","Female","Cat","Siamese/Mix","Grey and White",122
-"65835","C19122087","981020033733650","Rootbeer","26 weeks.","Female","Cat","Domestic Short Hair","Black and White",5.77777777777778
+"65835","C19122087","981020033733650","Rootbeer","6 months.","Female","Cat","Domestic Short Hair","Black and White",6
 "65836","C19122066","981020033718358","Thurgood","2 years 1 month.","Male","Cat","Domestic Long Hair","Black, Brown and White",25
-"65837","D19122067","981020033724622","Noelle","16 weeks.","Female","Dog","Labrador Retriever/Mix","Black and White",3.55555555555556
+"65837","D19122067","981020033724622","Noelle","17 weeks.","Female","Dog","Labrador Retriever/Mix","Black and White",3.77777777777778
 "65838","D19122088","","Diesel","4 years 2 months.","Male","Dog","Hound/Mix","Red",50
 "65840","C19121647","981020033734908","Georgi","5 years 0 months.","Male","Cat","Snowshoe/Balinese","Seal Point",60
 "65841","C19122089","981020033709016","Pharaoh","1 year 0 months.","Male","Cat","Domestic Short Hair","Brown, Black and White",12
 "65842","D19122090","981020033712412","Hercules","4 years 0 months.","Male","Dog","Boxer/Mix","White",48
 "65844","D19122070","981020033746423","Speedway","2 years 0 months.","Male","Dog","Bully Breed Mix","Brindle",24
 "65845","D19122071","981020033723728","Hope","2 years 1 month.","Female","Dog","Bully Breed Mix","White and Brindle",25
-"65846","C19122091","981020033714645","Bootsie","2 years 7 months.","Female","Cat","Domestic Short Hair","Black and Brown",31
-"65847","C19122092","981020035012598","Watson","9 weeks.","Female","Cat","Domestic Short Hair","Black",2
-"65848","C19122093","981020035025331","Luna","9 weeks.","Female","Cat","Domestic Short Hair","Black",2
-"65849","C19122094","981020035042932","Sherlock","9 weeks.","Male","Cat","Domestic Short Hair","Black and Brown",2
-"65850","C19122095","981020035021540","Morgan","9 weeks.","Male","Cat","Domestic Short Hair","Black and White",2
+"65846","C19122091","981020033714645","Bootsie","2 years 8 months.","Female","Cat","Domestic Short Hair","Black and Brown",32
+"65847","C19122092","981020035012598","Watson","10 weeks.","Female","Cat","Domestic Short Hair","Black",2.22222222222222
+"65848","C19122093","981020035025331","Luna","10 weeks.","Female","Cat","Domestic Short Hair","Black",2.22222222222222
+"65849","C19122094","981020035042932","Sherlock","10 weeks.","Male","Cat","Domestic Short Hair","Black and Brown",2.22222222222222
+"65850","C19122095","981020035021540","Morgan","10 weeks.","Male","Cat","Domestic Short Hair","Black and White",2.22222222222222
 "65851","C19122072","","Stanky","16 years 0 months.","Male","Cat","Domestic Short Hair","Brown and Black",192
 "65852","D19122096","981020033718270","Chance","4 years 0 months.","Male","Dog","Chihuahua","White and Brown",48
 "65853","D19122097","981020033729399","Keto","2 years 1 month.","Male","Dog","Chihuahua","White and Brown",25
@@ -8364,9 +8364,9 @@
 "65876","H19122103","","Snow Flake","1 year 6 months.","Female","House Rabbit","Himalayan","White",18
 "65879","C19122106","981020033727437","Jason","1 year 0 months.","Male","Cat","Domestic Short Hair","Grey and black",12
 "65880","C19122107","981020033711675","Dustin","1 year 1 month.","Female","Cat","Domestic Short Hair","Grey and black",13
-"65881","C19122088","981020033726117","Claus","19 weeks.","Male","Cat","Domestic Short Hair","Grey and White",4.22222222222222
+"65881","C19122088","981020033726117","Claus","20 weeks.","Male","Cat","Domestic Short Hair","Grey and White",4.44444444444444
 "65882","D19121649","","Jundy","10 years 0 months.","Male","Dog","Labrador Retriever","Black",120
-"65885","D19122108","981020033737769","Draco","14 weeks.","Male","Dog","Bully Breed Mix","Blue",3.11111111111111
+"65885","D19122108","981020033737769","Draco","15 weeks.","Male","Dog","Bully Breed Mix","Blue",3.33333333333333
 "65886","D19122091","","Enoch","2 years 0 months.","Male","Dog","German Shepherd Dog","Black and Brown",24
 "65887","D19122092","","Drogo","24 weeks.","Male","Dog","Bully Breed Mix/German Shepherd Dog","Brindle",5.33333333333333
 "65888","C19122109","981020033791591","Mila","10 months.","Female","Cat","Domestic Short Hair","Black and grey",10
@@ -8383,7 +8383,7 @@
 "65905","D1912521","981020033745899","Teddy","1 year 2 months.","Male","Dog","Pomeranian","Red and White",14
 "65906","C19121652","981020033722375","Tux","1 year 5 months.","Male","Cat","Domestic Short Hair","Black and White",17
 "65907","C19121653","981020033704693","Talbot","1 year 5 months.","Male","Cat","Domestic Short Hair","Black and White",17
-"65908","D19122100","","Mr. Man","15 weeks.","Male","Dog","Boxer/Hound","Tan and Black",3.33333333333333
+"65908","D19122100","","Mr. Man","16 weeks.","Male","Dog","Boxer/Hound","Tan and Black",3.55555555555556
 "65910","D19122117","981020033711583","Kiki","5 years 0 months.","Female","Dog","Labrador Retriever/Australian Shepherd","Golden",60
 "65912","C19122101","981020033725107","Sweet Tortie","1 year 0 months.","Female","Cat","Domestic Short Hair","Tortie",12
 "65913","C19122102","","Vanessa","2 years 7 months.","Female","Cat","Domestic Short Hair","Black and Brown",31
@@ -8401,7 +8401,7 @@
 "65927","D19122122","981020033723079","Precious","1 year 6 months.","Female","Dog","Pomeranian","Red",18
 "65928","D2001001","","Sandy","1 year 1 month.","Female","Dog","Mix","White and Black",13
 "65929","D2001002","","Kilo","9 months.","Male","Dog","Bully Breed Mix","White and Black",9
-"65930","C2001001","981020033718411","Zodiac","23 weeks.","Male","Cat","Domestic Short Hair","Black and White",5.11111111111111
+"65930","C2001001","981020033718411","Zodiac","24 weeks.","Male","Cat","Domestic Short Hair","Black and White",5.33333333333333
 "65931","D2001003","","Stella","4 years 11 months.","Female","Dog","Bichon Frise","White",59
 "65932","D2001004","","Harry","33 years 0 months.","Male","Dog","Bichon Frise","White",396
 "65933","D2001005","981020035268258","Sadie","1 year 0 months.","Female","Dog","Boxer/Catahoula Leopard Dog","Black and Brown",12
@@ -8412,7 +8412,7 @@
 "65938","C2001010","","Kitters","1 year 0 months.","Female","Cat","Domestic Short Hair","Black and White",12
 "65939","D2001010","","Rebel","7 months.","Male","Dog","Bully Breed Mix","Brindle and White",7
 "65940","D2001011","981020033741328","Ronald","24 weeks.","Male","Dog","Treeing Walker Coonhound","Brown, Black and White",5.33333333333333
-"65941","D2001012","981020033747146","McDonald","19 weeks.","Male","Dog","Treeing Walker Coonhound","Brown, Black and White",4.22222222222222
+"65941","D2001012","981020033747146","McDonald","20 weeks.","Male","Dog","Treeing Walker Coonhound","Brown, Black and White",4.44444444444444
 "65942","D2001013","981020033727505","Earl","1 year 1 month.","Male","Dog","Bully Breed Mix/Boston Terrier","Black and White",13
 "65943","C2001009","981020033719302","Belle Bella","1 year 0 months.","Female","Cat","Domestic Short Hair","Grey",12
 "65944","C2001011","981020033747293","Luna","2 years 0 months.","Female","Cat","Domestic Short Hair","Tortie",24
@@ -8427,7 +8427,7 @@
 "65953","D2001018","4B5F470360","Zeus","10 years 0 months.","Male","Dog","Great Pyrenees","White",120
 "65954","C2001019","981020033728297","Geronimo","17 weeks.","Male","Cat","Domestic Short Hair","Black and White",3.77777777777778
 "65955","D2001020","981020033707469","Eva","23 weeks.","Female","Dog","Cattle Dog","White and Tan",5.11111111111111
-"65957","C2001022","981020033728518","Sasha","23 weeks.","Female","Cat","Domestic Short Hair","Torbie",5.11111111111111
+"65957","C2001022","981020033728518","Sasha","24 weeks.","Female","Cat","Domestic Short Hair","Torbie",5.33333333333333
 "65958","C2001023","","Tyson","4 years 1 month.","Male","Cat","Domestic Short Hair","Black and White",49
 "65959","C2001012","982000409843369","Midnight","8 years 1 month.","Female","Cat","Domestic Short Hair","Black",97
 "65960","C2001013","981020033706829","Feather","1 year 0 months.","Female","Cat","Domestic Short Hair","White",12
@@ -8487,7 +8487,7 @@
 "66029","C2001061","","Trixie Shamele","2 years 1 month.","Female","Cat","Domestic Short Hair","Grey",25
 "66030","D2001062","","Mason","5 years 0 months.","Male","Dog","Bully Breed Mix","Brindle and White",60
 "66031","D2001063","981020021484237","Khia","3 years 0 months.","Female","Dog","German Shepherd Dog","Black and Brown",36
-"66032","D2001064","","PD Lost Report #2249 Blue sweater","15 years 0 months.","Male","Dog","Shih Tzu","Grey",180
+"66032","D2001064","","PD","15 years 1 month.","Male","Dog","Shih Tzu","Grey",181
 "66033","C2001065","981020033705432","Kalu","2 years 0 months.","Male","Cat","Domestic Medium Hair","Black",24
 "66035","D2001048","981020033735511","Lily","2 years 0 months.","Female","Dog","Bully Breed Mix","White and Tan",24
 "66037","D2001067","981020033740134","Bleu","2 years 0 months.","Male","Dog","English Bulldog/Labrador Retriever","Tan and White",24
@@ -8501,11 +8501,11 @@
 "66047","D2001074","981020035001657","Winston","6 months.","Male","Dog","Shep Mix/Hound","Black",6
 "66048","C2001075","","Trudeau","13 weeks.","Male","Cat","Domestic Short Hair","Buff",2.88888888888889
 "66049","D2001060","981020035007047","Onex","7 years 0 months.","Male","Dog","Rat Terrier/Chihuahua","Black",84
-"66050","C2001076","985141001803114","Queso","6 months.","Male","Cat","Domestic Short Hair","Orange",6
+"66050","C2001076","985141001803114","Queso","7 months.","Male","Cat","Domestic Short Hair","Orange",7
 "66051","D2001058","","Tyson","5 years 0 months.","Male","Dog","Doberman Pinscher","Chocolate",60
 "66054","C2001062","981020033735813","Ebony","8 years 1 month.","Female","Cat","Domestic Short Hair","Tortie",97
 "66055","D2001077","981020013503148","Maggie Moo","8 years 11 months.","Female","Dog","Poodle, Toy/Mix","White",107
-"66056","D2001078","981020033743906","Roux","17 weeks.","Female","Dog","Hound/Mix","Tan and White",3.77777777777778
+"66056","D2001078","981020033743906","Roux","18 weeks.","Female","Dog","Hound/Mix","Tan and White",4
 "66057","C2001063","016535278","Shiva","8 years 6 months.","Female","Cat","Domestic Short Hair","Dilute tortoiseshell",102
 "66058","C2001079","981020035038801","Chess","1 year 1 month.","Male","Cat","Domestic Short Hair","Grey Black and White",13
 "66059","D2001080","981020033743857","Jax","1 year 0 months.","Male","Dog","Shepherd/Great Pyrenees","Brown and Black",12
@@ -8518,10 +8518,10 @@
 "66071","C2001067","","Milo","2 years 0 months.","Male","Cat","Domestic Short Hair","White and Orange",24
 "66075","C2001088","981020035033852","Fernando","12 weeks.","Male","Cat","Domestic Short Hair","Blue",2.66666666666667
 "66076","D2001068","981020033721904","River","14 weeks.","Male","Dog","Australian Shepherd/Border Collie","Black and White",3.11111111111111
-"66077","C2001071","981020033733056","Gretchen","25 weeks.","Female","Cat","Domestic Short Hair","Buff",5.55555555555556
-"66078","C2001072","981020033744596","Short","25 weeks.","Male","Cat","Domestic Short Hair","Buff",5.55555555555556
-"66079","C2001074","981020033743068","Stout","25 weeks.","Male","Cat","Domestic Short Hair","Buff",5.55555555555556
-"66080","C2001077","981020033706014","Spout","25 weeks.","Male","Cat","Domestic Medium Hair","Buff",5.55555555555556
+"66077","C2001071","981020033733056","Gretchen","26 weeks.","Female","Cat","Domestic Short Hair","Buff",5.77777777777778
+"66078","C2001072","981020033744596","Short","26 weeks.","Male","Cat","Domestic Short Hair","Buff",5.77777777777778
+"66079","C2001074","981020033743068","Stout","26 weeks.","Male","Cat","Domestic Short Hair","Buff",5.77777777777778
+"66080","C2001077","981020033706014","Spout","26 weeks.","Male","Cat","Domestic Medium Hair","Buff",5.77777777777778
 "66082","D2001089","0A12293772","Gabby","13 years 0 months.","Female","Dog","Beagle/Mix","Black",156
 "66083","D2001079","0A11582E63","Ruger","10 years 3 months.","Male","Dog","Bully Breed Mix","Brindle",123
 "66084","C2001090","","Precious","17 years 0 months.","Female","Cat","British Shorthair/Mix","White",204
@@ -8547,14 +8547,14 @@
 "66116","C2001101","981020035003141","Zelda","18 weeks.","Female","Cat","Domestic Short Hair","Grey and White",4
 "66117","C2001102","","Little Man","1 year 0 months.","Male","Cat","Domestic Short Hair","Brown and White",12
 "66118","H2001101","","Rabbit Downey, Jr","24 weeks.","Male","House Rabbit","Dutch","Grey and White",5.33333333333333
-"66119","C2001103","981020035015854","Leroy Jethro Gibbs","14 weeks.","Male","Cat","Domestic Short Hair","Black and White",3.11111111111111
+"66119","C2001103","981020035015854","Leroy Jethro Gibbs","15 weeks.","Male","Cat","Domestic Short Hair","Black and White",3.33333333333333
 "66120","H2001104","","Bunyonce","24 weeks.","Female","House Rabbit","Dutch","Grey and White",5.33333333333333
 "66121","H2001105","","Sean Bunnery","24 weeks.","Male","House Rabbit","Dutch","Grey and White",5.33333333333333
 "66122","H2001106","","Marilyn Bunroe","24 weeks.","Female","House Rabbit","Dutch","Grey and White",5.33333333333333
 "66123","H2001107","","Antonio Bunderas","24 weeks.","Male","House Rabbit","Dutch","Grey and White",5.33333333333333
-"66124","C2001108","981020035039703","Timothy McGee","14 weeks.","Male","Cat","Domestic Short Hair","Black, Brown and White",3.11111111111111
-"66125","C2001109","981020035007356","Anthony DiNozzo","14 weeks.","Male","Cat","Domestic Short Hair","Black, Brown and White",3.11111111111111
-"66126","C2001110","981020035036581","Abby Sciuto","14 weeks.","Female","Cat","Domestic Short Hair","Tabbico",3.11111111111111
+"66124","C2001108","981020035039703","Timothy McGee","15 weeks.","Male","Cat","Domestic Short Hair","Black, Brown and White",3.33333333333333
+"66125","C2001109","981020035007356","Anthony DiNozzo","15 weeks.","Male","Cat","Domestic Short Hair","Black, Brown and White",3.33333333333333
+"66126","C2001110","981020035036581","Abby Sciuto","15 weeks.","Female","Cat","Domestic Short Hair","Tabbico",3.33333333333333
 "66130","C2001105","981020035037524","Little Lou","24 weeks.","Male","Cat","Domestic Short Hair","Brown, Black and White",5.33333333333333
 "66131","D2001097","981020021474345","Sadie","2 years 2 months.","Female","Dog","Hound","Fawn",26
 "66132","D2002113","981020035004396","BooBoo","2 years 0 months.","Male","Dog","Chihuahua/Wirehaired Terrier","Tan",24
@@ -8567,7 +8567,8 @@
 "66144","D2002115","981020035000514","Shiver","20 weeks.","Female","Dog","Mix","Brown and White",4.44444444444444
 "66145","D2002116","981020035027675","Zeal","20 weeks.","Female","Dog","Hound/Mix","White and Brown",4.44444444444444
 "66146","D2002117","981020035030414","Yoke","20 weeks.","Male","Dog","Hound/Mix","Brown and White",4.44444444444444
-"66147","D2002118","981020035013295","Cete","19 weeks.","Female","Dog","Hound/Mix","Brown and White",4.22222222222222
+"66147","D2002118","981020035013295","Cete","20 weeks.","Female","Dog","Hound/Mix","Brown and White",4.44444444444444
+"66148","D2002098","981020035019565","Ricochet","24 weeks.","Male","Dog","Bully Breed Mix","Black and White",5.33333333333333
 "66149","D2002119","","Inigo","6 weeks.","Male","Dog","Bully Breed Mix","White and Brindle",1.33333333333333
 "66153","C2002118","981020035012360","Jax","5 years 0 months.","Male","Cat","Domestic Short Hair","Black and White",60
 "66154","D2002120","981020035011702","Flower","11 weeks.","Female","Dog","Hound/Mix","Brown and Black",2.44444444444444
@@ -8578,7 +8579,7 @@
 "66163","C2002124","981020035031421","Shawn","2 years 0 months.","Male","Cat","Domestic Short Hair","Orange",24
 "66164","D2002124","981020035018076","Sherlock","11 months.","Male","Dog","Labrador Retriever/Beagle","Red",11
 "66166","D2002125","981020035030407","Magna","10 months.","Female","Dog","Mix","Black and White",10
-"66169","C2002127","981020035033055","Meowcita","23 weeks.","Female","Cat","Domestic Short Hair","Grey and White",5.11111111111111
+"66169","C2002127","981020035033055","Meowcita","24 weeks.","Female","Cat","Domestic Short Hair","Grey and White",5.33333333333333
 "66171","D2002099","982126054288570","Cooper","2 years 0 months.","Male","Dog","Cairn Terrier/Mix","Tan",24
 "66179","C2002131","","Felicity","1 year 0 months.","Female","Cat","Domestic Short Hair","Grey",12
 "66180","D2002131","981020035028361","Delilah Rose","6 months.","Female","Dog","Bully Breed Mix","Red",6
@@ -8596,6 +8597,10 @@
 "66207","D2002147","","Baby Girl","14 weeks.","Female","Dog","Shep Mix","Brown and Black",3.11111111111111
 "66211","D2002132","","Roxy","7 years 0 months.","Female","Dog","Bully Breed Mix","Black",84
 "66212","D2002139","0A13673642","Rex","6 years 9 months.","Male","Dog","Bully Breed Mix","Black and White",81
-"66219","D2002151","981020035030328","Lady","13 weeks.","Female","Dog","Bully Breed Mix","Grey",2.88888888888889
+"66219","D2002151","981020035030328","Lady","14 weeks.","Female","Dog","Bully Breed Mix","Grey",3.11111111111111
 "66220","D2002152","981020035027358","Bruce","11 months.","Male","Dog","Golden Retriever","Golden",11
 "66221","D2002153","981020035003325","Lucy","4 years 0 months.","Female","Dog","Australian Shepherd/Mix","Red and White",48
+"66244","C2002147","","Merv","6 years 0 months.","Male","Cat","Domestic Short Hair","Black",72
+"66245","C2002155","","Tina","1 year 6 months.","Female","Cat","Domestic Medium Hair","Tortie",18
+"66249","C2002158","","Copy of Tina","1 year 6 months.","Female","Cat","Domestic Medium Hair","Tortie",18
+"66257","D2002170","981020013635562","Larry","14 years 11 months.","Female","Dog","Pekingese","Black and White",179

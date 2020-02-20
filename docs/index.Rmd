@@ -261,6 +261,9 @@ intakes <- data[,c("id","intakedate","intakereason","location")] %>% unique()
 #Update field names
 names(intakes)[2:3] <- c("date","interaction")
 
+#Updates blank level with None
+levels(intakes$interaction)[levels(intakes$interaction)==""] <- "No Reason"
+
 #Interaction type
 intakes$type <- "intake"
 
@@ -372,72 +375,231 @@ The Shelter Interaction Log provides a time series data set provides another dat
 
 ```{r pro-ani-log}
 #Creating shelter interaction dataframe
-interactions <- rbind(intakes[,c("id","date","interaction","type")],
+interact <- rbind(intakes[,c("id","date","interaction","type")],
                     move[,c("id","date","interaction","type")],
                     return[,c("id","date","interaction","type")],
                     dead[,c("id","date","interaction","type")]) %>% 
                 arrange(id,date)
 
 #Loop calculates duration between shelter interaction for each animal's case
-interactions$duration <- NA
+interact$duration <- NA
 for(i in 1:length(unique(intakes$id))){
-  tmp <- interactions[interactions$id==intakes[i,]$id,c("id","date","duration")]
+  tmp <- interact[interact$id==intakes[i,]$id,c("id","date","duration")]
   dur <- difftime(tmp[2:nrow(tmp),]$date,tmp[1:(nrow(tmp)-1),]$date,unit="day") %>% 
            unclass() %>% 
            as.numeric()
   dur <- c(dur,NA)
   tmp$duration <- dur
-  interactions[interactions$id==intakes[i,]$id,]$duration <- tmp$duration
+  interact[interact$id==intakes[i,]$id,]$duration <- tmp$duration
 }
 
+#Some durations have values of NA after calcultion, but are still in the shelter.
+#Case: returned or intake animal has not been moved or died
+tmp <- interact %>% 
+  filter(type %in% c("intake","return") & 
+         !(interaction %in% c("DOA","Cremation")) &
+         is.na(duration)) %>% 
+  select(id,date) %>% 
+  mutate(duration=as.numeric(unclass(Sys.Date()-date)))
+
+#Update durations
+interact[interact$type %in% c("intake","return") & 
+         !(interact$interaction %in% c("DOA","Cremation")) &
+         is.na(interact$duration),]$duration <- tmp$duration
+
+#Case: Foster animals are still in the system but not in the shelter
+tmp <- interact %>% 
+  filter(interaction == c("Foster") &
+         is.na(duration)) %>% 
+  select(id,date) %>% 
+  mutate(duration=as.numeric(unclass(Sys.Date()-date)))
+
+#Update durations
+interact[interact$interaction == c("Foster") &
+         is.na(interact$duration),]$duration <- tmp$duration
+
 #Transforms type into a factor variables
-interactions$type <- as.factor(interactions$type)
+interact$type <- as.factor(interact$type)
 
 #Clean environment
 rm(tmp,dur,i)
 
 #Summary of data
-summary(interactions)
+summary(interact)
 ```
 
 ### 7. Supplemental Statistic for Animals {#sup}
 
-* Total time in shelter - 
-* Number of Interactions with Shelter - 
-* Adopted - t/f or count
-* Fostered - t/f or count
-* Reclaimed - t/f or count
-* Returned - count
+Supplemental statistics for animals provide additional measurements that describe an animal's time and interaction in the shelter. These variables were calculated from the **Shelter Interaction Log**. The list of supplemental statistical measured are described below. The data manipulation scripts to calculate supplemental statistics are documented in the preceeding sections.
 
-```{r pro-ani-sup}
+* Number of Interactions with Shelter - *interactions* - this numeric value indicates the number of interactions that an animal has with the shelter. 
+* Total time in shelter system - *timeinsys* - this numeric value representing the number of days that an animal is in the Animal Care and Control Division Shelter system.
+* Transfer In - *transfer_in* - a binary flag field indicating is an animal transfered into the shelter.
+* Transfer Out - *transfer_out* - a binary flag field indicating is an animal transfered out of the shelter.
+* Adopted - *adopt* & *adopt_ct* - a binary flag field and count field indicating animal was adopted.
+* Fostered - *foster* & *foster_ct* - a binary flag field and count field indicating animal was fostered.
+* Reclaimed - *reclaim* & *reclaim_ct* - a binary flag field and count field indicating animal was reclaimed by an owner. 
+* Returned - *return* & *return_ct* - a binary flag field and count field indicating animal was returned to the shelter. 
+* Death Logged by Shelter - *dead* - a binary flag field and count field indicating animal has died by shelter staff.
+* Shelter Intake Date - *intakedate* - date an animal was first taken in by the shelter.
+
+#### Supplemental Statistics Data Frame
+
+A copy of the **Animal Idenification** data set is copied into a new data frame.
+
+```{r a-sup}
 #New data frame of supplemental stats
 animals_s <- animals
+```
 
+#### Number of Interactions with Shelter
+
+The **Number of Interactions with Shelter** uses the **Shelter Interaction Log** data. First, the *id* and *interaction* variables selected from the shelter's interaction log (*interact*), then aggregated by the *group_by()* funtion on an animal's identifier. Last, the the number interactions is counted using the *summarise()* and *n()* functions.
+
+```{r a-sup-interactions}
 #Total Shelter Interactions (Intake+Returns+Movements+Deaths)
+tmp <- interact %>% 
+          select(id,interaction) %>% 
+          group_by(id) %>% 
+          summarise(interactions = n()) 
+animals_s <- join(animals_s,tmp,by="id")
+```
 
+#### Time in the Shelter System
 
-#Time in Selter
+**Time in the Shelter System** value represents the sum total duration in days that an animal is in the shelter or being fostered. Periods of time that are apart of this calculation include time from intake to a move out of the system (e.g. time to adoption, released to wilderness, or time until reclaimed by an owner.) Periods of time an animal moves out of the system, but later returns (e.g. adopted, reclaimed by owner, escaped, or stolen but returned to the shelter) are excluded from the calculations.
 
+For the calculation, the **Shelter Interaction Log** is filtered to remove duration measurements with *NA* values are removed (e.g typically, last interaction with the shelter, such as when an animal has been adopted or when an animal is put down.)), and to remove a set of movement interactions with duration values associated with time outside of the shelter's system (e.g. when an animal isn't fostered). Next, the *id* and *duration* fields are selected, and aggregated by the *group_by()* funtion on an animal's identifier. Finally, then total duration calculated using the  *summarise()* and *sum()* functions.
 
-#Adopted
+```{r a-sup-timesys}
+#Time in Selter System
+#Included durations: period between intakes or returns until a movement or death; time in foster care until movement or death;
+#Exclude durations: periods where an animal was adopted, reclaimed or stolen. Foster time 
+tmp <- interact %>% 
+          filter(!is.na(duration) & 
+                 !(interaction %in% c("Adoption", "Reclaimed", "Stolen",
+                                      "Escaped", "Released to Wilderness"))) %>% 
+          select(id,duration) %>% 
+          group_by(id) %>% 
+          summarise(timeinsys = sum(duration)) 
+animals_s <- join(animals_s,tmp,by="id")
+```
 
+#### Adoption, Foster and Reclaimed Animal Flags and Counts
 
+The following processes calculate a number of fields related to common animal movements. First, a logic field is calculated to indicate if an animal was transfered out of the shelter, adopted, fostered, and or reclaimed by the animal's owner. Next, the count of times an animal is adopted, fostered or reclaimed are calculated. These movement may appear multiple times in the shelter interaction log.
 
-#Fostered
+```{r a-sup-moves}
+#Flags animals by type of common movement
+tmp <- interact %>% 
+        filter(type=="move") %>%
+        group_by(id) %>%
+        summarise(
+          transferout = any(interaction=="Transfer"),
+          adopt = any(interaction=="Adoption"),
+          foster = any(interaction=="Foster"),
+          reclaim = any(interaction=="Reclaimed")
+        ) 
+#T/F to 1/0 
+tmp[,2:5] <- lapply(tmp[,2:5], as.numeric)
 
+#Counts of common movements
+tmp$reclaim_ct <- tmp$foster_ct <- tmp$adopt_ct <-  0
 
+#Number of time animal was Adopted
+tmp2 <- interact %>% 
+          filter(type=="move" & interaction=="Adoption") %>%
+          group_by(id) %>%
+          summarise(ct = n())
+tmp[tmp$id %in% tmp2$id,]$adopt_ct <- tmp2$ct
 
-#Returned Count
-animals_s$hasReturned <- 0
-tmp <- ddply(return,~id,summarise,
-             hasReturned = length(date)
-             )
+#Count of times animal fostered
+tmp2 <- interact %>% 
+          filter(type=="move" & interaction=="Foster") %>%
+          group_by(id) %>%
+          summarise(ct = n())
+
+tmp[tmp$id %in% tmp2$id,]$foster_ct <- tmp2$ct
+
+#Count of times animal reclaimed
+tmp2 <- interact %>% 
+          filter(type=="move" & interaction=="Reclaimed") %>%
+          group_by(id) %>%
+          summarise(ct = n())
+tmp[tmp$id %in% tmp2$id,]$reclaim_ct <- tmp2$ct
+
+#Joins tmp file to supplemental data frame
 animals_s <- join(animals_s,tmp,by="id")
 
-#Death stats
-
-
-  
-  
-summary(animals_s)
+#Re-order columns
+animals_s <- animals_s[,c(1:14,17,15,18,16,19)]
+rm(tmp, tmp2)
 ```
+
+#### Return Flag and Counts
+
+The following processes calculates a number of fields animals returned to the system. First, a logic field is calculated to indicate that an animal returned to the shelter system. Next, the count of times an animal was returned is calculated, as an animal may return multiple times.
+
+```{r a-sup-returns}
+#Flags animals by type of common movement
+tmp <- interact %>% 
+        filter(type=="return") %>%
+        group_by(id) %>%
+        summarise(return=any(type=="return"),
+                  return_ct=n())
+#T/F to 1/0 
+tmp[,2] <- lapply(tmp[,2], as.numeric)
+
+#Join fields to supplemental stat data frame
+animals_s <- join(animals_s,tmp,by="id")
+
+#Updates NA fields to 0 values for animals that have not been returned
+animals_s[is.na(animals_s$return),c(20:21)] <- 0
+```
+
+#### Transfer Into Shelter Flag
+
+```{r ani-sup-tin}
+tmp <- interact %>% 
+        filter(type=="intake") %>%
+        group_by(id) %>%
+        summarise(
+          transferin = any(interaction=="Transfer from Other Shelter"),
+        )
+#T/F to 1/0 
+tmp[,2] <- lapply(tmp[,2], as.numeric)
+
+#Join field to supplemental stats
+animals_s <- join(animals_s,tmp,by="id")
+
+#Reorder fields
+animals_s <- animals_s[,c(1:12,22,13:21)]
+```
+
+#### Death Logged by Shelter Flag
+
+```{r ani-sup-dead}
+tmp <- dead %>% 
+        group_by(id) %>%
+        summarise(
+          dead = 1)
+
+#Join field to supplemental stats
+animals_s <- join(animals_s,tmp,by="id")
+
+#Reorder fields
+animals_s[is.na(animals_s$dead),]$dead <- 0
+```
+
+#### Shelter Intake Date
+
+```{r ani-sup-indate}
+tmp <- interact %>% 
+        group_by(id) %>%
+        summarise(intakedate = first(date))
+
+# Add field to supplemental stats
+animals_s <- join(animals_s,tmp,by="id")
+rm(tmp)
+```
+
