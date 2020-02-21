@@ -6,39 +6,33 @@ library(knitr)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Bloomington Animal Care and Control data is available through **[BClear](https://data.bloomington.in.gov/)**, a data portal for Bloomington, Indiana's city government. The Animal Care and Control Division has prepared two data sets that the public may use to understand how the city handles animal welfare. 
+# Introduction
+
+Bloomington Animal Care and Control data is available through **[BClear](https://data.bloomington.in.gov/)**, a data portal for Bloomington, Indiana's city government. The **[Animal Care and Control Division](https://bloomington.in.gov/animal-shelter)** has prepared two data sets that the public may use to understand how the city handles animal welfare. 
 
 This notebook was created for the **BMG Hack's - Let's Get Visual - Civic Data Challenge**. The notebook provides a description of each data set, and provides code for the data processing performed on these data that (hopefully) will facilitate analysis and visualization that can be updated, re-used, and shared with others! 
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.
+Documention and processing workflow for two Bloomington Animal Care and Control data sets are provided below. These data sets include the division's historic **Annual Statistics** and **Animal Cases Data** representing the flow of animals in and out of the Bloomington Animal Shelter from the start of 2017 to present day. 
 
-## About the Original Data Sets
+### Download Processed Data
+Data processing outputs are collected in a ZIP file and available for download in the link below. Data is provided in CSV format.
 
-*  **[Annual Statistics (2004-2019)](https://data.bloomington.in.gov/dataset/animal-care-and-control/resource/7a847ec2-31c6-48e3-b0bc-02af2fa94587)** - These data represent high level annual statistics for the division, which includes revenue, budgets, staffing, counts of animal intakes and movements. These data is great for those interested in practicing implementing basic data visualizations using a tidy data set.
+#### **[Processed Animal Care and Control  Data](https://github.com/mginda/bmghack-animalcontrol/raw/master/data/bmg-acc-data.zip)** - Feb. 20, 2020
 
-*  **[Adoptions (2017-Present)](https://data.bloomington.in.gov/dataset/adopted-animals/resource/8854ce02-e8f5-44b9-b85f-17f002a7d023)** - These data represent animal case records maintained by the division. This is a much larger and complex data set compared to the annual statistics. The Bloomington Animal Shelter, which uses the [Shelter Manager](https://www.sheltermanager.com/site/en_tour.html) database to manage its case load. The data provided by the city is a roll-up of multiple tables from the shelter database. Currently, there are over 12,000 intake records available to download.
+### Navigate to...
+
+* [Annual Statistics Documentation](#annual-stats)
+* [Animal Case Data Documentation](#cases)
 
 # Data Documentation and Processing Notes
 
-The review and processing workflow for both Bloomington Animal Care and Control data sets are documented  below. Processing result outputs are collected in a ZIP file and available for download in the link below. Data is provided in CSV format.
-
-#### **[Processed Animal Care and Control  Data](https://github.com/mginda/bmghack-animalcontrol/raw/master/data/bmg-acc-data.zip)**
-
-### Jump to:
-
-* [Annual Statistics](#annual-stats)
-* [Animal Case Data](#cases)
-
-## Workflow Set-up
-
-### R Environment
+## R Environment Set-Up
 
 Here we set up the R environment, and load in the R Packages that will be used in the notebook.
 
 ```{r enviro, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
 #Clean up environment
 rm(list=ls())
-
 #Packages used in notebook
 library(curl)        # Data downloads via URL
 library(tidyr)       # Tidyverse data processing piping, string manipulation
@@ -55,18 +49,38 @@ Data is loaded directly into R using a CURL function that uses **BClear** URLS t
 ```{r data-load, echo=TRUE}
 #Annual Statistics
 annual <- read.csv(curl(url="https://data.bloomington.in.gov/dataset/9a0fc126-0775-4952-96ff-76ece67ffbc7/resource/7a847ec2-31c6-48e3-b0bc-02af2fa94587/download/animal-care-and-control-data-set-2004-2019.csv"), header=TRUE, stringsAsFactors = F)
-
 #Intake and adoption records
 intake <- read.csv(curl(url="https://data.bloomington.in.gov/dataset/94d3f457-57b5-45be-bee0-a0106f59b7ed/resource/8854ce02-e8f5-44b9-b85f-17f002a7d023/download/animals.csv"), header=TRUE, stringsAsFactors = F)
 ```
 
 Before analyzing and visualizing these data, the variables in the data set were reviewed to ensure that they have the correct data type in R, and to determine how variables relate to each other. The data processing routine documented below is used to clean-up and reshape the data to aid development and resuse of these data in a visual analytics workflow.
 
-## Annual Statistics {#annual-stats}
+## Annual Statistics Documentation {#annual-stats}
+
+#### **Source: [Annual Statistics (2004-2019)](https://data.bloomington.in.gov/dataset/animal-care-and-control/resource/7a847ec2-31c6-48e3-b0bc-02af2fa94587)** 
+
+These data represent high level annual statistics for the division, which includes revenue, budgets, staffing, counts of animal intakes and movements. These data is great for those interested in practicing implementing basic data visualizations using a tidy data set.
+
+* Number of employees - *employees* 
+* Number of vehicles - *vehicles*
+* Annual Budget - *budget* - $
+* Grants Recieved - *grants* - $
+* Revenue from Adoptions - *revenue* - $
+* Service Calls - *serviceCalls*
+* Emergency Calls - *emergencyCalls*
+* Number of Owner Surrended - *surrender*
+* Number of Strays - *stray*
+* Number of Impounded - *impound*
+* Total Number of Intakes - *intake*
+* Number of Transfer to other Shelters - *transfer*
+* Number of Fosters - *foster*
+* Number of Adoptions - *adopt*
+* Number of Returnes - *return*
+* Number of Euthinizations - *euthenize*
 
 ### Data Structure
 
-There are two issues with the Animial Care and Control Divisions' Annual Statistics data set:
+A review of the data structure reveals two issues with the Animial Care and Control Divisions' Annual Statistics data set:
 
 1. Variables use verbose names with have had punctuation added for spaces and text is captialized;
 2. Monetary values are captured as character strings with symbols and empty spaces rather than providing providing a numeric values. We need to fix these two issues with our data.
@@ -86,7 +100,6 @@ annual_cols <- gsub("\\.","\\ ",annual_cols)
 names(annual) <- c("year","employees","vehicles","budget","surrender","stray","impound",
                    "intake","adopt","return","euthanize","tranfer","foster","serviceCalls",
                    "emergencyCalls","grants","revenue")
-
 #Parse the budget, grants and revenue fields to create numeric values instead of character strings
 annual$budget <- parse_number(annual$budget, na="NA")
 annual$grants <- parse_number(annual$grants, na="NA")
@@ -94,23 +107,6 @@ annual$revenue <- parse_number(annual$revenue, na="NA")
 ```
 
 Now we can get accurate descriptive data summaries for the `r length(colnames(annual))` variables in the Annual Statistics observations for the Animal Control Division. Variables measured, include:
-
-* Number of employees - *employees* 
-* Number of vehicles - *vehicles*
-* Annual Budget - *budget* - $
-* Grants Recieved - *grants* - $
-* Revenue from Adoptions - *revenue* - $
-* Service Calls - *serviceCalls*
-* Emergency Calls - *emergencyCalls*
-* Number of Owner Surrended - *surrender*
-* Number of Strays - *stray*
-* Number of Impounded - *impound*
-* Total Number of Intakes - *intake*
-* Number of Transfer to other Shelters - *transfer*
-* Number of Fosters - *foster*
-* Number of Adoptions - *adopt*
-* Number of Returnes - *return*
-* Number of Euthinizations - *euthenize*
 
 ### Summary Descriptive Statistics
 
@@ -126,11 +122,13 @@ summary(annual)
 head(annual)
 ```
 
-## Animal Case Data {#cases}
+## Animal Case Data Documenation {#cases}
 
-The Animal Case data set is more complex data set because it is a composite taken from from the Shelter Manager database. By reviewing the data structure and type and values of variable recorded across the observations (e.g. counts of values for catoregorical aka factor aka qualitative fields), cleaner data sets will be derived to aid analysis and visualization.
+#### **Source: [Adoptions (2017-Present)](https://data.bloomington.in.gov/dataset/adopted-animals/resource/8854ce02-e8f5-44b9-b85f-17f002a7d023)** 
 
-The goal of data processing is to create different subsets that best represent data for potential analysis and visualizations. The data sets derived from the origianl data set include:
+The Animal Case data set represent animal case records maintained by the division. This is a much larger and complex data set compared to the annual statistics. The Bloomington Animal Shelter, which uses the [Shelter Manager](https://www.sheltermanager.com/site/en_tour.html) database to manage its case load. The data provided by the city is a roll-up of multiple tables from the shelter database. Currently, there are over 12,000 intake records available to download.
+
+The goal of data processing workflow presented below is to create different subsets that best represent the different types of interactions that an animal may experience in the shelter system. These sub-sets allow a user to create tailored analysis and visualizations. The data sets derived from the origianl data set include:
 
 1. [Animal Identification](#animals)
 2. [Intake Cases](#intakes)
@@ -140,13 +138,40 @@ The goal of data processing is to create different subsets that best represent d
 6. [Shelter Interaction Log](#log)
 7. [Supplemental Animal Statistics](#sup)
 
-### Data Structure
+### Known Issues and Limitations 
 
-There are `r length(rownames(intake))` observations across `r length(colnames(intake))` variables in this data set. The data structure provides a description of the variables, and is shown below. 
+Working with the Animal Case Data set has provided me some insights on issues and limitations present in these data. Issues relate to the quality of data observations captured by the shelter, while limitations indicate areas where there are gaps in what is knowable based on the data provided.
 
-Reading variable names shows that the data set uses common subjects for related variables. Examples of variable relationships include fields starting with: *intake*, *movement*, *return*, and *deceased*. This suggests that there are a minimum of four tables combined in this data set. 
+#### Issues found in data
+* Animal ages are estimates of the intake specialists based on examination of the animal and/or from information provided upon intake & return.
+* Animal breed information may be the best guess of the intake specialists.
+* Reasons for animal intake and returns are subjective and limited to one category per animal. Some assignments may be defaults for particular cases where multiple reasons apply.
+* Transfers to other shelters exist within intake and movement data sets; however, the flag field *istransfer* is not used in these interactions.
+* The calculation of duration in the shelter system is subjective. I consider time in foster care to be time an animal is still in the system, but outside of the shelter. 
+* All animals are assigned a reason/cause for being killed; however, this is likely a default field required at intake, even if an animal has not been killed. These values are excluded from the *dead* data set.
+* Some animals taken or returned are logged as *dead on arrival*/*DOA*, but also have a duration time calculation.
+* Flags used in the *dead* data set have unclear combinations (e.g. an animal died off shelter and is DOA). 
 
-Data tables are likely combined by the *id* field, which acts as the primary key in the shelter database. This field will be used in all derived data subsets, to help join related data.
+#### Limitations with data
+* There is not data on who brought in, adopted, reclaimed, or fostered an animal.
+* Transfers to other shelters exist within intake and movement data sets; however, where an animal comes or goes is not provided here.
+* The outcome of an animal transferred to another shelter system is unknown.
+* Some adopted animals may have been returned to another shelter, or given to a family or friend against shelter adoption agreements.
+* Animal build/size is captured but not provided here.
+* Animal fertility status is not capture in these data.
+* Animal special needs and behavioral issues may not be fully captured.
+* Animal sponsorship for adoption by staff and volunteers is not captured in the data.
+* The shelter runs multiple adoption focused events; however, these events are not provided as a data set to supplement case records.
+
+### Processing Workflow
+
+#### Data Structure
+
+There are `r length(rownames(intake))` observations across `r length(colnames(intake))` variables in this data set. The data structure provides a description of the variables below. 
+
+Reading the variable names shows that the data set uses common naming convention in variable names to indicate relationships. Examples of variable relationships include fields starting with: *intake*, *movement*, *return*, and *deceased*. This suggests that there are a minimum of four tables combined in this data set. 
+
+Data tables are likely joined in the shelter's database by the *id* acting as the primary key  This field will present in all derived subsets to help join related data frames.
 
 ```{r str-in, echo=FALSE}
 #Intake Structure
@@ -154,19 +179,17 @@ str(intake)
 ```
 
 #### Assigning Data Types
-Before subsetting the animal case data set into cleaner subsets, it is processed to ensure that variables have the proper data types assigned. The data set requires transforming fields into factor/categorical variables, and dates. Note, *animalage* is ignored, but it is processed later in the *Animal Idenfification* data set.
+Before subsetting the animal case data set into cleaner subsets, variables are processed to ensure that they have the proper data types assigned. The case data requires transforming fields into factor/categorical variables, and to dates. Note, *animalage* is ignored, but it is processed later in the *Animal Idenfification* data set.
 
 ```{r pro-in-datatypes, echo=TRUE, warning=TRUE}
 #Copy intake to new data.frame data 
 data <- intake
-
 #List of factor variables column names
 intake_fac <- colnames(data[,c(1,3,5:10,12,13,15,18,20)])
 #Converts variables from character strings to factors
 for(i in 1:length(intake_fac)){
   data[,intake_fac[i]] <- data[,intake_fac[i]] %>% as.factor()
 }
-
 #List of date variable column names
 intake_date <- colnames(data[,c(2,14,17,19)])
 #Convert variables from character strings to dates
@@ -179,7 +202,7 @@ for(i in 1:length(intake_date)){
 rm(i, intake_date, intake_fac)
 ```
 
-### 1. Animal Identification {#animals}
+#### 1. Animal Identification {#animals}
 
 Animals taken in by Animal Care and Control Division are described across a variety of features, including multiple identifiers, a basic description of the animal, and the location within the shelter. The variables included in this data set are:
 
@@ -203,7 +226,6 @@ Animals taken in by Animal Care and Control Division are described across a vari
 ```{r pro-animals, echo=TRUE, warning=TRUE}
 #Creates demographic data set of unique animals with intake cases
 animals <- data[,c("id","sheltercode","identichipnumber","animalname","animalage","sexname","speciesname","breedname","basecolour")] %>% unique()
-
 #Processes animal age to
 tmp <- as.data.frame(as.character(animals$animalage),stringsAsFactors = F)
 names(tmp) <- "animalage"
@@ -233,10 +255,8 @@ for(i in 1:nrow(tmp)){
 }
 #Creates new column in animals data.frame
 animals$intakeage <- tmp$intakeage
-
 #Removes objects
 rm(i,d,tmp)
-
 #Summarize intake cases
 summary(animals)
 ```
@@ -257,16 +277,12 @@ Intake Case data include any variable that relates to when an animal first inter
 ```{r pro-intake, echo=TRUE, warning=TRUE}
 #Creates demographic data set of unique animals with intake cases
 intakes <- data[,c("id","intakedate","intakereason","location")] %>% unique()
-
 #Update field names
 names(intakes)[2:3] <- c("date","interaction")
-
 #Updates blank level with None
 levels(intakes$interaction)[levels(intakes$interaction)==""] <- "No Reason"
-
 #Interaction type
 intakes$type <- "intake"
-
 #Summarize intake cases
 summary(intakes)
 ```
@@ -292,7 +308,6 @@ move <- data[,c("id","movementdate","movementtype")] %>%
   arrange(id)
 names(move)[2:3] <- c("date","interaction")
 move$type <- "move"
-
 #Summarize movements
 summary(move)
 ```
@@ -316,16 +331,12 @@ return <- data[,c("id","returndate","movementdate","returnedreason")] %>%
   unique() %>% 
   arrange(id)
 return <- return[!is.na(return$returndate),]
-
 #Update field names
 names(return)[c(2,4)] <- c("date","interaction")
-
 #Add interaction type
 return$type <- "return"
-
 #Time to return
 return$duration <- difftime(return$date,return$date, unit="day")
-
 #Summarize intake cases
 summary(return)
 ```
@@ -352,13 +363,10 @@ Sometimes animals taken in or returned to the shelter that cannot be released. I
 dead <- data[,c("id","deceaseddate","deceasedreason",
                 "diedoffshelter","puttosleep","isdoa")] %>% unique()
 dead <- dead[!is.na(dead$deceaseddate),]
-
 #Update field names
 names(dead)[2:3] <- c("date","interaction")
-
 #Adds interaction type
 dead$type <- "dead"
-
 #Summarize intake cases
 summary(dead)
 ```
@@ -380,7 +388,6 @@ interact <- rbind(intakes[,c("id","date","interaction","type")],
                     return[,c("id","date","interaction","type")],
                     dead[,c("id","date","interaction","type")]) %>% 
                 arrange(id,date)
-
 #Loop calculates duration between shelter interaction for each animal's case
 interact$duration <- NA
 for(i in 1:length(unique(intakes$id))){
@@ -392,7 +399,6 @@ for(i in 1:length(unique(intakes$id))){
   tmp$duration <- dur
   interact[interact$id==intakes[i,]$id,]$duration <- tmp$duration
 }
-
 #Some durations have values of NA after calcultion, but are still in the shelter.
 #Case: returned or intake animal has not been moved or died
 tmp <- interact %>% 
@@ -401,29 +407,23 @@ tmp <- interact %>%
          is.na(duration)) %>% 
   select(id,date) %>% 
   mutate(duration=as.numeric(unclass(Sys.Date()-date)))
-
 #Update durations
 interact[interact$type %in% c("intake","return") & 
          !(interact$interaction %in% c("DOA","Cremation")) &
          is.na(interact$duration),]$duration <- tmp$duration
-
 #Case: Foster animals are still in the system but not in the shelter
 tmp <- interact %>% 
   filter(interaction == c("Foster") &
          is.na(duration)) %>% 
   select(id,date) %>% 
   mutate(duration=as.numeric(unclass(Sys.Date()-date)))
-
 #Update durations
 interact[interact$interaction == c("Foster") &
          is.na(interact$duration),]$duration <- tmp$duration
-
 #Transforms type into a factor variables
 interact$type <- as.factor(interact$type)
-
 #Clean environment
 rm(tmp,dur,i)
-
 #Summary of data
 summary(interact)
 ```
@@ -502,35 +502,28 @@ tmp <- interact %>%
         ) 
 #T/F to 1/0 
 tmp[,2:5] <- lapply(tmp[,2:5], as.numeric)
-
 #Counts of common movements
 tmp$reclaim_ct <- tmp$foster_ct <- tmp$adopt_ct <-  0
-
 #Number of time animal was Adopted
 tmp2 <- interact %>% 
           filter(type=="move" & interaction=="Adoption") %>%
           group_by(id) %>%
           summarise(ct = n())
 tmp[tmp$id %in% tmp2$id,]$adopt_ct <- tmp2$ct
-
 #Count of times animal fostered
 tmp2 <- interact %>% 
           filter(type=="move" & interaction=="Foster") %>%
           group_by(id) %>%
           summarise(ct = n())
-
 tmp[tmp$id %in% tmp2$id,]$foster_ct <- tmp2$ct
-
 #Count of times animal reclaimed
 tmp2 <- interact %>% 
           filter(type=="move" & interaction=="Reclaimed") %>%
           group_by(id) %>%
           summarise(ct = n())
 tmp[tmp$id %in% tmp2$id,]$reclaim_ct <- tmp2$ct
-
 #Joins tmp file to supplemental data frame
 animals_s <- join(animals_s,tmp,by="id")
-
 #Re-order columns
 animals_s <- animals_s[,c(1:14,17,15,18,16,19)]
 rm(tmp, tmp2)
@@ -549,10 +542,8 @@ tmp <- interact %>%
                   return_ct=n())
 #T/F to 1/0 
 tmp[,2] <- lapply(tmp[,2], as.numeric)
-
 #Join fields to supplemental stat data frame
 animals_s <- join(animals_s,tmp,by="id")
-
 #Updates NA fields to 0 values for animals that have not been returned
 animals_s[is.na(animals_s$return),c(20:21)] <- 0
 ```
@@ -568,10 +559,8 @@ tmp <- interact %>%
         )
 #T/F to 1/0 
 tmp[,2] <- lapply(tmp[,2], as.numeric)
-
 #Join field to supplemental stats
 animals_s <- join(animals_s,tmp,by="id")
-
 #Reorder fields
 animals_s <- animals_s[,c(1:12,22,13:21)]
 ```
@@ -583,10 +572,8 @@ tmp <- dead %>%
         group_by(id) %>%
         summarise(
           dead = 1)
-
 #Join field to supplemental stats
 animals_s <- join(animals_s,tmp,by="id")
-
 #Reorder fields
 animals_s[is.na(animals_s$dead),]$dead <- 0
 ```
@@ -597,9 +584,7 @@ animals_s[is.na(animals_s$dead),]$dead <- 0
 tmp <- interact %>% 
         group_by(id) %>%
         summarise(intakedate = first(date))
-
 # Add field to supplemental stats
 animals_s <- join(animals_s,tmp,by="id")
 rm(tmp)
 ```
-
