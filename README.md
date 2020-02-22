@@ -13,10 +13,6 @@ The Adoptions data set is much larger and complex than the annual statistics, wi
 
 ## [Data Documentation and Processing R Notebook](https://mginda.github.io/bmghack-animalcontrol/)
 
-OR at
-
-## [https://tinyurl.com/bmg-animal](https://tinyurl.com/bmg-animal)
-
 ## Data Visualization Ideas
 
 Example analysis and visualizations might include:
