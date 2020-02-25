@@ -8,7 +8,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Introduction
 
-Bloomington Animal Care and Control data is available through **[BClear](https://data.bloomington.in.gov/)**, a data portal for Bloomington, Indiana's city government. The **[Animal Care and Control Division](https://bloomington.in.gov/animal-shelter)** has prepared two data sets that the public may use to understand how the city handles animal welfare. These data sets include the division's historic **Annual Statistics** and **Animal Cases Data** representing the flow of animals in and out of the Bloomington Animal Shelter from the start of 2017 to present day. 
+Bloomington Animal Care and Control data is available through **[BClear](https://data.bloomington.in.gov/)**, a data portal for Bloomington, Indiana's city government. The **[Animal Care and Control Division](https://bloomington.in.gov/animal-shelter)** has prepared two data sets that the public may use to understand how the city handles animal welfare. 
+
+Documention and processing workflow for two Bloomington Animal Care and Control data sets are provided below. These data sets include the division's historic **Annual Statistics** and **Animal Cases Data** representing the flow of animals in and out of the Bloomington Animal Shelter from the start of 2017 to present day. 
 
 This notebook was created for the **BMG Hack's - Let's Get Visual - Civic Data Challenge**. The notebook provides a description of each data set, and provides code for the data processing performed on these data that (hopefully) will facilitate analysis and visualization that can be updated, re-used, and shared with others! 
 
@@ -37,6 +39,7 @@ library(tidyr)       # Tidyverse data processing piping, string manipulation
 library(readr)       # Data parsing
 library(plyr)        # Combining and Splitting Data
 library(dplyr)       # Data analysis and aggregations
+library(lubridate)   # Dates
 library(magrittr)    # Piping
 ```
 
@@ -374,9 +377,11 @@ summary(dead)
 The Shelter Interaction Log provides a time series data set provides another data structure that may be relevant for a variety of visual analytic and modeling workflows. This data set captures the intake and outcomes data for each case managed by the shelter as a list. The list is ordered by the *Case ID* and *Date* of an interactions with the shelter system. This data may be joined to the animal descriptive data to help subset or filter the interaction logs.
 
 * Animal Case identifier - *id* - a numeric unique identifier with `r length(unique(intake$id))` unique values.
-* Interaction date - *date* - a date field (YYYY-MM-DD) for an interaction with the shelter system.
-* Interaction - *interaction* - a factor variable that describes the interaction with the shelter system.
+* Interaction - *interaction* - a factor variable that describes the interaction with the shelter system. These categories have duplicate and similar values that are updated to reduce the quantity of qualitiative values.
 * Interation type - *type* - a factor variable that indicates the type of interaction with the shelter system (e.g intake, movement, return, dead).
+* Interaction date - *date* - a date field (YYYY-MM-DD) for an interaction with the shelter system.
+* Interaction date - *date_end* - a date field (YYYY-MM-DD) for when an interaction with the shelter system ends.
+* Time Interval - *time_int* - an interval field indicating period of time when an interaction occured.
 * Duration - *duration* - Measure of time between an interaction with the shelter system, measured in days.
 
 ```{r pro-ani-log}
@@ -386,42 +391,63 @@ interact <- rbind(intakes[,c("id","date","interaction","type")],
                     return[,c("id","date","interaction","type")],
                     dead[,c("id","date","interaction","type")]) %>% 
                 arrange(id,date)
+
+#Intraction categories updated
+tmp <- interact$interaction %>% as.character() 
+#change interaction to... Behaviors 
+tmp[tmp %in% c("Return Adopt - Behavior","Temperament/Behavior")] <- "Behavior"
+#change interaction to... Dead on arrival
+tmp[tmp %in% c("DOA","Cremation")] <- "Dead On Arrival"
+#change interaction to... UU-untreatable, unmanageable Behavior
+tmp[tmp == c("UU-untreatable, unmanageable Behavior")] <- "UU - untreatable, unmanageable Behavior"
+#change interaction to animal health
+tmp[tmp %in% c("Return Adopt - Animal Health","Sick/Injured","Medical")] <- "Animal Health"
+#change interaction to owner deceased
+tmp[tmp %in% c("Owner Died")] <- "Owner Deceased"
+#change interaction to... Owner requested
+tmp[tmp %in% c("Owner requested Euthanasia")] <- "Owner requested"
+#change interaction to... Incompatible with owner lifestyle
+tmp[tmp %in% c("Return adopt - lifestyle issue")] <- "Incompatible with owner lifestyle"
+tmp <- as.factor(tmp)
+#Add cleaned interaction data to data table
+interact$interaction <- tmp
+
 #Loop calculates duration between shelter interaction for each animal's case
-interact$duration <- NA
+interact$date_end <- NA
 for(i in 1:length(unique(intakes$id))){
-  tmp <- interact[interact$id==intakes[i,]$id,c("id","date","duration")]
-  dur <- difftime(tmp[2:nrow(tmp),]$date,tmp[1:(nrow(tmp)-1),]$date,unit="day") %>% 
-           unclass() %>% 
-           as.numeric()
-  dur <- c(dur,NA)
-  tmp$duration <- dur
-  interact[interact$id==intakes[i,]$id,]$duration <- tmp$duration
-}
-#Some durations have values of NA after calcultion, but are still in the shelter.
-#Case: returned or intake animal has not been moved or died
-tmp <- interact %>% 
-  filter(type %in% c("intake","return") & 
-         !(interaction %in% c("DOA","Cremation")) &
-         is.na(duration)) %>% 
-  select(id,date) %>% 
-  mutate(duration=as.numeric(unclass(Sys.Date()-date)))
-#Update durations
-interact[interact$type %in% c("intake","return") & 
-         !(interact$interaction %in% c("DOA","Cremation")) &
-         is.na(interact$duration),]$duration <- tmp$duration
-#Case: Foster animals are still in the system but not in the shelter
-tmp <- interact %>% 
-  filter(interaction == c("Foster") &
-         is.na(duration)) %>% 
-  select(id,date) %>% 
-  mutate(duration=as.numeric(unclass(Sys.Date()-date)))
-#Update durations
-interact[interact$interaction == c("Foster") &
-         is.na(interact$duration),]$duration <- tmp$duration
-#Transforms type into a factor variables
-interact$type <- as.factor(interact$type)
+  tmp <- interact[interact$id==intakes[i,]$id,c("id","type","date","date_end")]
+  if(nrow(tmp)>1){
+        tmp[1:nrow(tmp)-1,]$date_end <-  tmp[2:nrow(tmp),]$date
+  }
+  #Introduction of the NA in the date_end field are treated
+  if(tmp[is.na(tmp$date_end),]$type=="dead"){
+    #In cases where the type of interaction is a death, the NA date_end field is the same       the date field
+    tmp[is.na(tmp$date_end),]$date_end <- tmp[is.na(tmp$date_end),]$date
+  } else {
+    #In cases where the type of interaction is an intake, return, or move, date_end is the      current system date
+    tmp[is.na(tmp$date_end),]$date_end <- Sys.Date()
+  }
+  #Adds back tmp back to 
+  interact[interact$id==intakes[i,]$id,c("date_end")] <- tmp[,c("date_end")]
+  }
 #Clean environment
-rm(tmp,dur,i)
+rm(tmp,i)
+
+#Checks date_end for DOA on return
+interact[interact$type=="return" & interact$interaction=="Dead On Arrival",]$date_end <-
+  interact[interact$type=="return" & interact$interaction=="Dead On Arrival",]$date
+
+#Format values for date_end field
+interact$date_end <-as.Date(interact$date_end, origin=lubridate::origin,
+                            format="%Y-%m-%d")
+#Create time interval that interaction takes place
+interact$time_int <- interval(interact$date,interact$date_end)
+#Calculate difference in time (days) of interval
+interact$duration <- difftime(interact$date_end,interact$date,unit="days")
+
+#Transforms type into a factor variables
+interact <- interact[,c(1,3,4,2,5,6,7)]
+
 #Summary of data
 summary(interact)
 ```
