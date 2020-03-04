@@ -502,27 +502,27 @@ annual$revenue &lt;- parse_number(annual$revenue, na=&quot;NA&quot;)</code></pre
 <h3>Processing Workflow</h3>
 <div id="data-structure-1" class="section level4">
 <h4>Data Structure</h4>
-<p>There are 12404 observations across 23 variables in this data set. The data structure provides a description of the variables below.</p>
+<p>There are 12473 observations across 23 variables in this data set. The data structure provides a description of the variables below.</p>
 <p>Reading the variable names shows that the data set uses common naming convention in variable names to indicate relationships. Examples of variable relationships include fields starting with: <em>intake</em>, <em>movement</em>, <em>return</em>, and <em>deceased</em>. This suggests that there are a minimum of four tables combined in this data set.</p>
 <p>Data tables are likely joined in the shelter’s database by the <em>id</em> acting as the primary key This field will present in all derived subsets to help join related data frames.</p>
-<pre><code>## &#39;data.frame&#39;:    12404 obs. of  23 variables:
-##  $ id              : int  15801 15932 28859 30812 30812 31469 31469 40705 40706 46238 ...
-##  $ intakedate      : chr  &quot;2009-11-28 00:00:00&quot; &quot;2009-12-08 00:00:00&quot; &quot;2012-08-10 00:00:00&quot; &quot;2013-01-11 00:00:00&quot; ...
+<pre><code>## &#39;data.frame&#39;:    12473 obs. of  23 variables:
+##  $ id              : int  15801 15932 28859 28859 30812 30812 31469 31469 40705 40706 ...
+##  $ intakedate      : chr  &quot;2009-11-28 00:00:00&quot; &quot;2009-12-08 00:00:00&quot; &quot;2012-08-10 00:00:00&quot; &quot;2012-08-10 00:00:00&quot; ...
 ##  $ intakereason    : chr  &quot;Moving&quot; &quot;Moving&quot; &quot;Abandoned&quot; &quot;Abandoned&quot; ...
 ##  $ istransfer      : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ sheltercode     : chr  &quot;C09115463&quot; &quot;D09125594&quot; &quot;D12082309&quot; &quot;C1301091&quot; ...
-##  $ identichipnumber: chr  &quot;0A115D7358&quot; &quot;0A11675477&quot; &quot;0A13253C7B&quot; &quot;0A13403D4D&quot; ...
-##  $ animalname      : chr  &quot;Jadzia&quot; &quot;Gonzo&quot; &quot;Maggie&quot; &quot;Pretty Girl&quot; ...
-##  $ breedname       : chr  &quot;Domestic Short Hair&quot; &quot;German Shepherd Dog/Mix&quot; &quot;Shep Mix/Siberian Husky&quot; &quot;Domestic Short Hair&quot; ...
-##  $ basecolour      : chr  &quot;Tortie&quot; &quot;Tan&quot; &quot;Various&quot; &quot;Dilute tortoiseshell&quot; ...
-##  $ speciesname     : chr  &quot;Cat&quot; &quot;Dog&quot; &quot;Dog&quot; &quot;Cat&quot; ...
-##  $ animalage       : chr  &quot;9 years 2 months.&quot; &quot;10 years 0 months.&quot; &quot;6 years 8 months.&quot; &quot;8 years 11 months.&quot; ...
+##  $ sheltercode     : chr  &quot;C09115463&quot; &quot;D09125594&quot; &quot;D12082309&quot; &quot;D12082309&quot; ...
+##  $ identichipnumber: chr  &quot;0A115D7358&quot; &quot;0A11675477&quot; &quot;0A13253C7B&quot; &quot;0A13253C7B&quot; ...
+##  $ animalname      : chr  &quot;Jadzia&quot; &quot;Gonzo&quot; &quot;Maggie&quot; &quot;Maggie&quot; ...
+##  $ breedname       : chr  &quot;Domestic Short Hair&quot; &quot;German Shepherd Dog/Mix&quot; &quot;Shep Mix/Siberian Husky&quot; &quot;Shep Mix/Siberian Husky&quot; ...
+##  $ basecolour      : chr  &quot;Tortie&quot; &quot;Tan&quot; &quot;Various&quot; &quot;Various&quot; ...
+##  $ speciesname     : chr  &quot;Cat&quot; &quot;Dog&quot; &quot;Dog&quot; &quot;Dog&quot; ...
+##  $ animalage       : chr  &quot;9 years 2 months.&quot; &quot;10 years 0 months.&quot; &quot;7 years 9 months.&quot; &quot;7 years 9 months.&quot; ...
 ##  $ sexname         : chr  &quot;Female&quot; &quot;Male&quot; &quot;Female&quot; &quot;Female&quot; ...
-##  $ location        : chr  &quot;Adoptable Cat Glass Colony&quot; &quot;Adoptable Dogs&quot; &quot;Adoptable Dogs&quot; &quot;Stray Cats&quot; ...
-##  $ movementdate    : chr  &quot;2017-05-13 00:00:00&quot; &quot;2017-04-24 00:00:00&quot; &quot;2017-04-15 00:00:00&quot; &quot;2017-04-18 00:00:00&quot; ...
-##  $ movementtype    : chr  &quot;Adoption&quot; &quot;Adoption&quot; &quot;Adoption&quot; &quot;Foster&quot; ...
+##  $ location        : chr  &quot;Adoptable Cat Glass Colony&quot; &quot;Adoptable Dogs&quot; &quot;Canine intake room&quot; &quot;Canine intake room&quot; ...
+##  $ movementdate    : chr  &quot;2017-05-13 00:00:00&quot; &quot;2017-04-24 00:00:00&quot; &quot;2017-04-15 00:00:00&quot; &quot;2020-02-29 00:00:00&quot; ...
+##  $ movementtype    : chr  &quot;Adoption&quot; &quot;Adoption&quot; &quot;Adoption&quot; &quot;Reclaimed&quot; ...
 ##  $ istrial         : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ returndate      : chr  &quot;&quot; &quot;&quot; &quot;&quot; &quot;2018-05-29 00:00:00&quot; ...
+##  $ returndate      : chr  &quot;&quot; &quot;&quot; &quot;2020-02-28 00:00:00&quot; &quot;&quot; ...
 ##  $ returnedreason  : chr  &quot;Stray&quot; &quot;Stray&quot; &quot;Stray&quot; &quot;Stray&quot; ...
 ##  $ deceaseddate    : chr  &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; ...
 ##  $ deceasedreason  : chr  &quot;Died in care&quot; &quot;Died in care&quot; &quot;Died in care&quot; &quot;Died in care&quot; ...
@@ -556,24 +556,24 @@ rm(i, intake_date, intake_fac)</code></pre>
 <h4>1. Animal Identification</h4>
 <p>Animals taken in by Animal Care and Control Division are described across a variety of features, including multiple identifiers, a basic description of the animal, and the location within the shelter. The variables included in this data set are:</p>
 <ul>
-<li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8635 unique values.
+<li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8677 unique values.
 <ul>
 <li>This field acts as the primary key that will connect data sets together</li>
 </ul></li>
-<li>Shelter Code - <em>sheltercode</em> - a numeric unique identifier with 8635values.
+<li>Shelter Code - <em>sheltercode</em> - a numeric unique identifier with 8677values.
 <ul>
-<li>The difference between unique identifers and total number of observations in the data set (3769) indicates that there may be multiple intake records for a given animal in the data set.</li>
+<li>The difference between unique identifers and total number of observations in the data set (3796) indicates that there may be multiple intake records for a given animal in the data set.</li>
 <li>The letter code starting each id indicates species class (e.g. C09115463 for cat).</li>
 </ul></li>
-<li>Animal identity chip - <em>identichipnumber</em> - factor variable with 6637 unique values
+<li>Animal identity chip - <em>identichipnumber</em> - factor variable with 6663 unique values
 <ul>
 <li>Not all animals have chip identifiers.</li>
 </ul></li>
-<li>Animal name - <em>animalname</em> - factor variable with 4937 unique values
+<li>Animal name - <em>animalname</em> - factor variable with 4957 unique values
 <ul>
 <li>We’ve got some common names!</li>
 </ul></li>
-<li>Breed - <em>breedname</em> - factor variable with 873 unique values</li>
+<li>Breed - <em>breedname</em> - factor variable with 879 unique values</li>
 <li>Animal coloration - <em>basecolour</em> - factor variable with 79 unique values</li>
 <li>Species - <em>speciesname</em> - factor variable with 27 unique values.
 <ul>
@@ -621,40 +621,40 @@ rm(i,d,tmp)
 #Summarize intake cases
 summary(animals)</code></pre>
 <pre><code>##        id         sheltercode          identichipnumber   animalname  
-##  15801  :   1   B1704028:   1                  :1952    Luna   :  40  
+##  15801  :   1   B1704028:   1                  :1968    Luna   :  40  
 ##  15932  :   1   B1704061:   1   0A10785A1E     :   4    Buddy  :  34  
 ##  28859  :   1   B1704124:   1   981020009920224:   3    Lucy   :  34  
-##  30812  :   1   B1705201:   1   991001000578554:   3    Daisy  :  31  
+##  30812  :   1   B1705201:   1   991001000578554:   3    Daisy  :  32  
 ##  31469  :   1   B1705202:   1   021027788      :   2    Bella  :  29  
 ##  40705  :   1   B1705264:   1   0A10592A42     :   2    Max    :  27  
-##  (Other):8629   (Other) :8629   (Other)        :6669    (Other):8440  
+##  (Other):8671   (Other) :8671   (Other)        :6695    (Other):8481  
 ##   animalage            sexname           speciesname  
-##  Length:8635        Female :4121   Cat         :4662  
-##  Class :character   Male   :4269   Dog         :3327  
-##  Mode  :character   Unknown: 245   House Rabbit: 209  
+##  Length:8677        Female :4142   Cat         :4682  
+##  Class :character   Male   :4288   Dog         :3346  
+##  Mode  :character   Unknown: 247   House Rabbit: 209  
 ##                                    Rat         : 124  
 ##                                    Guinea Pig  : 110  
 ##                                    Bird        :  50  
-##                                    (Other)     : 153  
+##                                    (Other)     : 156  
 ##                 breedname              basecolour     intakeage      
-##  Domestic Short Hair :3780   Black          :1258   Min.   :   0.00  
-##  Domestic Medium Hair: 383   Black and White: 772   1st Qu.:  10.00  
-##  Domestic Long Hair  : 288   Black and Brown: 540   Median :  20.00  
-##  Bully Breed Mix     : 250   Grey           : 482   Mean   :  41.25  
-##  Labrador Retriever  : 148   Orange         : 414   3rd Qu.:  46.00  
-##  Beagle              : 131   Grey and White : 302   Max.   :1209.00  
-##  (Other)             :3655   (Other)        :4867</code></pre>
+##  Domestic Short Hair :3798   Black          :1264   Min.   :   0.00  
+##  Domestic Medium Hair: 384   Black and White: 774   1st Qu.:  10.00  
+##  Domestic Long Hair  : 289   Black and Brown: 544   Median :  21.00  
+##  Bully Breed Mix     : 254   Grey           : 484   Mean   :  41.43  
+##  Labrador Retriever  : 148   Orange         : 419   3rd Qu.:  46.00  
+##  Beagle              : 133   Grey and White : 307   Max.   :1209.00  
+##  (Other)             :3671   (Other)        :4885</code></pre>
 </div>
 </div>
 <div id="intakes" class="section level3">
 <h3>2. Intake Cases</h3>
 <p>Intake Case data include any variable that relates to when an animal first interacts with the Animal Care and Control shelter system. Intake related variables included in this data set are:</p>
 <ul>
-<li>Intake identifier - <em>id</em> - a numeric unique identifier with 8635 unique values.
+<li>Intake identifier - <em>id</em> - a numeric unique identifier with 8677 unique values.
 <ul>
 <li>The number of unqiue ids and unique shelter codes are identical. And, as with <em>sheltercodes</em> variable above, the count of unique <em>id</em> values is less than total intake records provided by the division. This suggests unique identifier is linked to the animal’s intial intake.</li>
 </ul></li>
-<li>Intake date - <em>intakedate</em> - changed to -&gt; <em>date</em> - a date field (YYYY-MM-DD) ranging from 2009-11-28 to 2020-02-22.
+<li>Intake date - <em>intakedate</em> - changed to -&gt; <em>date</em> - a date field (YYYY-MM-DD) ranging from 2009-11-28 to 2020-03-02.
 <ul>
 <li>Intake data sets may require more examination and potentiall filtering to removing intakes prior 2017, the first year when records begin were first collected in full.</li>
 <li>Needs processing to as.Date() type.</li>
@@ -675,35 +675,35 @@ intakes$type &lt;- &quot;intake&quot;
 summary(intakes)</code></pre>
 <pre><code>##        id            date           
 ##  15801  :   1   Min.   :2009-11-28  
-##  15932  :   1   1st Qu.:2017-11-02  
-##  28859  :   1   Median :2018-08-24  
-##  30812  :   1   Mean   :2018-08-19  
-##  31469  :   1   3rd Qu.:2019-06-03  
-##  40705  :   1   Max.   :2020-02-22  
-##  (Other):8629                       
+##  15932  :   1   1st Qu.:2017-11-03  
+##  28859  :   1   Median :2018-08-27  
+##  30812  :   1   Mean   :2018-08-22  
+##  31469  :   1   3rd Qu.:2019-06-06  
+##  40705  :   1   Max.   :2020-03-02  
+##  (Other):8671                       
 ##                             interaction  
-##  Stray                            :4105  
-##  Incompatible with owner lifestyle:1165  
-##  Litter relinquishment            : 757  
-##  Moving                           : 445  
+##  Stray                            :4127  
+##  Incompatible with owner lifestyle:1172  
+##  Litter relinquishment            : 761  
+##  Moving                           : 447  
 ##  Unsuitable Accommodation         : 334  
 ##  Unable to Afford                 : 316  
-##  (Other)                          :1513  
+##  (Other)                          :1520  
 ##                        location        type          
-##  Adoptable Dogs            :1679   Length:8635       
-##  Adoptable Cat Kennels     : 733   Class :character  
-##  Lobby                     : 562   Mode  :character  
+##  Adoptable Dogs            :1684   Length:8677       
+##  Adoptable Cat Kennels     : 737   Class :character  
+##  Lobby                     : 560   Mode  :character  
 ##  Adoptable window colony   : 489                     
 ##  Adoptable Cat Glass Colony: 471                     
-##  Adoptable Cat Big Colony  : 445                     
-##  (Other)                   :4256</code></pre>
+##  Adoptable Cat Big Colony  : 450                     
+##  (Other)                   :4286</code></pre>
 </div>
 <div id="moves" class="section level3">
 <h3>3. Animals on the Move</h3>
 <p>After the initial intake, the goal of the shelter is to move animals out of the Animal Care and Control system. Some example movements include when an animal being fostered or adopted. Variables related to animal movements, include:</p>
 <ul>
-<li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8635 unique values.</li>
-<li>Movement date - <em>movementdate</em> - changed to -&gt; <em>date</em> - a date field (YYYY-MM-DD) ranging from 2013-03-30 to 2020-02-23.
+<li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8677 unique values.</li>
+<li>Movement date - <em>movementdate</em> - changed to -&gt; <em>date</em> - a date field (YYYY-MM-DD) ranging from 2013-03-30 to 2020-03-02.
 <ul>
 <li>Needs processing to as.Date() data types.</li>
 </ul></li>
@@ -727,15 +727,15 @@ move$type &lt;- &quot;move&quot;
 #Summarize movements
 summary(move)</code></pre>
 <pre><code>##        id             date                      interaction  
-##  58510  :   11   Min.   :2013-03-30   Adoption        :7163  
-##  60702  :   11   1st Qu.:2017-12-12   Escaped         :   4  
-##  55456  :   10   Median :2018-09-27   Foster          :2954  
-##  61384  :   10   Mean   :2018-09-21   Reclaimed       :1655  
-##  58410  :    7   3rd Qu.:2019-07-05   Released To Wild:   9  
-##  47575  :    6   Max.   :2020-02-23   Stolen          :   8  
-##  (Other):12340                        Transfer        : 602  
+##  58510  :   11   Min.   :2013-03-30   Adoption        :7199  
+##  60702  :   11   1st Qu.:2017-12-13   Escaped         :   4  
+##  55456  :   10   Median :2018-09-29   Foster          :2971  
+##  61384  :   10   Mean   :2018-09-24   Reclaimed       :1667  
+##  58410  :    7   3rd Qu.:2019-07-08   Released To Wild:   9  
+##  47575  :    6   Max.   :2020-03-02   Stolen          :   8  
+##  (Other):12409                        Transfer        : 606  
 ##      type          
-##  Length:12395      
+##  Length:12464      
 ##  Class :character  
 ##  Mode  :character  
 ##                    
@@ -747,13 +747,13 @@ summary(move)</code></pre>
 <h3>4. Returned Animals</h3>
 <p>Occasionally, an animal returns to the shelter. However, rather than creating a new intake case, the animal’s interaction is logged as a return. Variables related to returned to the shelter system describe cause and date for a return to Animal Care and Control. The variables included in this data set are:</p>
 <ul>
-<li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8635 unique values.</li>
-<li>Return date - <em>returndate</em> - changed to -&gt; <em>date</em> - a date field (YYYY-MM-DD) ranging from 2017-04-01 to 2020-02-23.
+<li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8677 unique values.</li>
+<li>Return date - <em>returndate</em> - changed to -&gt; <em>date</em> - a date field (YYYY-MM-DD) ranging from 2017-04-01 to 2020-03-02.
 <ul>
 <li>Not all intake records include a return date, indicating the animal has not been returned to the system.</li>
 <li>Needs processing to as.Date() data types.</li>
 </ul></li>
-<li>Return reason - <em>returnedreason</em> - changed to -&gt; <em>interaction</em> - a factor variable with 25 unique values.
+<li>Return reason - <em>returnedreason</em> - changed to -&gt; <em>interaction</em> - a factor variable with 24 unique values.
 <ul>
 <li>Some interesting unique values include: Stray, Incompatible with owner lifestyle, Rabies Monitoring.</li>
 <li>This variable may be an interesting feature to explore reasons based on animal type and demographics. This may be useful for a predictive model at intake.</li>
@@ -775,22 +775,22 @@ return$duration &lt;- difftime(return$date,return$date, unit=&quot;day&quot;)
 summary(return)</code></pre>
 <pre><code>##        id            date             movementdate       
 ##  58510  :  10   Min.   :2017-04-01   Min.   :2013-03-30  
-##  60702  :  10   1st Qu.:2018-01-28   1st Qu.:2017-11-14  
-##  61384  :  10   Median :2018-11-09   Median :2018-08-29  
-##  55456  :   9   Mean   :2018-10-23   Mean   :2018-08-28  
-##  58410  :   6   3rd Qu.:2019-07-30   3rd Qu.:2019-06-11  
-##  47575  :   5   Max.   :2020-02-23   Max.   :2020-02-21  
-##  (Other):3966                                            
+##  60702  :  10   1st Qu.:2018-01-30   1st Qu.:2017-11-15  
+##  61384  :  10   Median :2018-11-16   Median :2018-09-01  
+##  55456  :   9   Mean   :2018-10-26   Mean   :2018-09-01  
+##  58410  :   6   3rd Qu.:2019-08-01   3rd Qu.:2019-06-14  
+##  58863  :   6   Max.   :2020-03-02   Max.   :2020-02-29  
+##  (Other):3993                                            
 ##                             interaction       type          
-##  Stray                            :3147   Length:4016       
+##  Stray                            :3165   Length:4044       
 ##  Incompatible with owner lifestyle: 364   Class :character  
-##  Return Adopt - Behavior          :  71   Mode  :character  
-##  Return adopt - lifestyle issue   :  55                     
+##  Return Adopt - Behavior          :  73   Mode  :character  
+##  Return adopt - lifestyle issue   :  59                     
 ##  Moving                           :  53                     
-##  Incompatible with other pets     :  38                     
-##  (Other)                          : 288                     
+##  Incompatible with other pets     :  39                     
+##  (Other)                          : 291                     
 ##    duration       
-##  Length:4016      
+##  Length:4044      
 ##  Class :difftime  
 ##  Mode  :numeric   
 ##                   
@@ -802,7 +802,7 @@ summary(return)</code></pre>
 <h3>5. Deceased Animals</h3>
 <p>Sometimes animals taken in or returned to the shelter that cannot be released. In these cases, the Animal Care and Control Division will euthanize an animal, or in rare cases, document a death that takes place at intake. The variables that describe data related to animal that have died while managed by Animal Care and Control included in this data set are:</p>
 <ul>
-<li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8635 unique values.</li>
+<li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8677 unique values.</li>
 <li>Deceased date - <em>deceaseddate</em> - changed to -&gt; <em>date</em> - a date field (YYYY-MM-DD) ranging from 2017-04-02 to 2020-02-20.
 <ul>
 <li>Not all intake records include a deceased date, indicating the animal is alive!</li>
@@ -832,37 +832,38 @@ summary(dead)</code></pre>
 <pre><code>##        id           date           
 ##  46437  :  1   Min.   :2017-04-02  
 ##  47360  :  1   1st Qu.:2017-12-08  
-##  47742  :  1   Median :2018-09-03  
-##  55371  :  1   Mean   :2018-09-01  
-##  55396  :  1   3rd Qu.:2019-06-02  
+##  47742  :  1   Median :2018-09-07  
+##  55371  :  1   Mean   :2018-09-03  
+##  55396  :  1   3rd Qu.:2019-06-03  
 ##  55397  :  1   Max.   :2020-02-20  
-##  (Other):276                       
-##                                 interaction diedoffshelter  
-##  Died in care                         :96   Min.   :0.0000  
-##  UU - untreatable, unmanageable health:72   1st Qu.:0.0000  
-##  Owner Requested                      :18   Median :0.0000  
-##  Dead On Arrival                      :16   Mean   :0.0922  
-##  Biting                               :15   3rd Qu.:0.0000  
-##  UU-untreatable, unmanageable Behavior:13   Max.   :1.0000  
-##  (Other)                              :52                   
-##    puttosleep         isdoa             type          
-##  Min.   :0.0000   Min.   :0.00000   Length:282        
-##  1st Qu.:0.0000   1st Qu.:0.00000   Class :character  
-##  Median :1.0000   Median :0.00000   Mode  :character  
-##  Mean   :0.5461   Mean   :0.07092                     
-##  3rd Qu.:1.0000   3rd Qu.:0.00000                     
-##  Max.   :1.0000   Max.   :1.00000                     
+##  (Other):277                       
+##                                 interaction diedoffshelter   
+##  Died in care                         :96   Min.   :0.00000  
+##  UU - untreatable, unmanageable health:72   1st Qu.:0.00000  
+##  Owner Requested                      :18   Median :0.00000  
+##  Dead On Arrival                      :17   Mean   :0.09187  
+##  Biting                               :15   3rd Qu.:0.00000  
+##  UU-untreatable, unmanageable Behavior:13   Max.   :1.00000  
+##  (Other)                              :52                    
+##    puttosleep         isdoa            type          
+##  Min.   :0.0000   Min.   :0.0000   Length:283        
+##  1st Qu.:0.0000   1st Qu.:0.0000   Class :character  
+##  Median :1.0000   Median :0.0000   Mode  :character  
+##  Mean   :0.5442   Mean   :0.0742                     
+##  3rd Qu.:1.0000   3rd Qu.:0.0000                     
+##  Max.   :1.0000   Max.   :1.0000                     
 ## </code></pre>
 </div>
 <div id="log" class="section level3">
 <h3>6. Shelter Interaction Log</h3>
 <p>The Shelter Interaction Log provides a time series data set provides another data structure that may be relevant for a variety of visual analytic and modeling workflows. This data set captures the intake and outcomes data for each case managed by the shelter as a list. The list is ordered by the <em>Case ID</em> and <em>Date</em> of an interactions with the shelter system. This data may be joined to the animal descriptive data to help subset or filter the interaction logs.</p>
 <ul>
-<li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8635 unique values.</li>
+<li>Animal Case identifier - <em>id</em> - a numeric unique identifier with 8677 unique values.</li>
 <li>Interaction - <em>interaction</em> - a factor variable that describes the interaction with the shelter system. These categories have duplicate and similar values that are updated to reduce the quantity of qualitiative values.</li>
 <li>Interation type - <em>type</em> - a factor variable that indicates the type of interaction with the shelter system (e.g intake, movement, return, dead).</li>
-<li>Interaction date - <em>date</em> - a date field (YYYY-MM-DD) for an interaction with the shelter system.</li>
-<li>Interaction date - <em>date_end</em> - a date field (YYYY-MM-DD) for when an interaction with the shelter system ends.</li>
+<li>Interaction sequence - <em>seq</em> - Number represents an animal’s sequential interaction with the shelter system.</li>
+<li>Start date - <em>date</em> - a date field (YYYY-MM-DD) for when an interaction with the shelter system begins.</li>
+<li>End date - <em>date_end</em> - a date field (YYYY-MM-DD) for when an interaction with the shelter system ends.</li>
 <li>Time Interval - <em>time_int</em> - an interval field indicating period of time when an interaction occured.</li>
 <li>Duration - <em>duration</em> - Measure of time between an interaction with the shelter system, measured in days.</li>
 </ul>
@@ -895,65 +896,70 @@ interact$interaction &lt;- tmp
 
 #Loop calculates duration between shelter interaction for each animal&#39;s case
 interact$date_end &lt;- NA
+interact$seq &lt;- 0
 for(i in 1:length(unique(intakes$id))){
-  tmp &lt;- interact[interact$id==intakes[i,]$id,c(&quot;id&quot;,&quot;type&quot;,&quot;date&quot;,&quot;date_end&quot;)]
+  tmp &lt;- interact[interact$id==animals[i,]$id,c(&quot;id&quot;,&quot;date&quot;,&quot;type&quot;,&quot;date_end&quot;,&quot;seq&quot;)]
   if(nrow(tmp)&gt;1){
-        tmp[1:nrow(tmp)-1,]$date_end &lt;-  tmp[2:nrow(tmp),]$date
+        tmp[1:nrow(tmp)-1,]$date_end &lt;- tmp[2:nrow(tmp),]$date
   }
   #Introduction of the NA in the date_end field are treated
-  if(tmp[is.na(tmp$date_end),]$type==&quot;dead&quot;){
+  if(nrow(tmp[is.na(tmp$date_end) &amp; tmp$type==&quot;dead&quot;,])==1){
     #In cases where the type of interaction is a death, the NA date_end field is the same       the date field
     tmp[is.na(tmp$date_end),]$date_end &lt;- tmp[is.na(tmp$date_end),]$date
   } else {
     #In cases where the type of interaction is an intake, return, or move, date_end is the      current system date
     tmp[is.na(tmp$date_end),]$date_end &lt;- Sys.Date()
   }
+  #Interaction sequence
+  tmp$seq &lt;- seq_along(tmp$id)
+  
   #Adds back tmp back to 
-  interact[interact$id==intakes[i,]$id,c(&quot;date_end&quot;)] &lt;- tmp[,c(&quot;date_end&quot;)]
+  interact[interact$id==intakes[i,]$id,c(&quot;date_end&quot;,&quot;seq&quot;)] &lt;- tmp[,c(&quot;date_end&quot;,&quot;seq&quot;)]
   }
 #Clean environment
 rm(tmp,i)
+
+#Format values for date_end field
+interact$date_end &lt;-as.Date(interact$date_end, origin=lubridate::origin,
+                            format=&quot;%Y-%m-%d&quot;)
 
 #Checks date_end for DOA on return
 interact[interact$type==&quot;return&quot; &amp; interact$interaction==&quot;Dead On Arrival&quot;,]$date_end &lt;-
   interact[interact$type==&quot;return&quot; &amp; interact$interaction==&quot;Dead On Arrival&quot;,]$date
 
-#Format values for date_end field
-interact$date_end &lt;-as.Date(interact$date_end, origin=lubridate::origin,
-                            format=&quot;%Y-%m-%d&quot;)
 #Create time interval that interaction takes place
 interact$time_int &lt;- interval(interact$date,interact$date_end)
 #Calculate difference in time (days) of interval
 interact$duration &lt;- difftime(interact$date_end,interact$date,unit=&quot;days&quot;)
 
 #Transforms type into a factor variables
-interact &lt;- interact[,c(1,3,4,2,5,6,7)]
+interact &lt;- interact[,c(1,3,4,6,2,5,7:8)]
 
 #Summary of data
 summary(interact)</code></pre>
 <pre><code>##        id                                   interaction  
-##  58510  :   22   Stray                            :7252  
-##  60702  :   22   Adoption                         :7163  
-##  61384  :   22   Foster                           :2954  
-##  55456  :   20   Reclaimed                        :1655  
-##  58410  :   14   Incompatible with owner lifestyle:1585  
-##  47575  :   12   Litter relinquishment            : 757  
-##  (Other):25216   (Other)                          :3962  
-##      type                date               date_end         
-##  Length:25328       Min.   :2009-11-28   Min.   :2013-03-30  
-##  Class :character   1st Qu.:2017-12-05   1st Qu.:2018-06-13  
-##  Mode  :character   Median :2018-09-18   Median :2019-07-06  
-##                     Mean   :2018-09-15   Mean   :2019-03-17  
-##                     3rd Qu.:2019-06-28   3rd Qu.:2020-02-24  
-##                     Max.   :2020-02-23   Max.   :2020-02-24  
-##                                                              
-##               time_int            duration       
-##  Intervals        :25328        Length:25328     
-##  Earliest endpoint:2009-11-28   Class :difftime  
-##  Latest endpoint  :2020-02-24   Mode  :numeric   
-##  Time zone        :UTC                           
-##                                                  
-##                                                  
+##  58510  :   22   Stray                            :7292  
+##  60702  :   22   Adoption                         :7199  
+##  61384  :   22   Foster                           :2971  
+##  55456  :   20   Reclaimed                        :1667  
+##  58410  :   14   Incompatible with owner lifestyle:1596  
+##  58863  :   13   Litter relinquishment            : 761  
+##  (Other):25355   (Other)                          :3982  
+##      type                seq              date           
+##  Length:25468       Min.   : 1.000   Min.   :2009-11-28  
+##  Class :character   1st Qu.: 1.000   1st Qu.:2017-12-06  
+##  Mode  :character   Median : 2.000   Median :2018-09-21  
+##                     Mean   : 2.362   Mean   :2018-09-18  
+##                     3rd Qu.: 3.000   3rd Qu.:2019-07-01  
+##                     Max.   :22.000   Max.   :2020-03-02  
+##                                                          
+##     date_end                       time_int            duration       
+##  Min.   :2013-03-30   Intervals        :25468        Length:25468     
+##  1st Qu.:2018-06-15   Earliest endpoint:2009-11-28   Class :difftime  
+##  Median :2019-07-11   Latest endpoint  :2020-03-03   Mode  :numeric   
+##  Mean   :2019-03-22   Time zone        :UTC                           
+##  3rd Qu.:2020-03-03                                                   
+##  Max.   :2020-03-03                                                   
 ## </code></pre>
 </div>
 <div id="sup" class="section level3">

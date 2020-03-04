@@ -379,8 +379,9 @@ The Shelter Interaction Log provides a time series data set provides another dat
 * Animal Case identifier - *id* - a numeric unique identifier with `r length(unique(intake$id))` unique values.
 * Interaction - *interaction* - a factor variable that describes the interaction with the shelter system. These categories have duplicate and similar values that are updated to reduce the quantity of qualitiative values.
 * Interation type - *type* - a factor variable that indicates the type of interaction with the shelter system (e.g intake, movement, return, dead).
-* Interaction date - *date* - a date field (YYYY-MM-DD) for an interaction with the shelter system.
-* Interaction date - *date_end* - a date field (YYYY-MM-DD) for when an interaction with the shelter system ends.
+* Interaction sequence - *seq* - Number represents an animal's sequential interaction with the shelter system.
+* Start date - *date* - a date field (YYYY-MM-DD) for when an interaction with the shelter system begins.
+* End date - *date_end* - a date field (YYYY-MM-DD) for when an interaction with the shelter system ends.
 * Time Interval - *time_int* - an interval field indicating period of time when an interaction occured.
 * Duration - *duration* - Measure of time between an interaction with the shelter system, measured in days.
 
@@ -414,39 +415,44 @@ interact$interaction <- tmp
 
 #Loop calculates duration between shelter interaction for each animal's case
 interact$date_end <- NA
+interact$seq <- 0
 for(i in 1:length(unique(intakes$id))){
-  tmp <- interact[interact$id==intakes[i,]$id,c("id","type","date","date_end")]
+  tmp <- interact[interact$id==animals[i,]$id,c("id","date","type","date_end","seq")]
   if(nrow(tmp)>1){
-        tmp[1:nrow(tmp)-1,]$date_end <-  tmp[2:nrow(tmp),]$date
+        tmp[1:nrow(tmp)-1,]$date_end <- tmp[2:nrow(tmp),]$date
   }
   #Introduction of the NA in the date_end field are treated
-  if(tmp[is.na(tmp$date_end),]$type=="dead"){
+  if(nrow(tmp[is.na(tmp$date_end) & tmp$type=="dead",])==1){
     #In cases where the type of interaction is a death, the NA date_end field is the same       the date field
     tmp[is.na(tmp$date_end),]$date_end <- tmp[is.na(tmp$date_end),]$date
   } else {
     #In cases where the type of interaction is an intake, return, or move, date_end is the      current system date
     tmp[is.na(tmp$date_end),]$date_end <- Sys.Date()
   }
+  #Interaction sequence
+  tmp$seq <- seq_along(tmp$id)
+  
   #Adds back tmp back to 
-  interact[interact$id==intakes[i,]$id,c("date_end")] <- tmp[,c("date_end")]
+  interact[interact$id==intakes[i,]$id,c("date_end","seq")] <- tmp[,c("date_end","seq")]
   }
 #Clean environment
 rm(tmp,i)
+
+#Format values for date_end field
+interact$date_end <-as.Date(interact$date_end, origin=lubridate::origin,
+                            format="%Y-%m-%d")
 
 #Checks date_end for DOA on return
 interact[interact$type=="return" & interact$interaction=="Dead On Arrival",]$date_end <-
   interact[interact$type=="return" & interact$interaction=="Dead On Arrival",]$date
 
-#Format values for date_end field
-interact$date_end <-as.Date(interact$date_end, origin=lubridate::origin,
-                            format="%Y-%m-%d")
 #Create time interval that interaction takes place
 interact$time_int <- interval(interact$date,interact$date_end)
 #Calculate difference in time (days) of interval
 interact$duration <- difftime(interact$date_end,interact$date,unit="days")
 
 #Transforms type into a factor variables
-interact <- interact[,c(1,3,4,2,5,6,7)]
+interact <- interact[,c(1,3,4,6,2,5,7:8)]
 
 #Summary of data
 summary(interact)
