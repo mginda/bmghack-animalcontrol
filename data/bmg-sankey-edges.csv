@@ -1,0 +1,581 @@
+"","from","to","weight","source","target"
+"1","1-intake-Abandoned","2-move-Adoption",139,0,75
+"2","1-intake-Abandoned","2-move-Foster",84,0,77
+"3","1-intake-Abandoned","2-move-Reclaimed",24,0,78
+"4","1-intake-Abandoned","2-move-Transfer",32,0,81
+"5","1-intake-Abuse/ neglect","2-move-Adoption",5,1,75
+"6","1-intake-Abuse/ neglect","2-move-Foster",4,1,77
+"7","1-intake-Abuse/ neglect","2-move-Reclaimed",2,1,78
+"8","1-intake-Abuse/ neglect","2-move-Released To Wild",1,1,79
+"9","1-intake-Abuse/ neglect","2-move-Transfer",4,1,81
+"10","1-intake-Allergies","2-move-Adoption",96,2,75
+"11","1-intake-Allergies","2-move-Foster",17,2,77
+"12","1-intake-Allergies","2-move-Transfer",11,2,81
+"13","1-intake-Animal Health","2-move-Adoption",28,3,75
+"14","1-intake-Animal Health","2-move-Foster",27,3,77
+"15","1-intake-Animal Health","2-move-Reclaimed",26,3,78
+"16","1-intake-Animal Health","2-move-Released To Wild",1,3,79
+"17","1-intake-Animal Health","2-move-Transfer",17,3,81
+"18","1-intake-Behavioral Issues","2-move-Adoption",6,4,75
+"19","1-intake-Behavioral Issues","2-move-Foster",2,4,77
+"20","1-intake-Behavioral Issues","2-move-Transfer",2,4,81
+"21","1-intake-Biting","2-move-Adoption",12,5,75
+"22","1-intake-Biting","2-move-Foster",2,5,77
+"23","1-intake-Biting","2-move-Reclaimed",23,5,78
+"24","1-intake-Biting","2-move-Transfer",8,5,81
+"25","1-intake-Born in Shelter","2-move-Foster",95,6,77
+"26","1-intake-Dead On Arrival","2-move-Reclaimed",1,7,78
+"27","1-intake-Incompatible with other pets","2-move-Adoption",64,8,75
+"28","1-intake-Incompatible with other pets","2-move-Foster",8,8,77
+"29","1-intake-Incompatible with other pets","2-move-Reclaimed",3,8,78
+"30","1-intake-Incompatible with other pets","2-move-Transfer",4,8,81
+"31","1-intake-Incompatible with owner lifestyle","2-move-Adoption",832,9,75
+"32","1-intake-Incompatible with owner lifestyle","2-move-Foster",203,9,77
+"33","1-intake-Incompatible with owner lifestyle","2-move-Reclaimed",22,9,78
+"34","1-intake-Incompatible with owner lifestyle","2-move-Transfer",115,9,81
+"35","1-intake-Injured Wildlife","2-move-Transfer",7,10,81
+"36","1-intake-Landlord issues","2-move-Adoption",121,11,75
+"37","1-intake-Landlord issues","2-move-Foster",24,11,77
+"38","1-intake-Landlord issues","2-move-Reclaimed",10,11,78
+"39","1-intake-Landlord issues","2-move-Transfer",10,11,81
+"40","1-intake-Litter relinquishment","2-move-Adoption",361,12,75
+"41","1-intake-Litter relinquishment","2-move-Foster",386,12,77
+"42","1-intake-Litter relinquishment","2-move-Transfer",12,12,81
+"43","1-intake-Marriage/Relationship split","2-move-Adoption",35,13,75
+"44","1-intake-Marriage/Relationship split","2-move-Foster",4,13,77
+"45","1-intake-Marriage/Relationship split","2-move-Transfer",1,13,81
+"46","1-intake-Moving","2-move-Adoption",343,14,75
+"47","1-intake-Moving","2-move-Foster",60,14,77
+"48","1-intake-Moving","2-move-Reclaimed",4,14,78
+"49","1-intake-Moving","2-move-Transfer",38,14,81
+"50","1-intake-No Reason","2-move-Adoption",1,15,75
+"51","1-intake-No Reason","2-move-Transfer",1,15,81
+"52","1-intake-Owner Deceased","2-move-Adoption",59,16,75
+"53","1-intake-Owner Deceased","2-move-Foster",27,16,77
+"54","1-intake-Owner Deceased","2-move-Reclaimed",22,16,78
+"55","1-intake-Owner Deceased","2-move-Transfer",8,16,81
+"56","1-intake-Owner requested","2-move-Adoption",2,17,75
+"57","1-intake-Owner requested","2-move-Foster",4,17,77
+"58","1-intake-Owner requested","2-move-Reclaimed",2,17,78
+"59","1-intake-Police Assist","2-move-Adoption",29,18,75
+"60","1-intake-Police Assist","2-move-Foster",12,18,77
+"61","1-intake-Police Assist","2-move-Reclaimed",145,18,78
+"62","1-intake-Police Assist","2-move-Transfer",5,18,81
+"63","1-intake-Rabies Monitoring","2-move-Adoption",2,19,75
+"64","1-intake-Rabies Monitoring","2-move-Reclaimed",36,19,78
+"65","1-intake-Stray","2-move-Adoption",1765,20,75
+"66","1-intake-Stray","2-move-Escaped",1,20,76
+"67","1-intake-Stray","2-move-Foster",1059,20,77
+"68","1-intake-Stray","2-move-Reclaimed",1076,20,78
+"69","1-intake-Stray","2-move-Released To Wild",5,20,79
+"70","1-intake-Stray","2-move-Stolen",1,20,80
+"71","1-intake-Stray","2-move-Transfer",216,20,81
+"72","1-intake-TNR - Trap/Neuter/Release","2-move-Adoption",11,21,75
+"73","1-intake-TNR - Trap/Neuter/Release","2-move-Foster",5,21,77
+"74","1-intake-TNR - Trap/Neuter/Release","2-move-Reclaimed",8,21,78
+"75","1-intake-TNR - Trap/Neuter/Release","2-move-Released To Wild",1,21,79
+"76","1-intake-TNR - Trap/Neuter/Release","2-move-Transfer",3,21,81
+"77","1-intake-Transfer from Other Shelter","2-move-Adoption",110,22,75
+"78","1-intake-Transfer from Other Shelter","2-move-Foster",39,22,77
+"79","1-intake-Transfer from Other Shelter","2-move-Reclaimed",1,22,78
+"80","1-intake-Unable to Afford","2-move-Adoption",193,23,75
+"81","1-intake-Unable to Afford","2-move-Foster",106,23,77
+"82","1-intake-Unable to Afford","2-move-Reclaimed",3,23,78
+"83","1-intake-Unable to Afford","2-move-Stolen",1,23,80
+"84","1-intake-Unable to Afford","2-move-Transfer",13,23,81
+"85","1-intake-Unsuitable Accommodation","2-dead-Died in care",1,24,67
+"86","1-intake-Unsuitable Accommodation","2-move-Adoption",194,24,75
+"87","1-intake-Unsuitable Accommodation","2-move-Foster",100,24,77
+"88","1-intake-Unsuitable Accommodation","2-move-Reclaimed",13,24,78
+"89","1-intake-Unsuitable Accommodation","2-move-Released To Wild",1,24,79
+"90","1-intake-Unsuitable Accommodation","2-move-Transfer",25,24,81
+"91","1-move-Adoption","2-intake-Abandoned",1,25,68
+"92","1-move-Adoption","2-return-Incompatible with owner lifestyle",1,25,82
+"93","1-move-Foster","2-intake-Born in Shelter",14,26,70
+"94","1-move-Foster","2-intake-Litter relinquishment",2,26,72
+"95","1-move-Foster","2-intake-Stray",2,26,73
+"96","1-move-Foster","2-intake-Transfer from Other Shelter",1,26,74
+"97","1-move-Reclaimed","2-intake-Stray",2,27,73
+"98","1-move-Transfer","2-intake-Animal Health",1,28,69
+"99","1-move-Transfer","2-intake-Injured Wildlife",1,28,71
+"100","10-move-Adoption","11-return-Landlord issues",1,29,41
+"101","10-move-Foster","11-move-Adoption",2,30,36
+"102","10-move-Foster","11-return-Stray",2,30,42
+"103","10-move-Reclaimed","11-return-Stray",1,31,42
+"104","10-move-Stolen","11-return-Stray",1,32,42
+"105","10-return-Stray","11-move-Foster",2,35,37
+"106","10-return-Stray","11-move-Reclaimed",1,35,38
+"107","10-return-Stray","11-return-Behavior",1,35,39
+"108","10-return-Stray","11-return-Incompatible with owner lifestyle",1,35,40
+"109","10-return-Stray","11-return-Transfer from Other Shelter",1,35,43
+"110","11-move-Adoption","12-return-Stray",2,36,48
+"111","11-move-Foster","12-return-Behavior",1,37,47
+"112","11-move-Foster","12-return-Stray",1,37,48
+"113","11-move-Reclaimed","12-return-Stray",1,38,48
+"114","11-return-Behavior","12-move-Foster",1,39,45
+"115","11-return-Incompatible with owner lifestyle","12-move-Reclaimed",1,40,46
+"116","11-return-Landlord issues","12-move-Adoption",1,41,44
+"117","11-return-Stray","12-move-Adoption",3,42,44
+"118","11-return-Stray","12-move-Foster",1,42,45
+"119","11-return-Transfer from Other Shelter","12-move-Foster",1,43,45
+"120","12-move-Adoption","13-move-Reclaimed",1,44,51
+"121","12-move-Foster","13-move-Adoption",1,45,49
+"122","12-move-Foster","13-return-Stray",2,45,52
+"123","12-return-Behavior","13-move-Adoption",1,47,49
+"124","12-return-Stray","13-move-Foster",1,48,50
+"125","13-move-Adoption","14-return-Stray",2,49,54
+"126","13-move-Foster","14-return-Stray",1,50,54
+"127","13-move-Reclaimed","14-return-Stray",1,51,54
+"128","13-return-Stray","14-move-Adoption",1,52,53
+"129","14-return-Stray","15-move-Foster",3,54,55
+"130","14-return-Stray","15-move-Reclaimed",1,54,56
+"131","15-move-Foster","16-return-Incompatible with owner lifestyle",1,55,57
+"132","15-move-Foster","16-return-Landlord issues",1,55,58
+"133","15-move-Foster","16-return-Stray",1,55,59
+"134","15-move-Reclaimed","16-return-Stray",1,56,59
+"135","16-return-Incompatible with owner lifestyle","17-move-Foster",1,57,60
+"136","16-return-Landlord issues","17-return-Stray",1,58,62
+"137","16-return-Stray","17-move-Foster",1,59,60
+"138","16-return-Stray","17-return-Behavior",1,59,61
+"139","17-move-Foster","18-return-Stray",2,60,64
+"140","17-return-Behavior","18-move-Foster",1,61,63
+"141","17-return-Stray","18-move-Foster",1,62,63
+"142","18-move-Foster","19-return-Stray",2,63,66
+"143","18-return-Stray","19-move-Foster",1,64,65
+"144","18-return-Stray","19-return-Stray",1,64,66
+"145","19-move-Foster","20-return-Stray",1,65,85
+"146","19-return-Stray","20-move-Adoption",1,66,83
+"147","19-return-Stray","20-move-Foster",2,66,84
+"148","2-dead-Died in care","3-move-Foster",1,67,100
+"149","2-intake-Abandoned","3-return-Abandoned",1,68,103
+"150","2-intake-Born in Shelter","3-return-Stray",14,70,121
+"151","2-intake-Litter relinquishment","3-return-Stray",2,72,121
+"152","2-intake-Stray","3-move-Adoption",1,73,98
+"153","2-intake-Stray","3-move-Escaped",1,73,99
+"154","2-intake-Transfer from Other Shelter","3-move-Foster",1,74,100
+"155","2-move-Adoption","3-dead-Animal Health",1,75,90
+"156","2-move-Adoption","3-dead-Dead On Arrival",6,75,92
+"157","2-move-Adoption","3-dead-Died in care",1,75,93
+"158","2-move-Adoption","3-dead-Died in community",4,75,94
+"159","2-move-Adoption","3-dead-UU - untreatable, unmanageable health",2,75,96
+"160","2-move-Adoption","3-move-Adoption",15,75,98
+"161","2-move-Adoption","3-move-Foster",3,75,100
+"162","2-move-Adoption","3-move-Reclaimed",27,75,101
+"163","2-move-Adoption","3-return-Abandoned",1,75,103
+"164","2-move-Adoption","3-return-Allergies",19,75,105
+"165","2-move-Adoption","3-return-Animal Health",6,75,106
+"166","2-move-Adoption","3-return-Behavior",39,75,107
+"167","2-move-Adoption","3-return-Behavioral Issues",4,75,108
+"168","2-move-Adoption","3-return-Biting",16,75,109
+"169","2-move-Adoption","3-return-Dead On Arrival",3,75,110
+"170","2-move-Adoption","3-return-Incompatible with other pets",23,75,111
+"171","2-move-Adoption","3-return-Incompatible with owner lifestyle",259,75,112
+"172","2-move-Adoption","3-return-Landlord issues",10,75,113
+"173","2-move-Adoption","3-return-Marriage/Relationship split",2,75,114
+"174","2-move-Adoption","3-return-Moving",32,75,115
+"175","2-move-Adoption","3-return-Owner Deceased",1,75,116
+"176","2-move-Adoption","3-return-Owner requested",4,75,117
+"177","2-move-Adoption","3-return-Police Assist",3,75,118
+"178","2-move-Adoption","3-return-Rabies Monitoring",5,75,119
+"179","2-move-Adoption","3-return-Return Adopt - Other",18,75,120
+"180","2-move-Adoption","3-return-Stray",48,75,121
+"181","2-move-Adoption","3-return-Transfer from Other Shelter",4,75,122
+"182","2-move-Adoption","3-return-Unable to Afford",4,75,123
+"183","2-move-Adoption","3-return-Unsuitable Accommodation",12,75,124
+"184","2-move-Foster","3-dead-Dead On Arrival",1,77,92
+"185","2-move-Foster","3-dead-Died in care",26,77,93
+"186","2-move-Foster","3-dead-UU - untreatable, unmanageable health",11,77,96
+"187","2-move-Foster","3-dead-Vet advised euthanasia",2,77,97
+"188","2-move-Foster","3-move-Adoption",469,77,98
+"189","2-move-Foster","3-move-Escaped",2,77,99
+"190","2-move-Foster","3-move-Foster",136,77,100
+"191","2-move-Foster","3-move-Reclaimed",1,77,101
+"192","2-move-Foster","3-move-Transfer",10,77,102
+"193","2-move-Foster","3-return-Stray",1576,77,121
+"194","2-move-Reclaimed","3-dead-Court Order/ Legal",1,78,91
+"195","2-move-Reclaimed","3-dead-Dead On Arrival",2,78,92
+"196","2-move-Reclaimed","3-dead-Owner Requested",1,78,95
+"197","2-move-Reclaimed","3-move-Adoption",2,78,98
+"198","2-move-Reclaimed","3-move-Foster",4,78,100
+"199","2-move-Reclaimed","3-move-Reclaimed",42,78,101
+"200","2-move-Reclaimed","3-return-Abandoned",4,78,103
+"201","2-move-Reclaimed","3-return-Abuse/ neglect",1,78,104
+"202","2-move-Reclaimed","3-return-Allergies",1,78,105
+"203","2-move-Reclaimed","3-return-Behavioral Issues",2,78,108
+"204","2-move-Reclaimed","3-return-Biting",9,78,109
+"205","2-move-Reclaimed","3-return-Dead On Arrival",2,78,110
+"206","2-move-Reclaimed","3-return-Incompatible with other pets",2,78,111
+"207","2-move-Reclaimed","3-return-Incompatible with owner lifestyle",39,78,112
+"208","2-move-Reclaimed","3-return-Landlord issues",6,78,113
+"209","2-move-Reclaimed","3-return-Marriage/Relationship split",1,78,114
+"210","2-move-Reclaimed","3-return-Moving",8,78,115
+"211","2-move-Reclaimed","3-return-Owner Deceased",7,78,116
+"212","2-move-Reclaimed","3-return-Owner requested",14,78,117
+"213","2-move-Reclaimed","3-return-Police Assist",3,78,118
+"214","2-move-Reclaimed","3-return-Rabies Monitoring",2,78,119
+"215","2-move-Reclaimed","3-return-Stray",57,78,121
+"216","2-move-Reclaimed","3-return-Unable to Afford",10,78,123
+"217","2-move-Reclaimed","3-return-Unsuitable Accommodation",14,78,124
+"218","2-move-Transfer","3-dead-Animal Health",1,81,90
+"219","2-move-Transfer","3-move-Transfer",1,81,102
+"220","2-return-Incompatible with owner lifestyle","3-move-Adoption",1,82,98
+"221","20-move-Foster","21-move-Adoption",1,84,86
+"222","20-move-Foster","21-return-Stray",1,84,87
+"223","20-return-Stray","21-move-Adoption",1,85,86
+"224","21-move-Adoption","22-return-Stray",2,86,89
+"225","21-return-Stray","22-dead-UU - untreatable, unmanageable health",1,87,88
+"226","3-dead-Dead On Arrival","4-return-Stray",1,92,148
+"227","3-dead-Died in care","4-return-Stray",12,93,148
+"228","3-dead-UU - untreatable, unmanageable health","4-return-Stray",1,96,148
+"229","3-move-Adoption","4-intake-Owner Deceased",1,98,136
+"230","3-move-Adoption","4-move-Reclaimed",1,98,139
+"231","3-move-Adoption","4-return-Incompatible with other pets",2,98,143
+"232","3-move-Adoption","4-return-Incompatible with owner lifestyle",8,98,144
+"233","3-move-Adoption","4-return-Return Adopt - Other",2,98,147
+"234","3-move-Adoption","4-return-Stray",470,98,148
+"235","3-move-Adoption","4-return-Unable to Afford",3,98,149
+"236","3-move-Escaped","4-return-Stray",3,99,148
+"237","3-move-Foster","4-return-Incompatible with owner lifestyle",1,100,144
+"238","3-move-Foster","4-return-Moving",1,100,145
+"239","3-move-Foster","4-return-Police Assist",1,100,146
+"240","3-move-Foster","4-return-Stray",138,100,148
+"241","3-move-Foster","4-return-Unable to Afford",3,100,149
+"242","3-move-Reclaimed","4-return-Animal Health",2,101,142
+"243","3-move-Reclaimed","4-return-Incompatible with owner lifestyle",4,101,144
+"244","3-move-Reclaimed","4-return-Stray",62,101,148
+"245","3-move-Reclaimed","4-return-Unable to Afford",1,101,149
+"246","3-move-Transfer","4-return-Stray",11,102,148
+"247","3-return-Abandoned","4-move-Adoption",2,103,137
+"248","3-return-Abandoned","4-move-Foster",1,103,138
+"249","3-return-Abandoned","4-move-Reclaimed",2,103,139
+"250","3-return-Abuse/ neglect","4-move-Foster",1,104,138
+"251","3-return-Allergies","4-dead-UU - untreatable, unmanageable health",1,105,134
+"252","3-return-Allergies","4-move-Adoption",18,105,137
+"253","3-return-Allergies","4-move-Transfer",1,105,141
+"254","3-return-Animal Health","4-dead-UU - untreatable, unmanageable health",1,106,134
+"255","3-return-Animal Health","4-move-Adoption",4,106,137
+"256","3-return-Animal Health","4-move-Foster",1,106,138
+"257","3-return-Behavior","4-dead-TM - Treatable Manageable Behavior",1,107,132
+"258","3-return-Behavior","4-dead-UU - untreatable, unmanageable health",1,107,134
+"259","3-return-Behavior","4-move-Adoption",28,107,137
+"260","3-return-Behavior","4-move-Foster",7,107,138
+"261","3-return-Behavioral Issues","4-dead-Court Order/ Legal",1,108,128
+"262","3-return-Behavioral Issues","4-dead-UU - untreatable, unmanageable Behavior",1,108,133
+"263","3-return-Behavioral Issues","4-move-Adoption",3,108,137
+"264","3-return-Behavioral Issues","4-move-Foster",1,108,138
+"265","3-return-Biting","4-dead-Behavior",1,109,126
+"266","3-return-Biting","4-dead-Biting",5,109,127
+"267","3-return-Biting","4-dead-UU - untreatable, unmanageable Behavior",1,109,133
+"268","3-return-Biting","4-dead-UU - untreatable, unmanageable health",2,109,134
+"269","3-return-Biting","4-move-Adoption",5,109,137
+"270","3-return-Biting","4-move-Foster",1,109,138
+"271","3-return-Biting","4-move-Reclaimed",8,109,139
+"272","3-return-Biting","4-move-Transfer",2,109,141
+"273","3-return-Dead On Arrival","4-dead-Dead On Arrival",4,110,129
+"274","3-return-Incompatible with other pets","4-dead-TM - Treatable Manageable Behavior",2,111,132
+"275","3-return-Incompatible with other pets","4-move-Adoption",19,111,137
+"276","3-return-Incompatible with other pets","4-move-Foster",3,111,138
+"277","3-return-Incompatible with owner lifestyle","4-dead-Animal Health",3,112,125
+"278","3-return-Incompatible with owner lifestyle","4-dead-Behavior",2,112,126
+"279","3-return-Incompatible with owner lifestyle","4-dead-Biting",5,112,127
+"280","3-return-Incompatible with owner lifestyle","4-dead-TM - Treatable Manageable Behavior",2,112,132
+"281","3-return-Incompatible with owner lifestyle","4-dead-UU - untreatable, unmanageable Behavior",2,112,133
+"282","3-return-Incompatible with owner lifestyle","4-dead-UU - untreatable, unmanageable health",3,112,134
+"283","3-return-Incompatible with owner lifestyle","4-move-Adoption",244,112,137
+"284","3-return-Incompatible with owner lifestyle","4-move-Foster",13,112,138
+"285","3-return-Incompatible with owner lifestyle","4-move-Reclaimed",6,112,139
+"286","3-return-Incompatible with owner lifestyle","4-move-Transfer",17,112,141
+"287","3-return-Landlord issues","4-dead-UU - untreatable, unmanageable health",2,113,134
+"288","3-return-Landlord issues","4-move-Adoption",11,113,137
+"289","3-return-Landlord issues","4-move-Foster",2,113,138
+"290","3-return-Landlord issues","4-move-Reclaimed",1,113,139
+"291","3-return-Marriage/Relationship split","4-dead-UU - untreatable, unmanageable Behavior",1,114,133
+"292","3-return-Marriage/Relationship split","4-move-Adoption",2,114,137
+"293","3-return-Moving","4-dead-UU - untreatable, unmanageable health",1,115,134
+"294","3-return-Moving","4-move-Adoption",36,115,137
+"295","3-return-Moving","4-move-Foster",1,115,138
+"296","3-return-Moving","4-move-Reclaimed",1,115,139
+"297","3-return-Moving","4-move-Transfer",1,115,141
+"298","3-return-Owner Deceased","4-dead-Biting",1,116,127
+"299","3-return-Owner Deceased","4-move-Adoption",5,116,137
+"300","3-return-Owner Deceased","4-move-Reclaimed",1,116,139
+"301","3-return-Owner Deceased","4-move-Transfer",1,116,141
+"302","3-return-Owner requested","4-dead-Owner Requested",12,117,131
+"303","3-return-Owner requested","4-dead-UU - untreatable, unmanageable Behavior",1,117,133
+"304","3-return-Owner requested","4-dead-UU - untreatable, unmanageable health",3,117,134
+"305","3-return-Owner requested","4-move-Adoption",2,117,137
+"306","3-return-Police Assist","4-move-Adoption",2,118,137
+"307","3-return-Police Assist","4-move-Reclaimed",3,118,139
+"308","3-return-Rabies Monitoring","4-dead-Behavior",1,119,126
+"309","3-return-Rabies Monitoring","4-dead-Court Order/ Legal",1,119,128
+"310","3-return-Rabies Monitoring","4-dead-UU - untreatable, unmanageable health",1,119,134
+"311","3-return-Rabies Monitoring","4-move-Reclaimed",3,119,139
+"312","3-return-Rabies Monitoring","4-move-Transfer",1,119,141
+"313","3-return-Return Adopt - Other","4-move-Adoption",13,120,137
+"314","3-return-Return Adopt - Other","4-move-Foster",3,120,138
+"315","3-return-Return Adopt - Other","4-move-Reclaimed",1,120,139
+"316","3-return-Stray","4-dead-Animal Health",8,121,125
+"317","3-return-Stray","4-dead-Biting",1,121,127
+"318","3-return-Stray","4-dead-Court Order/ Legal",1,121,128
+"319","3-return-Stray","4-dead-Dead On Arrival",1,121,129
+"320","3-return-Stray","4-dead-Died in care",51,121,130
+"321","3-return-Stray","4-dead-UU - untreatable, unmanageable Behavior",1,121,133
+"322","3-return-Stray","4-dead-UU - untreatable, unmanageable health",31,121,134
+"323","3-return-Stray","4-dead-Vet advised euthanasia",3,121,135
+"324","3-return-Stray","4-move-Adoption",1168,121,137
+"325","3-return-Stray","4-move-Foster",341,121,138
+"326","3-return-Stray","4-move-Reclaimed",61,121,139
+"327","3-return-Stray","4-move-Stolen",3,121,140
+"328","3-return-Stray","4-move-Transfer",18,121,141
+"329","3-return-Stray","4-return-Stray",2,121,148
+"330","3-return-Transfer from Other Shelter","4-move-Adoption",4,122,137
+"331","3-return-Unable to Afford","4-dead-Behavior",1,123,126
+"332","3-return-Unable to Afford","4-dead-Biting",1,123,127
+"333","3-return-Unable to Afford","4-move-Adoption",8,123,137
+"334","3-return-Unable to Afford","4-move-Foster",2,123,138
+"335","3-return-Unable to Afford","4-move-Transfer",1,123,141
+"336","3-return-Unsuitable Accommodation","4-dead-Behavior",1,124,126
+"337","3-return-Unsuitable Accommodation","4-dead-UU - untreatable, unmanageable health",1,124,134
+"338","3-return-Unsuitable Accommodation","4-move-Adoption",18,124,137
+"339","3-return-Unsuitable Accommodation","4-move-Foster",2,124,138
+"340","3-return-Unsuitable Accommodation","4-move-Reclaimed",4,124,139
+"341","4-intake-Owner Deceased","5-return-Owner Deceased",1,136,169
+"342","4-move-Adoption","5-dead-Court Order/ Legal",1,137,150
+"343","4-move-Adoption","5-dead-Died in community",1,137,152
+"344","4-move-Adoption","5-dead-Vet advised euthanasia",1,137,153
+"345","4-move-Adoption","5-move-Adoption",3,137,154
+"346","4-move-Adoption","5-move-Reclaimed",11,137,156
+"347","4-move-Adoption","5-return-Abandoned",2,137,157
+"348","4-move-Adoption","5-return-Allergies",8,137,158
+"349","4-move-Adoption","5-return-Animal Health",4,137,159
+"350","4-move-Adoption","5-return-Behavior",18,137,160
+"351","4-move-Adoption","5-return-Behavioral Issues",3,137,161
+"352","4-move-Adoption","5-return-Biting",3,137,162
+"353","4-move-Adoption","5-return-Dead On Arrival",1,137,163
+"354","4-move-Adoption","5-return-Incompatible with other pets",9,137,164
+"355","4-move-Adoption","5-return-Incompatible with owner lifestyle",57,137,165
+"356","4-move-Adoption","5-return-Landlord issues",5,137,166
+"357","4-move-Adoption","5-return-Marriage/Relationship split",1,137,167
+"358","4-move-Adoption","5-return-Moving",8,137,168
+"359","4-move-Adoption","5-return-Owner requested",1,137,170
+"360","4-move-Adoption","5-return-Police Assist",1,137,171
+"361","4-move-Adoption","5-return-Rabies Monitoring",4,137,172
+"362","4-move-Adoption","5-return-Return Adopt - Other",6,137,173
+"363","4-move-Adoption","5-return-Stray",12,137,174
+"364","4-move-Adoption","5-return-Unable to Afford",1,137,175
+"365","4-move-Adoption","5-return-Unsuitable Accommodation",6,137,176
+"366","4-move-Foster","5-dead-Died in care",2,138,151
+"367","4-move-Foster","5-move-Adoption",84,138,154
+"368","4-move-Foster","5-move-Foster",15,138,155
+"369","4-move-Foster","5-return-Stray",275,138,174
+"370","4-move-Reclaimed","5-dead-Court Order/ Legal",1,139,150
+"371","4-move-Reclaimed","5-move-Reclaimed",8,139,156
+"372","4-move-Reclaimed","5-return-Abandoned",1,139,157
+"373","4-move-Reclaimed","5-return-Biting",2,139,162
+"374","4-move-Reclaimed","5-return-Incompatible with owner lifestyle",4,139,165
+"375","4-move-Reclaimed","5-return-Owner requested",2,139,170
+"376","4-move-Reclaimed","5-return-Rabies Monitoring",1,139,172
+"377","4-move-Reclaimed","5-return-Stray",17,139,174
+"378","4-move-Reclaimed","5-return-Unsuitable Accommodation",2,139,176
+"379","4-move-Stolen","5-return-Stray",1,140,174
+"380","4-move-Transfer","5-return-Stray",1,141,174
+"381","4-return-Animal Health","5-return-Incompatible with owner lifestyle",1,142,165
+"382","4-return-Incompatible with other pets","5-return-Behavioral Issues",1,143,161
+"383","4-return-Incompatible with owner lifestyle","5-move-Adoption",1,144,154
+"384","4-return-Incompatible with owner lifestyle","5-return-Police Assist",1,144,171
+"385","4-return-Moving","5-return-Stray",1,145,174
+"386","4-return-Police Assist","5-return-Stray",1,146,174
+"387","4-return-Stray","5-dead-Died in care",5,148,151
+"388","4-return-Stray","5-dead-Died in community",1,148,152
+"389","4-return-Stray","5-move-Adoption",28,148,154
+"390","4-return-Stray","5-move-Foster",14,148,155
+"391","4-return-Stray","5-move-Reclaimed",9,148,156
+"392","4-return-Stray","5-return-Allergies",1,148,158
+"393","4-return-Stray","5-return-Behavior",1,148,160
+"394","4-return-Stray","5-return-Biting",2,148,162
+"395","4-return-Stray","5-return-Incompatible with other pets",2,148,164
+"396","4-return-Stray","5-return-Incompatible with owner lifestyle",8,148,165
+"397","4-return-Stray","5-return-Moving",1,148,168
+"398","4-return-Stray","5-return-Owner requested",2,148,170
+"399","4-return-Stray","5-return-Return Adopt - Other",1,148,173
+"400","4-return-Stray","5-return-Stray",95,148,174
+"401","4-return-Stray","5-return-Unable to Afford",1,148,175
+"402","4-return-Stray","5-return-Unsuitable Accommodation",1,148,176
+"403","4-return-Unable to Afford","5-return-Stray",3,149,174
+"404","5-dead-Died in care","6-return-Stray",2,151,197
+"405","5-move-Adoption","6-return-Incompatible with owner lifestyle",2,154,195
+"406","5-move-Adoption","6-return-Return Adopt - Other",1,154,196
+"407","5-move-Adoption","6-return-Stray",112,154,197
+"408","5-move-Foster","6-move-Foster",1,155,188
+"409","5-move-Foster","6-return-Allergies",1,155,192
+"410","5-move-Foster","6-return-Behavioral Issues",1,155,193
+"411","5-move-Foster","6-return-Biting",1,155,194
+"412","5-move-Foster","6-return-Incompatible with owner lifestyle",1,155,195
+"413","5-move-Foster","6-return-Stray",24,155,197
+"414","5-move-Reclaimed","6-move-Adoption",1,156,187
+"415","5-move-Reclaimed","6-return-Stray",26,156,197
+"416","5-return-Abandoned","6-move-Adoption",3,157,187
+"417","5-return-Allergies","6-move-Adoption",8,158,187
+"418","5-return-Allergies","6-move-Foster",1,158,188
+"419","5-return-Animal Health","6-dead-Died in care",1,159,181
+"420","5-return-Animal Health","6-move-Adoption",1,159,187
+"421","5-return-Animal Health","6-move-Foster",1,159,188
+"422","5-return-Animal Health","6-move-Transfer",1,159,191
+"423","5-return-Behavior","6-move-Adoption",16,160,187
+"424","5-return-Behavior","6-move-Transfer",1,160,191
+"425","5-return-Behavioral Issues","6-dead-TM - Treatable Manageable Behavior",1,161,183
+"426","5-return-Behavioral Issues","6-dead-UU - untreatable, unmanageable Behavior",1,161,184
+"427","5-return-Behavioral Issues","6-move-Adoption",1,161,187
+"428","5-return-Behavioral Issues","6-move-Reclaimed",1,161,189
+"429","5-return-Biting","6-dead-Biting",1,162,179
+"430","5-return-Biting","6-dead-Owner Requested",1,162,182
+"431","5-return-Biting","6-dead-UU - untreatable, unmanageable Behavior",2,162,184
+"432","5-return-Biting","6-move-Adoption",2,162,187
+"433","5-return-Biting","6-move-Transfer",1,162,191
+"434","5-return-Dead On Arrival","6-dead-Dead On Arrival",1,163,180
+"435","5-return-Incompatible with other pets","6-dead-UU - untreatable, unmanageable Behavior",1,164,184
+"436","5-return-Incompatible with other pets","6-move-Adoption",9,164,187
+"437","5-return-Incompatible with other pets","6-move-Foster",1,164,188
+"438","5-return-Incompatible with owner lifestyle","6-dead-Behavior",1,165,178
+"439","5-return-Incompatible with owner lifestyle","6-dead-TM - Treatable Manageable Behavior",1,165,183
+"440","5-return-Incompatible with owner lifestyle","6-dead-UU - untreatable, unmanageable health",1,165,185
+"441","5-return-Incompatible with owner lifestyle","6-move-Adoption",63,165,187
+"442","5-return-Incompatible with owner lifestyle","6-move-Foster",2,165,188
+"443","5-return-Incompatible with owner lifestyle","6-move-Reclaimed",1,165,189
+"444","5-return-Landlord issues","6-move-Adoption",4,166,187
+"445","5-return-Marriage/Relationship split","6-move-Adoption",1,167,187
+"446","5-return-Moving","6-move-Adoption",6,168,187
+"447","5-return-Moving","6-move-Foster",1,168,188
+"448","5-return-Moving","6-move-Transfer",2,168,191
+"449","5-return-Owner Deceased","6-move-Adoption",1,169,187
+"450","5-return-Owner requested","6-dead-Owner Requested",4,170,182
+"451","5-return-Owner requested","6-dead-Vet advised euthanasia",1,170,186
+"452","5-return-Police Assist","6-move-Adoption",1,171,187
+"453","5-return-Police Assist","6-move-Transfer",1,171,191
+"454","5-return-Rabies Monitoring","6-dead-UU - untreatable, unmanageable Behavior",1,172,184
+"455","5-return-Rabies Monitoring","6-move-Reclaimed",4,172,189
+"456","5-return-Return Adopt - Other","6-move-Adoption",6,173,187
+"457","5-return-Return Adopt - Other","6-move-Foster",1,173,188
+"458","5-return-Stray","6-dead-Animal Health",3,174,177
+"459","5-return-Stray","6-dead-Died in care",5,174,181
+"460","5-return-Stray","6-dead-UU - untreatable, unmanageable health",6,174,185
+"461","5-return-Stray","6-move-Adoption",286,174,187
+"462","5-return-Stray","6-move-Foster",73,174,188
+"463","5-return-Stray","6-move-Reclaimed",18,174,189
+"464","5-return-Stray","6-move-Stolen",2,174,190
+"465","5-return-Stray","6-move-Transfer",4,174,191
+"466","5-return-Stray","6-return-Incompatible with owner lifestyle",1,174,195
+"467","5-return-Stray","6-return-Stray",4,174,197
+"468","5-return-Unable to Afford","6-move-Adoption",1,175,187
+"469","5-return-Unable to Afford","6-return-Stray",1,175,197
+"470","5-return-Unsuitable Accommodation","6-dead-UU - untreatable, unmanageable health",1,176,185
+"471","5-return-Unsuitable Accommodation","6-move-Adoption",7,176,187
+"472","5-return-Unsuitable Accommodation","6-move-Foster",1,176,188
+"473","6-move-Adoption","7-dead-Dead On Arrival",1,187,198
+"474","6-move-Adoption","7-move-Adoption",2,187,201
+"475","6-move-Adoption","7-move-Reclaimed",4,187,203
+"476","6-move-Adoption","7-return-Allergies",1,187,205
+"477","6-move-Adoption","7-return-Animal Health",2,187,206
+"478","6-move-Adoption","7-return-Behavior",5,187,207
+"479","6-move-Adoption","7-return-Biting",1,187,208
+"480","6-move-Adoption","7-return-Incompatible with owner lifestyle",17,187,209
+"481","6-move-Adoption","7-return-Landlord issues",2,187,210
+"482","6-move-Adoption","7-return-Moving",1,187,211
+"483","6-move-Adoption","7-return-Return Adopt - Other",3,187,212
+"484","6-move-Adoption","7-return-Stray",7,187,213
+"485","6-move-Adoption","7-return-Transfer from Other Shelter",1,187,214
+"486","6-move-Adoption","7-return-Unable to Afford",1,187,215
+"487","6-move-Foster","7-dead-Died in care",1,188,199
+"488","6-move-Foster","7-move-Adoption",26,188,201
+"489","6-move-Foster","7-move-Foster",2,188,202
+"490","6-move-Foster","7-move-Transfer",2,188,204
+"491","6-move-Foster","7-return-Stray",47,188,213
+"492","6-move-Reclaimed","7-move-Reclaimed",2,189,203
+"493","6-move-Reclaimed","7-return-Animal Health",1,189,206
+"494","6-move-Reclaimed","7-return-Biting",1,189,208
+"495","6-move-Reclaimed","7-return-Incompatible with owner lifestyle",4,189,209
+"496","6-move-Reclaimed","7-return-Stray",5,189,213
+"497","6-return-Allergies","7-move-Adoption",1,192,201
+"498","6-return-Behavioral Issues","7-move-Adoption",1,193,201
+"499","6-return-Biting","7-return-Stray",1,194,213
+"500","6-return-Incompatible with owner lifestyle","7-return-Behavior",1,195,207
+"501","6-return-Incompatible with owner lifestyle","7-return-Stray",2,195,213
+"502","6-return-Stray","7-dead-UU - untreatable, unmanageable health",1,197,200
+"503","6-return-Stray","7-move-Adoption",11,197,201
+"504","6-return-Stray","7-move-Foster",6,197,202
+"505","6-return-Stray","7-move-Reclaimed",4,197,203
+"506","6-return-Stray","7-return-Behavior",2,197,207
+"507","6-return-Stray","7-return-Biting",1,197,208
+"508","6-return-Stray","7-return-Incompatible with owner lifestyle",3,197,209
+"509","6-return-Stray","7-return-Moving",1,197,211
+"510","6-return-Stray","7-return-Stray",18,197,213
+"511","6-return-Stray","7-return-Unable to Afford",1,197,215
+"512","6-return-Stray","7-return-Unsuitable Accommodation",1,197,216
+"513","7-move-Adoption","8-return-Incompatible with owner lifestyle",2,201,228
+"514","7-move-Adoption","8-return-Stray",36,201,229
+"515","7-move-Foster","8-move-Adoption",1,202,224
+"516","7-move-Foster","8-return-Incompatible with owner lifestyle",2,202,228
+"517","7-move-Foster","8-return-Stray",5,202,229
+"518","7-move-Reclaimed","8-return-Stray",10,203,229
+"519","7-move-Transfer","8-return-Stray",2,204,229
+"520","7-return-Allergies","8-move-Adoption",1,205,224
+"521","7-return-Animal Health","8-move-Adoption",2,206,224
+"522","7-return-Animal Health","8-move-Reclaimed",1,206,226
+"523","7-return-Behavior","8-dead-UU - untreatable, unmanageable Behavior",1,207,222
+"524","7-return-Behavior","8-move-Adoption",7,207,224
+"525","7-return-Biting","8-dead-Behavior",1,208,218
+"526","7-return-Biting","8-move-Foster",1,208,225
+"527","7-return-Biting","8-move-Transfer",1,208,227
+"528","7-return-Incompatible with owner lifestyle","8-move-Adoption",19,209,224
+"529","7-return-Incompatible with owner lifestyle","8-move-Foster",3,209,225
+"530","7-return-Incompatible with owner lifestyle","8-move-Transfer",1,209,227
+"531","7-return-Landlord issues","8-move-Adoption",2,210,224
+"532","7-return-Moving","8-move-Adoption",2,211,224
+"533","7-return-Return Adopt - Other","8-move-Adoption",2,212,224
+"534","7-return-Return Adopt - Other","8-move-Foster",1,212,225
+"535","7-return-Stray","8-dead-Animal Health",1,213,217
+"536","7-return-Stray","8-dead-Biting",1,213,219
+"537","7-return-Stray","8-dead-Died in care",3,213,220
+"538","7-return-Stray","8-dead-UU - untreatable, unmanageable health",1,213,223
+"539","7-return-Stray","8-move-Adoption",52,213,224
+"540","7-return-Stray","8-move-Foster",10,213,225
+"541","7-return-Stray","8-move-Reclaimed",8,213,226
+"542","7-return-Stray","8-return-Incompatible with owner lifestyle",1,213,228
+"543","7-return-Stray","8-return-Stray",1,213,229
+"544","7-return-Transfer from Other Shelter","8-move-Adoption",1,214,224
+"545","7-return-Unable to Afford","8-move-Adoption",2,215,224
+"546","7-return-Unsuitable Accommodation","8-dead-TM - Treatable Manageable Behavior",1,216,221
+"547","8-move-Adoption","9-dead-Dead On Arrival",1,224,230
+"548","8-move-Adoption","9-move-Adoption",1,224,231
+"549","8-move-Adoption","9-move-Reclaimed",1,224,233
+"550","8-move-Adoption","9-return-Behavior",4,224,234
+"551","8-move-Adoption","9-return-Incompatible with owner lifestyle",3,224,236
+"552","8-move-Adoption","9-return-Moving",1,224,237
+"553","8-move-Adoption","9-return-Stray",1,224,240
+"554","8-move-Foster","9-move-Adoption",8,225,231
+"555","8-move-Foster","9-move-Foster",1,225,232
+"556","8-move-Foster","9-return-Stray",5,225,240
+"557","8-move-Reclaimed","9-move-Reclaimed",1,226,233
+"558","8-move-Reclaimed","9-return-Police Assist",1,226,238
+"559","8-move-Reclaimed","9-return-Stray",2,226,240
+"560","8-return-Incompatible with owner lifestyle","9-move-Adoption",1,228,231
+"561","8-return-Stray","9-move-Adoption",2,229,231
+"562","8-return-Stray","9-move-Reclaimed",1,229,233
+"563","8-return-Stray","9-return-Incompatible with other pets",1,229,235
+"564","8-return-Stray","9-return-Rabies Monitoring",1,229,239
+"565","8-return-Stray","9-return-Stray",6,229,240
+"566","9-move-Adoption","10-return-Incompatible with owner lifestyle",1,231,34
+"567","9-move-Adoption","10-return-Stray",10,231,35
+"568","9-move-Foster","10-return-Stray",1,232,35
+"569","9-move-Reclaimed","10-return-Stray",3,233,35
+"570","9-return-Behavior","10-move-Adoption",1,234,29
+"571","9-return-Behavior","10-move-Transfer",2,234,33
+"572","9-return-Incompatible with other pets","10-move-Foster",1,235,30
+"573","9-return-Incompatible with owner lifestyle","10-move-Adoption",2,236,29
+"574","9-return-Incompatible with owner lifestyle","10-move-Foster",1,236,30
+"575","9-return-Moving","10-move-Adoption",1,237,29
+"576","9-return-Police Assist","10-move-Stolen",1,238,32
+"577","9-return-Rabies Monitoring","10-move-Transfer",1,239,33
+"578","9-return-Stray","10-move-Adoption",7,240,29
+"579","9-return-Stray","10-move-Foster",3,240,30
+"580","9-return-Stray","10-move-Reclaimed",3,240,31
